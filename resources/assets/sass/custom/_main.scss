@@ -1,0 +1,195 @@
+//
+// Custom Main
+//
+// Add your own styles or override existing ones
+//
+// This file is included last, so you have access
+// to all Bootstrap and Codebase functions/mixins/styles etc
+// --------------------------------------------------
+
+// If you have many custom styles, you can create and import additional files
+// For example you can create _component1.scss and include it as follows:
+// @import 'component1';
+
+$font: 'corbel';
+@font-face {
+  font-family: corbel;
+  src: url("/../fonts/#{$font}/#{$font}.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: corbel;
+  src: url("/../fonts/#{$font}/#{$font}-italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: corbel;
+  src: url("/../fonts/#{$font}/#{$font}-bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: corbel;
+  src: url("/../fonts/#{$font}/#{$font}-bold-italic.ttf");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+* {
+  font-family: #{$font}, Sans-Serif;
+}
+
+
+//set nav image icons colors
+.nav-main a {
+  padding: 9px 15px 8px 20px;
+
+  img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    margin-right: 0.5rem !important;
+    width: 20px;
+  }
+
+  &.active {
+    color: $brand-primary;
+
+    img {
+      -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+      filter: grayscale(0);
+    }
+  }
+}
+
+
+//Remove Arrows/Spinners
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.block {
+  box-shadow: 0 3px 6px #0000000D;
+  border-radius: 5px;
+
+  .vertical-separator {
+    border-right: 1px solid $brand-primary;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .block-content {
+    .select2 {
+      .select2-selection.select2-selection--single {
+        display: block;
+        width: 100%;
+        height: calc(1.428572em + 0.8571428rem + 2px);
+        padding: 0.4285714rem 1rem;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.428572;
+        border: 1px solid #d4dae3;
+      }
+
+      .select2-selection__rendered {
+        line-height: 1.428572;
+      }
+
+      .select2-container--default .select2-selection--single .select2-selection__arrow {
+        top: 5px;
+      }
+    }
+  }
+
+  .block-title {
+    .select2 {
+      .select2-selection.select2-selection--single {
+        height: auto;
+        padding: 0;
+        border: 0;
+      }
+    }
+
+    .select2.select2-container {
+      width: auto !important;
+      display: block;
+    }
+
+    .select2-container--default .select2-selection--single {
+      border: 0;
+      box-shadow: unset;
+      background-color: transparent;
+
+      .select2-selection__rendered {
+        color: white;
+        font-size: 18px;
+      }
+
+      .select2-selection__arrow b {
+        border-color: white transparent;
+      }
+    }
+
+    .select-wrapper {
+      position: relative;
+
+      &.bg-select-white {
+        .select2-selection__rendered {
+          color: black;
+        }
+
+        .select2-selection__arrow b {
+          border-color: $brand-primary transparent;
+        }
+      }
+    }
+  }
+
+
+  .search:focus {
+    color: $brand-primary;
+  }
+}
+
+.font-size-38 {
+  font-size: 38px !important;
+}
+
+.font-size-50 {
+  font-size: 50px !important;
+}
+
+.table th, .table td {
+  font-size: 17px;
+}
+
+label {
+  font-weight: normal !important;
+  font-size: 17px !important;
+  color: #0C1726;
+  letter-spacing: 0.17px;
+}
+
+.form-control {
+  font-size: 17px;
+}
+
+.optional {
+  color: $gray;
+  font-size: 10px;
+}
