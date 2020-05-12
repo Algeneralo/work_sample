@@ -1,4 +1,11 @@
 {
+    "/js/admin/pages/alumni.app.js": "/js/admin/pages/alumni.app.js",
+    "/js/admin/pages/event.app.js": "/js/admin/pages/event.app.js",
+    "/js/admin/pages/forum.app.js": "/js/admin/pages/forum.app.js",
+    "/js/admin/pages/general.app.js": "/js/admin/pages/general.app.js",
+    "/js/admin/pages/media.app.js": "/js/admin/pages/media.app.js",
+    "/js/admin/pages/offer.app.js": "/js/admin/pages/offer.app.js",
+    "/js/calendar.app.js": "/js/calendar.app.js",
     "/js/codebase.app.js": "/js/codebase.app.js",
     "/js/laravel.app.js": "/js/laravel.app.js",
     "/css/codebase.css": "/css/codebase.css",
@@ -6,5 +13,7 @@
     "/css/themes/earth.css": "/css/themes/earth.css",
     "/css/themes/elegance.css": "/css/themes/elegance.css",
     "/css/themes/flat.css": "/css/themes/flat.css",
-    "/css/themes/pulse.css": "/css/themes/pulse.css"
+    "/css/themes/pulse.css": "/css/themes/pulse.css",
+    "/css/calendar.all.css": "/css/calendar.all.css",
+    "/js/scripts.js": "/js/scripts.js"
 }

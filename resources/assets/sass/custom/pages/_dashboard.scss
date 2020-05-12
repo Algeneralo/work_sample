@@ -1,0 +1,40 @@
+.dashboard {
+  .block {
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 10px;
+
+    .circle {
+      box-shadow: 0 3px 6px #00000029;
+      height: 85px;
+      width: 85px;
+    }
+
+    .circle.student {
+      background: transparent linear-gradient(180deg, #42E498 0%, #27C1B5 100%) 0 0 no-repeat padding-box;
+    }
+
+    .circle.workshop {
+      background: transparent linear-gradient(180deg, #FFA16D 0%, #FE6C90 100%) 0 0 no-repeat padding-box;
+    }
+
+    .circle.email {
+      background: transparent linear-gradient(180deg, #8577F2 0%, #D87BA7 100%) 0 0 no-repeat padding-box;
+    }
+
+    .circle.agenda {
+      background: transparent linear-gradient(180deg, #F1D341 0%, #FA953D 100%) 0 0 no-repeat padding-box;
+    }
+  }
+
+  table tbody {
+    tr:first-of-type td {
+      border-top: 0 !important;
+    }
+
+    td {
+      font-size: 14px !important;
+      padding: 25px 10px;
+      border-top: 1px dashed #9AA0A8;
+    }
+  }
+}

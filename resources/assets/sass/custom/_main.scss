@@ -11,53 +11,83 @@
 // For example you can create _component1.scss and include it as follows:
 // @import 'component1';
 
-$font: 'corbel';
+
+//general styles
+$font: 'Roboto';
 @font-face {
-  font-family: corbel;
-  src: url("/../fonts/#{$font}/#{$font}.ttf");
+  font-family: $font;
+  src: url("/../fonts/#{$font}/#{$font}-Regular.ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: corbel;
-  src: url("/../fonts/#{$font}/#{$font}-italic.ttf");
+  font-family: $font;
+  src: url("/../fonts/#{$font}/#{$font}-Italic.ttf");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: corbel;
-  src: url("/../fonts/#{$font}/#{$font}-bold.ttf");
+  font-family: $font;
+  src: url("/../fonts/#{$font}/#{$font}-Bold.ttf");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: corbel;
-  src: url("/../fonts/#{$font}/#{$font}-bold-italic.ttf");
+  font-family: $font;
+  src: url("/../fonts/#{$font}/#{$font}-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
   font-display: swap;
 }
 
-* {
+@font-face {
+  font-family: $font;
+  src: url("/../fonts/#{$font}/#{$font}-Black.ttf");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+*, h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: #{$font}, Sans-Serif;
 }
 
+.border-primary {
+  border-color: #2F97DA !important;
+}
+
+.border-white {
+  border-color: white !important;
+}
+
+//remove max width
+#page-container.main-content-boxed > #page-header .content-header, #page-container.main-content-boxed > #page-header .content, #page-container.main-content-boxed > #main-container .content, #page-container.main-content-boxed > #page-footer .content {
+  max-width: unset;
+}
 
 //set nav image icons colors
 .nav-main a {
-  padding: 9px 15px 8px 20px;
+  padding: 15px 15px 15px 20px;
+  font-weight: normal;
+
+  &.active {
+    background: #F4F7FC 0 0 no-repeat padding-box;
+  }
 
   img {
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
+    //change un-active menu image icon to gray color
+    //-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    //filter: grayscale(100%);
     margin-right: 0.5rem !important;
     width: 20px;
+    object-fit: scale-down;
   }
 
   &.active {
@@ -70,6 +100,9 @@ $font: 'corbel';
   }
 }
 
+.content-heading {
+  border-bottom-color: rgba(12, 23, 38, 0.15) !important;
+}
 
 //Remove Arrows/Spinners
 input::-webkit-outer-spin-button,
@@ -108,14 +141,16 @@ input[type=number] {
 
       .select2-selection__rendered {
         line-height: 1.428572;
+        padding-left: 0 !important;
       }
 
-      .select2-container--default .select2-selection--single .select2-selection__arrow {
+      .select2-selection__arrow {
         top: 5px;
       }
     }
   }
 
+  //this is basically for table filters
   .block-title {
     .select2 {
       .select2-selection.select2-selection--single {
@@ -137,7 +172,6 @@ input[type=number] {
 
       .select2-selection__rendered {
         color: white;
-        font-size: 18px;
       }
 
       .select2-selection__arrow b {
@@ -160,12 +194,130 @@ input[type=number] {
     }
   }
 
-
   .search:focus {
     color: $brand-primary;
   }
 }
 
+.nav-main {
+  ul {
+    padding: 0;
+
+    a {
+      padding-left: 40px;
+    }
+  }
+
+  li.open > ul {
+    background-color: unset;
+  }
+}
+
+.table-responsive {
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #212529;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+}
+
+
+.table-pagination {
+  padding: 5px;
+
+  .page-link {
+    background-color: white !important;
+    border-color: white;
+    font-size: 13px;
+    padding: 4px 7px;
+    margin: auto 1px;
+
+    &:hover {
+      border-color: $brand-primary !important;
+    }
+  }
+
+  .page-item.active .page-link {
+    color: black;
+    border-color: $brand-primary !important;
+  }
+
+  .pagination {
+    justify-content: flex-end;
+  }
+}
+
+.table thead th {
+  text-transform: capitalize;
+}
+
+.border-b-dashed {
+  border-bottom-style: dashed !important;
+}
+
+.color-primary-out {
+  &.css-checkbox {
+    &.css-control-primary .css-control-input:checked {
+      & ~ .css-control-indicator::after {
+        color: $brand-primary;
+      }
+
+      & ~ .css-control-indicator {
+        background-color: transparent;
+        border-color: $brand-primary;
+      }
+    }
+  }
+}
+
+//-------------------------------start inline icon---------------------------//
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+  /* style icon */
+  > .fa, > img {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+}
+
+/* align icon */
+.left-addon {
+  > .fa, > img {
+    left: 0;
+  }
+}
+
+.right-addon {
+  > .fa, > img {
+    right: 0;
+  }
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+
+.right-addon input {
+  padding-right: 30px;
+}
+
+//-------------------------------end inline icon---------------------------//
 .font-size-38 {
   font-size: 38px !important;
 }
@@ -176,6 +328,10 @@ input[type=number] {
 
 .table th, .table td {
   font-size: 17px;
+
+  a {
+    color: #575757;
+  }
 }
 
 label {
@@ -189,7 +345,36 @@ label {
   font-size: 17px;
 }
 
+//----------------------------Start custom styles---------------------------//
+
 .optional {
   color: $gray;
   font-size: 10px;
 }
+
+.custom-badge {
+  .badge-pill {
+    position: absolute !important;
+    top: 5px !important;
+  }
+
+  .badge {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}
+
+.mx-datepicker {
+  display: block !important;
+  width: 100% !important;
+}
+
+.mx-icon-calendar, .mx-icon-clear {
+  top: 21px !important;
+}
+
+@import "responsive";
+// import pages styles
+@import "pages/dashboard";
+@import "pages/events";
+@import "pages/messages";

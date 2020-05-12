@@ -1,0 +1,38 @@
+@import "/js/plugins/select2/css/select2.min.css";
+
+.events {
+  .participants {
+    .bg-participant {
+      background-color: #F4F7FC !important;
+
+      span {
+        cursor: pointer;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+
+    .select2-dropdown {
+      left: unset !important;
+    }
+
+    .select2-results__option {
+      cursor: pointer;
+    }
+
+    .select2-results__option:hover {
+      background-color: #2F97DA !important;
+      color: white;
+    }
+
+    .select2-dropdown {
+      display: none;
+    }
+
+    .select2-dropdown.open {
+      display: block !important;
+    }
+  }
+}

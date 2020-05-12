@@ -1,5 +1,7 @@
+import Vue from 'vue';
 
 window._ = require('lodash');
+Window.Vue = require('vue')
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -57,3 +59,9 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+// get translation from laravel files
+//this should include  lang-script blade file before calling it
+Vue.prototype.trans = (key) => {
+    return _.get(window.trans, key, key);
+};
