@@ -8,11 +8,6 @@
             <h2 class="font-size-38 text-primary font-w600 d-inline-block">
                 Kalender
             </h2>
-            <a id="newEvent" href="#"
-               class="float-right btn btn-primary px-20 py-10 d-flex align-items-center text-left">
-                <i class="fas fa-plus"></i>
-                Termin hinzufügen
-            </a>
             <div class="clearfix"></div>
         </div>
         <div class="row">
@@ -34,30 +29,29 @@
                             </select>
                         </div>
                     </div>
-                    @for($counter=0;$counter<3;$counter++)
+                    @foreach($events as $item)
                         <div class="row mr-15 mt-15">
                             <div class="col-4 d-flex pr-1">
-                                <img src="{{asset("/media/barn.jpg")}}" alt="" class="img-fluid rounded-left"
+                                <img src="{{$item->cover}}" alt="" class="img-fluid rounded-left"
                                      style="object-fit: cover">
                             </div>
-                            <div class="col-8 text-white rounded-right" style="background-color: #FFB84A">
+                            <div class="col-8 text-white rounded-right" style="background-color: {{$item->color}}">
                                 <div>
-                                    <span class="float-left font-size-xs w-50">04.01.2020</span>
-                                    <span class="float-right font-size-xs w-50">11:00 Uhr - 12:00 Uhr</span>
+                                    <span class="float-left font-size-xs w-50">{{$item->date}}</span>
+                                    <span class="float-right font-size-xs w-50">{{$item->from_to_time}}</span>
                                     <div class="clearfix"></div>
                                 </div>
-                                Angewandte Freizeitwissenschaft
+                                {{$item->name}}
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
     <script id="event-template" type="text/x-kendo-template">
-        <div title="11:00-12:00 - Angewandte Freizeitwissenschaft">
-            11:00-12:00 - Angewandte
-            Freizeitwissenschaft
+        <div title="#: title #" style="text-align: left;padding-left: .4rem;">
+            #: title #
         </div>
     </script>
 @endsection

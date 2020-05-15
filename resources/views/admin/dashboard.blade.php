@@ -69,7 +69,7 @@
                 <a class="block block-link-shadow text-right" href="javascript:void(0)">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
-                            <span class="text-gray font-size-md">Termine</span>
+                            <span class="text-gray font-size-md">Media</span>
                             <div class="font-size-h2 font-w600 text-left">
                                 <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="10">
                                     0
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="circle rounded-circle agenda ml-auto d-flex justify-content-center align-items-center">
-                            <img src="{{asset('/media/icons/agenda.svg')}}" alt="student">
+                            <img src="{{asset('/media/icons/electronics.svg')}}" alt="student">
                         </div>
                     </div>
                 </a>

@@ -28,5 +28,5 @@
     <!-- END Page Content -->
 @endsection
 @push("scripts")
-    @includeIf('layouts.partials.deleteConfirmation')
+    @includeIf('layouts.partials.livewireDeleteConfirmation')
 @endpush

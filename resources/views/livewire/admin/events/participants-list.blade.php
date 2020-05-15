@@ -18,7 +18,8 @@
                         <div class="select2-results">
                             <ul class="select2-results__options">
                                 @forelse($participants as $item)
-                                    <li class="select2-results__option px-10" wire:click="select({{$item["id"]}})">
+                                    <li class="select2-results__option px-10" wire:key="{{ $loop->index }}"
+                                        wire:click="select({{$item["id"]}})">
                                         <div class="select2-results__option-wrapper">
                                             <img src="{{asset("/media/user.jpg")}}" width="40" height="40"
                                                  class="rounded-circle mr-10">
@@ -44,7 +45,8 @@
                         <img src="{{asset("/media/user.jpg")}}" width="40" height="40"
                              class="rounded-circle mr-10">
                         {{$item["name"]}}
-                        <span class="text-right float-right mt-10" wire:click="unSelect({{$item["id"]}})">
+                        <span class="text-right float-right mt-10"
+                              wire:click="unSelect({{$item["id"]}})">
                             <i class="fa fa-times"></i>
                         </span>
                     </div>
@@ -64,7 +66,7 @@
             document.getElementById('dropdown').classList.add('open')
         }
 
-        function removeOpenClass() {
+        function removeOpenClass(e) {
             setTimeout(function () {
                 document.getElementById('dropdown').classList.remove('open')
             }, 200);

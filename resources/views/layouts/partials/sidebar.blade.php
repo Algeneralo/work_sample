@@ -88,16 +88,6 @@
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a class="{{ check_if_menu_is_active("alumni") }}"
-                       href="{{route("admin.alumni.index")}}">
-                        <span class="sidebar-mini-hide font-size-lg">
-                            <img src="{{asset("/media/icons/alumni.svg")}}">
-                            {{trans("general.alumni-menu")}}
-                        </span>
-                    </a>
-                </li>
-
                 <li class="{{check_if_menu_is_active(trans("routes.my-network"),'','open') }}">
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                         <span class="sidebar-mini-hide font-size-lg">
@@ -107,8 +97,8 @@
                     </a>
                     <ul>
                         <li>
-                            <a class="{{ check_if_menu_is_active(trans("routes.my-network"))}}"
-                               href="{{route("admin.my-network.index")}}">
+                            <a class="{{ check_if_menu_is_active(trans("routes.alumni"),trans("routes.my-network"))}}"
+                               href="{{route("admin.my-network.alumni.index")}}">
                                 <span class="sidebar-mini-hide font-size-md">
                                     {{trans("general.all")}}
                                 </span>

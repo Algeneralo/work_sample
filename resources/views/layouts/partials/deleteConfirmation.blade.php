@@ -1,7 +1,8 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
-
     $(document).on('click', '.delete-button', function (e) {
         e.preventDefault();
+        let deleteForm = $($(this).data("delete-form-id"))
         Swal.fire({
             title: '@lang("messages.delete-confirmation.title")',
             text: '@lang("messages.delete-confirmation.message")',
@@ -13,10 +14,8 @@
             confirmButtonText: '@lang("messages.delete-confirmation.delete")'
         }).then((result) => {
             if (result.value) {
-                //new way using livewire
-                window.livewire.emit('deleteItem',$(this).data("id"))
-                //old way using reload page
-                // $(this).siblings().submit()
+                console.log(deleteForm)
+                deleteForm.submit()
             }
         })
     })

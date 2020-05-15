@@ -1,4 +1,5 @@
 <div>
+    @include("layouts.partials.status")
     <div class="block">
         <div class="block-header border-b pb-2 pt-2 d-block d-md-flex">
             <div class="block-title d-md-flex" wire:ignore>
@@ -19,12 +20,11 @@
                 </div>
                 <span class="vertical-separator"></span>
                 <div class="select-wrapper bg-select-white">
-                    <select class="select2 category" wire:model="category">
-                        <option value="all" selected>{{trans("general.category")}}</option>
-                        <option value="1">Workshops</option>
-                        <option value="1">Seminare</option>
-                        <option value="1">Exkursionen</option>
-                        <option value="1">Veranstaltungstipps</option>
+                    <select class="select2 category" wire:model="category_id">
+                        <option value="all" selected>{{trans("general.all")}} {{trans("general.category")}}</option>
+                        @foreach($categories as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -54,28 +54,21 @@
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('date')" role="button" href="#">
                                     {{trans("general.date")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'created_at'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'date'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('start_time')" role="button" href="#">
                                     {{trans("general.time")}}
                                     {{trans("general.from-to")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'from-to'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'start_time'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                                    {{trans("general.designation")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'from-to'])
-                                </a>
-                            </th>
-                            <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('category_id')" role="button" href="#">
                                     {{trans("general.category")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'category'])
                                 </a>
                             </th>
                             <th>
@@ -86,11 +79,10 @@
                     @forelse($events as $item)
                         <tbody>
                             <tr>
-                                <td class="text-primary">{{$loop->iteration}}</td>
-                                <td>05.04.2020</td>
-                                <td>09:30 Uhr - 10:30 Uhr</td>
-                                <td>Grubenfahrt & Trainingsbergwerk</td>
-                                <td>Veranstaltungen</td>
+                                <td class="text-primary">{{$item->id}}</td>
+                                <td>{{$item->date->format("d.m.Y")}}</td>
+                                <td>{{$item->from_to_time}}</td>
+                                <td>{{$item->category->name}}</td>
                                 <td>
                                     <a href="{{route("admin.events.edit",$item->id)}}">
                                         <i class="fas fa-cog text-primary"></i>

@@ -21,7 +21,7 @@ class Index extends Component
 
     public function delete($id)
     {
-
+        debug("WORK 2");
     }
 
     public function render()

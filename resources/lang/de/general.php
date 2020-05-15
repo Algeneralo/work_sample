@@ -63,7 +63,7 @@ return [
     "audio-upload" => "Audio-Upload",
     "users" => "Nutzer",
     "activate" => "aktivieren",
-    "deactivate" => "sperren",
+    "deactivate" => "{0} sperren |[1] aktivieren",
     "search-text" => "Hier Suchtext eingeben...",
     "view-all" => "Alle anzeigen",
     "from-to" => "von - bis",

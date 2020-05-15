@@ -2,6 +2,12 @@
 <script type="text/javascript"
         src="{{asset("/js/plugins/jquery-validation/localization/messages_de.min.js")}}"></script>
 <script>
+    jQuery.validator.addMethod("maxParticipantsCount", function (value, element, max) {
+
+        let items = value.replace('[', '').replace(']', '').split(',')
+        jQuery.validator.messages["maxParticipantsCount"] = "Geben Sie bitte einen Wert größer oder gleich " + max + " ein.";
+        return items.length <= max;
+    }, '');
     jQuery(".js-validation-bootstrap").validate({
         ignore: ".ignore-validation,hidden,.note-editable.card-block",
         errorClass: "invalid-feedback animated fadeInDown",

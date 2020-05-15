@@ -12,7 +12,13 @@ new Vue({
     components: {AddressComponent, DatePicker, ImageUploader, ImagePreviewer},
     data: {
         date: '',
-        time: '',
+        time: [],
         minutes: [0, 15, 30, 45],
+    },
+    mounted() {
+        document.querySelectorAll('[data-change-v-model-value]').forEach(element => {
+            let field = JSON.parse('' + element.getAttribute("data-change-v-model-value").replace(/'/g, '"'));
+            this[Object.keys(field)[0]] = Object.values(field)[0]
+        });
     },
 })
