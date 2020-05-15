@@ -36,7 +36,7 @@
 <script>
     export default {
         props: {
-            name,
+            name: {},
         },
         data: () => ({
             isDragging: false,
