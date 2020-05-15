@@ -5,7 +5,7 @@
     jQuery.validator.addMethod("maxParticipantsCount", function (value, element, max) {
 
         let items = value.replace('[', '').replace(']', '').split(',')
-        jQuery.validator.messages["maxParticipantsCount"] = "Geben Sie bitte einen Wert größer oder gleich " + max + " ein.";
+        jQuery.validator.messages["maxParticipantsCount"] = `Max. ${max} Teilnehmer erlaubt.`;
         return items.length <= max;
     }, '');
     jQuery(".js-validation-bootstrap").validate({
