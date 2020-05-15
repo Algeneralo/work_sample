@@ -27,14 +27,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{trans("general.first-name")}}</label>
-                                        <input type="text" name="first_name" class="form-control js-maxlength" maxlength="40"
+                                        <input type="text" name="first_name" class="form-control js-maxlength"
+                                               maxlength="40"
                                                required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{trans("general.last-name")}}</label>
-                                        <input type="text" name="last_name" class="form-control js-maxlength" maxlength="40" required>
+                                        <input type="text" name="last_name" class="form-control js-maxlength"
+                                               maxlength="40" required>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +60,13 @@
                             <address-component></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
-                                <input class="form-control js-maxlength" maxlength="100" type="email" name="email" required>
+                                <input class="form-control js-maxlength" maxlength="100" type="email" name="email"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label>{{trans("general.password")}}</label>
+                                <input class="form-control" type="password" name="password" data-rule-minlength="6"
+                                       required>
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>

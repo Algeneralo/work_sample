@@ -32,6 +32,7 @@ class AlumnusStoreRequest extends FormRequest
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'email' => 'required|email|unique:alumni',
+            'password' => 'required|min:6',
             'dob' => 'required',
             'university_id' => 'required|exists:universities,id',
             'degree_program_id' => 'required|exists:degree_programs,id',

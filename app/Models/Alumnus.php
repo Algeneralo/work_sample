@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Alumnus extends Model implements HasMedia
 
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, HasApiTokens;
 
     static $IS_TEAM_MEMBER = 0;
     /**
@@ -28,6 +29,7 @@ class Alumnus extends Model implements HasMedia
         'postcode',
         'city',
         'email',
+        'password',
         'dob',
         'university_id',
         'degree_program_id',
@@ -58,7 +60,7 @@ class Alumnus extends Model implements HasMedia
      * @var array
      */
     protected $appends = ["name", "avatar"];
-
+    protected $hidden = ["password"];
 
     public static function booted()
     {
@@ -103,5 +105,11 @@ class Alumnus extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl("avatar");
     }
+
     //Mutators
+    public function storePasswordAttribute($value)
+    {
+        if ($value)
+            $this->attributes["password"] = bcrypt($value);
+    }
 }

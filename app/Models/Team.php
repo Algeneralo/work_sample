@@ -33,6 +33,7 @@ class Team extends Model implements HasMedia
         'postcode',
         'city',
         'email',
+        'password',
         'dob',
         'telephone',
         'mobile',
@@ -47,6 +48,7 @@ class Team extends Model implements HasMedia
         'id' => 'integer',
         "dob" => "date"
     ];
+    protected $hidden = ["password"];
 
     public static function booted()
     {
@@ -65,5 +67,12 @@ class Team extends Model implements HasMedia
     public function getAvatarAttribute()
     {
         return $this->getFirstMediaUrl("avatar");
+    }
+
+    //Mutators
+    public function storePasswordAttribute($value)
+    {
+        if ($value)
+            $this->attributes["password"] = bcrypt($value);
     }
 }

@@ -72,6 +72,11 @@
                                        required>
                             </div>
                             <div class="form-group">
+                                <label>{{trans("general.password")}}</label>
+                                <input class="form-control" type="password" name="password" data-rule-minlength="6"
+                                       required>
+                            </div>
+                            <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
                                        name="telephone" required>

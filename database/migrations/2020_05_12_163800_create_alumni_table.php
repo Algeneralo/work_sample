@@ -23,6 +23,7 @@ class CreateAlumniTable extends Migration
             $table->string('postcode', 40);
             $table->string('city', 40);
             $table->string('email', 100)->unique();
+            $table->string('password', 100);
             $table->date('dob');
             $table->foreignId('university_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('degree_program_id')->nullable()->constrained()->cascadeOnDelete();

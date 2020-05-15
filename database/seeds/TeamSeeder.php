@@ -12,7 +12,7 @@ class TeamSeeder extends Seeder
     public function run()
     {
         $teams = factory(\App\Models\Team::class, 3)->create(["is_team_member" => 1]);
-        $imageUrl = Faker\Factory::create()->imageUrl(640, 480, null, false);
+        $imageUrl = Faker\Factory::create()->imageUrl(640, 480, "business", false);
         foreach ($teams as $team) {
             $team->addMediaFromUrl($imageUrl)->toMediaCollection('avatar');
         }

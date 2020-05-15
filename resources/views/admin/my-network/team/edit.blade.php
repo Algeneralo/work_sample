@@ -78,6 +78,8 @@
                                 <input class="form-control" value="{{$team->email}}" type="email" name="email"
                                        required>
                             </div>
+                            <input class="form-control" type="password" name="password" data-rule-minlength="6"
+                                  autocomplete="new-password" required>
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
