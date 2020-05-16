@@ -33,6 +33,7 @@ class CreateAlumniTable extends Migration
             $table->string('mobile', 50);
             $table->boolean('is_team_member')->default(0);
             $table->boolean('blocked')->default(0);
+            $table->string('activation_code')->nullable()->unique();
             $table->softDeletes();
             $table->timestamps();
 

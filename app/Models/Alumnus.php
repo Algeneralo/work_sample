@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Alumnus extends Model implements HasMedia
+class Alumnus extends Authenticatable implements HasMedia
 
 {
     use SoftDeletes, HasMediaTrait, HasApiTokens;
@@ -37,6 +38,7 @@ class Alumnus extends Model implements HasMedia
         'description',
         'telephone',
         'mobile',
+        "activation_code",
         'is_team_member',
         'blocked',
     ];
