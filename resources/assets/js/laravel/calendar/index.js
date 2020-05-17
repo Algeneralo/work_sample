@@ -81,22 +81,22 @@ $(function () {
     });
 
     //filter scheduler depend on selected employee
-    $("#event-filter").on("change", function () {
+    $("#employeesFilter").on("change", function () {
         let selected = $(this).val();
         let scheduler = $("#scheduler").data("kendoScheduler");
 
-        // if (selected !== "all")
-        //     scheduler.dataSource.filter({
-        //         operator: function (task) {
-        //             return task.employee_id == selected;
-        //         }
-        //     });
-        // else
-        //     scheduler.dataSource.filter({
-        //         operator: function (task) {
-        //             return true;
-        //         }
-        //     });
+        if (selected !== "all")
+            scheduler.dataSource.filter({
+                operator: function (task) {
+                    return task.id == selected;
+                }
+            });
+        else
+            scheduler.dataSource.filter({
+                operator: function (task) {
+                    return true;
+                }
+            });
     });
 });
 
