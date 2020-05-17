@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Media;
 
 use App\Http\Traits\HasFiltersWithPagination;
 use App\Http\Traits\Sortable;
+use App\Models\Media;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Http\Traits\WithPagination;
@@ -27,7 +28,7 @@ class Index extends Component
     {
         return view('livewire.admin.media.index',
             [
-                "media" => \App\User::search($this->search)
+                "media" => Media::search($this->search)
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),

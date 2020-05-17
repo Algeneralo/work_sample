@@ -11,6 +11,7 @@ return [
         "title" => "Fehler",
         "message" => "Etwas ist schief gelaufen",
     ],
+    "blocked" => "your account is blocked",
     "delete-confirmation" => [
         "title" => "Sind Sie sicher?",
         "message" => "Wenn Sie diese Daten löschen, können diese nicht mehr abgerufen werden",

@@ -27,12 +27,6 @@
                                         <input type="text" name="subject" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xl-5">
-                                    <div class="form-group">
-                                        <label>{{trans("general.subject")}}</label>
-                                        <input type="text" name="subject" class="form-control" required>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
