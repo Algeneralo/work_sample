@@ -66,7 +66,7 @@ class Team extends Model implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return $this->getFirstMediaUrl("avatar");
+        return $this->getFirstMedia("avatar")->getFullUrl();
     }
 
     //Mutators
