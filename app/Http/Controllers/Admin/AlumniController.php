@@ -58,6 +58,7 @@ class AlumniController extends Controller
     {
         $universities = University::all();
         $degreePrograms = DegreeProgram::all();
+        $alumnus->load("participatedEvents");
         return view('admin.my-network.alumni.edit', compact("alumnus", "degreePrograms", "universities"));
     }
 

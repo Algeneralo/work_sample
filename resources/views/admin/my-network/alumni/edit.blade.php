@@ -174,15 +174,20 @@
             </div>
             <div class="block-content pt-0">
                 <div class="row">
-                    @for($counter=0;$counter<10;$counter++)
+                    @forelse($alumnus->participatedEvents as $item)
                         <div class="col-xl-6">
                             <div class="rounded border py-10 px-15 mb-2">
-                                <span class="d-block text-black pb-2">Tipps für eigene Gedanken</span>
-                                <span class="d-block text-gray">25.02.2020</span>
+                                <span class="d-block text-black pb-2">{{$item->name}}</span>
+                                <span class="d-block text-gray">{{$item->date->format("d.m.Y")}}</span>
                             </div>
                         </div>
                         <div class="col-xl-6"></div>
-                    @endfor
+                    @empty
+                        <div class="col-xl-6 pb-20">
+                            @lang("general.no-data-found")
+                        </div>
+                        <div class="col-xl-6"></div>
+                    @endforelse
                 </div>
             </div>
         </div>
