@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire\Admin\Dashboard;
 
-use App\User;
+use App\Models\Event;
+use Carbon\Carbon;
 use Livewire\Component;
-use App\Http\Traits\WithPagination;
 
 class CurrentEvents extends Component
 {
-    use WithPagination;
-
     public function render()
     {
         return view('livewire.admin.dashboard.current-events',
-            ["events" => User::query()->paginate(4)]
+            ["events" => Event::query()
+                ->orderBy("created_at")
+                ->whereDate("date", ">=", Carbon::now())
+                ->take(5)
+                ->get()]
         );
     }
 }

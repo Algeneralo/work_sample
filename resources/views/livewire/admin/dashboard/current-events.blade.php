@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($events as $event)
+                @forelse($events as $event)
                     <tr>
                         <td>
                             <span class="d-block text-primary pb-2">
@@ -27,11 +27,15 @@
                         </td>
                         <td class="text-gray">10:15 Uhr - 11:15 Uhr</td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="2" class="text-center">{{trans("general.no-data-found")}}</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
-    <div class="table-pagination">
-        {{$events->links()}}
-    </div>
+{{--    <div class="table-pagination">--}}
+{{--        {{$events->links()}}--}}
+{{--    </div>--}}
 </div>
