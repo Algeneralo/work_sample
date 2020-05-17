@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -86,6 +87,12 @@ class Alumnus extends Authenticatable implements HasMedia
         return $this->belongsTo(DegreeProgram::class);
     }
 
+    public function participatedEvents()
+    {
+        return $this->belongsToMany(Event::class, "event_participants")
+            ->where("date", '<=', Carbon::now());
+    }
+
     public static function search($string)
     {
         return empty($string) ? static::query()
@@ -105,7 +112,7 @@ class Alumnus extends Authenticatable implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return $this->getFirstMediaUrl("avatar");
+        return $this->getFirstMedia("avatar")->getFullUrl();
     }
 
     //Mutators
