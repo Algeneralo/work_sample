@@ -43,6 +43,17 @@ class Event extends Model implements HasMedia
     ];
     protected $appends = ["from_to_time", "cover", "range_time", "color"];
 
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function participants()
+    {
+        return $this->belongsToMany(\App\Models\Alumnus::class, "event_participants");
+    }
+
     public static function search($string)
     {
         return empty($string) ? static::query()
@@ -53,16 +64,6 @@ class Event extends Model implements HasMedia
                     ->orWhere('end_time', 'like', '%' . $string . '%');
             });
 
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function participants()
-    {
-        return $this->belongsToMany(\App\Models\Alumnus::class, "event_participants");
     }
 
     public function getFromToTimeAttribute()
@@ -77,11 +78,11 @@ class Event extends Model implements HasMedia
 
     public function getCoverAttribute()
     {
-        return $this->getFirstMediaUrl("cover");
+        return $this->getFirstMedia("cover")->getFullUrl();
     }
 
     public function getColorAttribute()
     {
-        return string_to_color($this->name . "" . $this->id);
+        return string_to_color($this->name . "" . $this->id . $this->date);
     }
 }
