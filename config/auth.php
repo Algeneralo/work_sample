@@ -42,8 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+            'driver' => 'passport',
+            'provider' => 'alumni',
             'hash' => false,
         ],
     ],
@@ -70,6 +70,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'alumni' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Alumnus::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -95,6 +99,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ]
+        , 'alumni' => [
+            'provider' => 'alumni',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
