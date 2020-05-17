@@ -14,7 +14,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'city' => $faker->city,
         'details' => $faker->text,
         'max_participants' => $faker->numberBetween(1, 30),
-        'date' => $faker->date(),
+        'date' => $faker->dateTimeBetween( '-3 months',"+ 4 days")->format( 'Y-m-d'),
         'start_time' => $faker->time(),
         'end_time' => $faker->time(),
         "category_id" => function () {
