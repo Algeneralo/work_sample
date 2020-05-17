@@ -20,7 +20,7 @@
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Alumni</span>
                             <div class="font-size-h2 font-w600 text-left">
-                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="80">
+                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="{{$alumniCount}}">
                                     0
                                 </span>
                             </div>
@@ -37,7 +37,7 @@
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Veranstaltungen</span>
                             <div class="font-size-h2 font-w600 text-left">
-                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="150">
+                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="{{$eventsCount}}">
                                     0
                                 </span>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="float-left">
                             <span class="text-gray font-size-md">Media</span>
                             <div class="font-size-h2 font-w600 text-left">
-                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="10">
+                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="{{$mediaCount}}">
                                     0
                                 </span>
                             </div>

@@ -11,12 +11,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::redirect("/", "/admin");
 
 Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], function () {
 
-    Route::view("/", "admin.dashboard")->name("dashboard");
+    Route::get("/", "HomeController")->name("dashboard");
 
     //Mein Netzwerk
     Route::group(["prefix" => trans("routes.my-network"), "as" => "my-network."], function () {
