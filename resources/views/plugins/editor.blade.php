@@ -10,9 +10,9 @@
                 onChange: function (contents, editable) {
                     let textarea = $(this).closest(".form-group").find("textarea.js-summernote");
                     //this will fire jquery validation
+                    textarea.val(contents.replace(/<[^>]*>/gi, '').replace(/&nbsp;/g, '').trim())
                     textarea.blur();
-                    textarea.text(contents.replace(/<[^>]*>/gi, ''));
-                }
+                },
             },
         });
     });

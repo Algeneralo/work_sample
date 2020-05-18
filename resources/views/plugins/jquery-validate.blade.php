@@ -8,6 +8,32 @@
         jQuery.validator.messages["maxParticipantsCount"] = `Max. ${max} Teilnehmer erlaubt.`;
         return items.length <= max;
     }, '');
+
+    //change required default behavior, trim whitespaces
+    jQuery.validator.addMethod('required', function (value, element, param) {
+
+        // Check if dependency is met
+        if (!this.depend(param, element)) {
+            return "dependency-mismatch";
+        }
+        if (element.nodeName.toLowerCase() === "select") {
+
+            // Could be an array for select-multiple or a string, both are fine this way
+            var val = $(element).val();
+            return val && val.length > 0;
+        }
+        if (this.checkable(element)) {
+            return this.getLength(value, element) > 0;
+        }
+
+        if (element.nodeName.toLowerCase() === "textarea" && element.className === "js-summernote") {
+            value = value.replace(/<[^>]*>/gi, '').replace(/&nbsp;/g, '').trim()
+        }
+        if (value !== undefined)
+            value = value.trim()
+
+        return value !== undefined && value !== null && value.length > 0;
+    });
     jQuery(".js-validation-bootstrap").validate({
         ignore: ".ignore-validation,hidden,.note-editable.card-block",
         errorClass: "invalid-feedback animated fadeInDown",
