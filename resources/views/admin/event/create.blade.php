@@ -73,7 +73,7 @@
                                         <label>{{trans("general.Number of participants")}}</label>
                                         <input type="number" name="max_participants" class="form-control"
                                                data-rule-min="1"
-                                               data-rule-number="true" required>
+                                               data-rule-number="true">
                                     </div>
                                     <address-component
                                             :street="'{{old("street")}}'"

@@ -88,7 +88,7 @@
                                         <input type="number" name="max_participants" class="form-control"
                                                data-rule-min="1"
                                                value="{{$event->max_participants}}"
-                                               data-rule-number="true" required>
+                                               data-rule-number="true">
                                     </div>
                                     <address-component
                                             :street="'{{$event->street}}'"
