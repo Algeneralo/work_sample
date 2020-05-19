@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\BulletinBoard\General;
 use App\Http\Traits\HasFiltersWithPagination;
 use App\Http\Traits\Sortable;
 use App\Http\Traits\WithPagination;
+use App\Models\General;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -21,14 +22,16 @@ class Index extends Component
 
     public function delete($id)
     {
-        debug("WORK 2");
+        $status = General::query()->findOrFail($id)->delete();
+        if($status)
+            session()->flash("success", trans("messages.success.deleted"));
     }
 
     public function render()
     {
         return view('livewire.admin.bulletin-board.general.index',
             [
-                "general" => \App\User::search($this->search)
+                "general" => General::search($this->search)
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),

@@ -16,7 +16,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <form action="{{route("admin.test")}}" class="js-validation-bootstrap" method="POST"
+        <form action="{{route("admin.bulletin-board.general.update",$general->id)}}" class="js-validation-bootstrap"
+              method="POST"
               enctype="multipart/form-data">
             @csrf
             @method("PUT")
@@ -26,47 +27,48 @@
                 </div>
                 <div class="block-content">
                     <div class="row">
-                        <div class="col-xl-8">
+                        <div class="col-md-2">
+                            <label for=""></label>
+                            <image-previewer
+                                    :name="'image'"
+                                    :src="'{{$general->cover}}'"
+                                    :class="'img-fluid'"
+                            ></image-previewer>
+                        </div>
+                        <div class="col-md-8">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.announcement-title")}}</label>
-                                        <input class="form-control" type="text" name="category" required>
+                                        <input class="form-control" type="text" name="title" value="{{$general->title}}"
+                                               required>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.designation")}}</label>
-                                        <date-picker v-model="date" valueType="format" input-class="form-control"
-                                                     :input-attr="{name:'date',required:'required'}"
+                                        <date-picker v-model="date" value-type="format" input-class="form-control"
+                                                     :input-attr='{name:"date",required:"required","data-change-v-model-value":"{\"date\":\"{{$general->date->format("d.m.Y")}}\"}"}'
                                                      format="DD.MM.YYYY"></date-picker>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 form-group">
-                                    <label for="">{{trans("general.description")}}</label>
-                                    <textarea name="details" class="js-summernote" required>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                                               sed diam nonumy eirmod tempor invidunt ut MEHR dolore
-                                                               magna aliquyam erat, sed diam voluptua. At vero eos et
-                                                               accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                                               gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                                               sit amet.
-                                    </textarea>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-xl-4">
-                            <div>
-                                <label for="" class="border-b w-100 mb-4"
-                                       style="border-bottom-style: dashed !important;">{{trans("general.image-upload")}}</label>
-                                <image-uploader :name="'image'" ></image-uploader>
-                            </div>
+                    </div>
+                    <div class="row mt-md-5">
+                        <div class="col-md-10 form-group">
+                            <label for="">{{trans("general.description")}}</label>
+                            <textarea name="details" class="js-summernote"
+                                      required>{!! $general->details !!}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="block-content block-content-full border-t mt-4">
+                    <div class="float-sm-left">
+                        <button type="button"
+                                data-delete-form-id="#deleteForm"
+                                class="btn bg-gray text-white btn-noborder px-30 font-italic delete-button">{{trans("general.remove-ad")}}</button>
+                    </div>
                     <div class="float-sm-right">
                         <button type="reset"
                                 class="btn btn-outline-primary btn-noborder font-italic">{{trans("general.reset")}}</button>
@@ -77,6 +79,11 @@
                 </div>
             </div>
         </form>
+        <form id="deleteForm" action="{{route("admin.bulletin-board.general.destroy",$general->id)}}"
+              method="POST">
+            @csrf
+            @method("delete")
+        </form>
     </div>
     <!-- END Page Content -->
 @endsection
@@ -84,4 +91,5 @@
     <script src="{{asset("/js/admin/pages/general.app.js")}}"></script>
     @include("plugins.jquery-validate")
     @include("plugins.editor")
+    @include("layouts.partials.deleteConfirmation")
 @endpush

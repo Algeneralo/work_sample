@@ -16,7 +16,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <form action="{{route("admin.test")}}" class="js-validation-bootstrap" method="POST"
+        @include("layouts.partials.validation-status")
+        <form action="{{route("admin.bulletin-board.general.store")}}" class="js-validation-bootstrap" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="block">
@@ -30,12 +31,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>{{trans("general.announcement-title")}}</label>
-                                        <input class="form-control" type="text" name="category" required>
+                                        <input class="form-control" type="text" name="title" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>{{trans("general.designation")}}</label>
+                                        <label>{{trans("general.date")}}</label>
                                         <date-picker v-model="date" valueType="format" input-class="form-control"
                                                      :input-attr="{name:'date',required:'required'}"
                                                      format="DD.MM.YYYY"></date-picker>
@@ -45,14 +46,7 @@
                             <div class="row">
                                 <div class="col-12 form-group">
                                     <label for="">{{trans("general.description")}}</label>
-                                    <textarea name="details" class="js-summernote" required>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                                               sed diam nonumy eirmod tempor invidunt ut MEHR dolore
-                                                               magna aliquyam erat, sed diam voluptua. At vero eos et
-                                                               accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                                               gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                                               sit amet.
-                                    </textarea>
+                                    <textarea name="details" class="js-summernote" required></textarea>
                                 </div>
                             </div>
                         </div>

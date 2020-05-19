@@ -61,9 +61,12 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
     Route::group(["prefix" => trans("routes.bulletin-board"), "as" => "bulletin-board."], function () {
         //Allgemein
         Route::prefix(trans("routes.general"))->group(function () {
-            Route::view("/", "admin.bulletin-board.general.index")->name("general.index");
-            Route::view("/create", "admin.bulletin-board.general.create")->name("general.create");
-            Route::view("/{general}/edit", "admin.bulletin-board.general.edit")->name("general.edit");
+            Route::get("/", "GeneralController@index")->name("general.index");
+            Route::get("/create", "GeneralController@create")->name("general.create");
+            Route::post("/", "GeneralController@store")->name("general.store");
+            Route::get("/{general}/edit", "GeneralController@edit")->name("general.edit");
+            Route::put("/{general}", "GeneralController@update")->name("general.update");
+            Route::delete("/{general}", "GeneralController@destroy")->name("general.destroy");
         });
 
         //Jobbörse
@@ -100,3 +103,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
     });
 
 });
+
+
+Route::resource('job-market', 'Admin\JobMarketController');
