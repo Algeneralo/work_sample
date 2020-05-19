@@ -16,6 +16,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
+        @include("layouts.partials.validation-status")
+        @include("layouts.partials.status")
         <form action="{{route("admin.bulletin-board.general.update",$general->id)}}" class="js-validation-bootstrap"
               method="POST"
               enctype="multipart/form-data">
