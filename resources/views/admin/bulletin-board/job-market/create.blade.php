@@ -16,7 +16,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <form action="{{route("admin.test")}}" class="js-validation-bootstrap" method="POST"
+        @include("layouts.partials.validation-status")
+        <form action="{{route("admin.bulletin-board.job-market.store")}}" class="js-validation-bootstrap" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="block">
@@ -30,35 +31,41 @@
                                 <div class="col-xl-4">
                                     <div class="form-group">
                                         <label>{{trans("general.employer")}}</label>
-                                        <input class="form-control" type="text" name="employer" required>
+                                        <input class="form-control" type="text" name="employer" value="{{old("employer")}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans("general.category")}}</label>
-                                        <input class="form-control" type="text" name="category" required>
+                                        <input class="form-control" type="text" name="category" value="{{old("category")}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans("general.beginning")}}</label>
-                                        <input class="form-control" type="text" name="beginning" required>
+                                        <date-picker v-model="date" valueType="format"
+                                                     input-class="form-control"
+                                                     :input-attr="{name:'beginning',required:'required'}"
+                                                     placeholder="{{trans("general.date")}}"
+                                                     format="DD.MM.YYYY">
+                                            <i slot="icon-calendar"></i>
+                                        </date-picker>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.job-offer")}}</label>
-                                        <input class="form-control" type="text" name="offer" required>
+                                        <input class="form-control" type="text" name="offer" value="{{old("offer")}}" required>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.city")}}</label>
-                                                <input class="form-control" type="text" name="offer" required>
+                                                <input class="form-control" type="text" name="city" value="{{old("city")}}" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.working-hours")}}</label>
-                                                <select name="working_type" id="" class="form-control">
-                                                    <option value="">{{trans("full-time")}}</option>
-                                                    <option value="">{{trans("part-time")}}</option>
+                                                <select name="working_hours" id="" class="form-control">
+                                                    <option value="full_time">{{trans("general.full-time")}}</option>
+                                                    <option value="part_time">{{trans("general.part-time")}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -67,7 +74,7 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.duration")}}</label>
-                                                <input class="form-control" type="text" name="duration" required>
+                                                <input class="form-control" type="text" name="duration" value="{{old("duration")}}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -76,14 +83,7 @@
                             <div class="row">
                                 <div class="col-12 form-group">
                                     <label for="">{{trans("general.tasks")}}</label>
-                                    <textarea name="details" class="js-summernote" required>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                                               sed diam nonumy eirmod tempor invidunt ut MEHR dolore
-                                                               magna aliquyam erat, sed diam voluptua. At vero eos et
-                                                               accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                                               gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                                               sit amet.
-                                    </textarea>
+                                    <textarea name="details" class="js-summernote" required>{!! old("details") !!}</textarea>
                                 </div>
                             </div>
                         </div>

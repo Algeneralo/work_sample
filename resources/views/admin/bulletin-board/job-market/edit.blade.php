@@ -11,13 +11,16 @@
                     <nav class="breadcrumb mb-0 pb-0 font-size-sm d-flex align-items-end">
                         <span class="breadcrumb-item">{{trans("general.bulletin-board")}}</span>
                         <span class="breadcrumb-item">{{trans("general.job-market")}}</span>
-                        <span class="breadcrumb-item active">Deutsche Bahn AG</span>
+                        <span class="breadcrumb-item active">{{$jobMarket->offer}}</span>
                     </nav>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
-        <form action="{{route("admin.test")}}" class="js-validation-bootstrap" method="POST"
+        @include("layouts.partials.validation-status")
+        @include("layouts.partials.status")
+        <form action="{{route("admin.bulletin-board.job-market.update",$jobMarket->id)}}"
+              class="js-validation-bootstrap" method="POST"
               enctype="multipart/form-data">
             @csrf
             @method("PUT")
@@ -27,40 +30,60 @@
                 </div>
                 <div class="block-content">
                     <div class="row">
+                        <div class="col-xl-2">
+                            <label for=""></label>
+                            <image-previewer
+                                    :name="'image'"
+                                    :src="'{{$jobMarket->cover}}'"
+                                    :class="'img-fluid'"
+                            ></image-previewer>
+                        </div>
                         <div class="col-xl-8">
                             <div class="row">
                                 <div class="col-xl-4">
                                     <div class="form-group">
                                         <label>{{trans("general.employer")}}</label>
-                                        <input class="form-control" type="text" name="employer" required>
+                                        <input class="form-control" type="text" name="employer"
+                                               value="{{$jobMarket->employer}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans("general.category")}}</label>
-                                        <input class="form-control" type="text" name="category" required>
+                                        <input class="form-control" type="text" name="category"
+                                               value="{{$jobMarket->category}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label>{{trans("general.beginning")}}</label>
-                                        <input class="form-control" type="text" name="beginning" required>
+                                        <date-picker v-model="date" value-type="format"
+                                                     input-class="form-control"
+                                                     :input-attr='{name:"beginning",required:"required","data-change-v-model-value":"{\"date\":\"{{$jobMarket->beginning->format("d.m.Y")}}\"}"}'
+                                                     placeholder="{{trans("general.date")}}"
+                                                     format="DD.MM.YYYY">
+                                            <i slot="icon-calendar"></i>
+                                        </date-picker>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.job-offer")}}</label>
-                                        <input class="form-control" type="text" name="offer" required>
+                                        <input class="form-control" type="text" name="offer"
+                                               value="{{$jobMarket->offer}}" required>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.city")}}</label>
-                                                <input class="form-control" type="text" name="offer" required>
+                                                <input class="form-control" type="text" name="city"
+                                                       value="{{$jobMarket->city}}" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.working-hours")}}</label>
-                                                <select name="working_type" id="" class="form-control">
-                                                    <option value="">{{trans("full-time")}}</option>
-                                                    <option value="">{{trans("part-time")}}</option>
+                                                <select name="working_hours" id="" class="form-control">
+                                                    <option @if($jobMarket->working_hours=="full_time") selected
+                                                            @endif value="full_time">{{trans("general.full-time")}}</option>
+                                                    <option @if($jobMarket->working_hours=="part_time") selected
+                                                            @endif value="part_time">{{trans("general.part-time")}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -69,36 +92,27 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.duration")}}</label>
-                                                <input class="form-control" type="text" name="duration" required>
+                                                <input class="form-control" type="text" name="duration" value="{{$jobMarket->duration}}" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 form-group">
-                                    <label for="">{{trans("general.tasks")}}</label>
-                                    <textarea name="details" class="js-summernote" required>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                                               sed diam nonumy eirmod tempor invidunt ut MEHR dolore
-                                                               magna aliquyam erat, sed diam voluptua. At vero eos et
-                                                               accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                                               gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                                               sit amet.
-                                    </textarea>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-xl-4">
-                            <div>
-                                <label for="" class="border-b w-100 mb-4"
-                                       style="border-bottom-style: dashed !important;">{{trans("general.image-upload")}}</label>
-                                <image-uploader :name="'image'"></image-uploader>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-10 form-group">
+                            <label for="">{{trans("general.tasks")}}</label>
+                            <textarea name="details" class="js-summernote" required>{!! $jobMarket->details !!}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="block-content block-content-full border-t mt-4">
+                    <div class="float-sm-left">
+                        <button type="button"
+                                data-delete-form-id="#deleteForm"
+                                class="btn bg-gray text-white btn-noborder px-30 font-italic delete-button">{{trans("general.remove-ad")}}</button>
+                    </div>
                     <div class="float-sm-right">
                         <button type="reset"
                                 class="btn btn-outline-primary btn-noborder font-italic">{{trans("general.reset")}}</button>
@@ -109,6 +123,11 @@
                 </div>
             </div>
         </form>
+        <form id="deleteForm" action="{{route("admin.bulletin-board.job-market.destroy",$jobMarket->id)}}"
+              method="POST">
+            @csrf
+            @method("delete")
+        </form>
     </div>
     <!-- END Page Content -->
 @endsection
@@ -116,4 +135,5 @@
     <script src="{{asset("/js/admin/pages/general.app.js")}}"></script>
     @include("plugins.jquery-validate")
     @include("plugins.editor")
+    @include("layouts.partials.deleteConfirmation")
 @endpush
