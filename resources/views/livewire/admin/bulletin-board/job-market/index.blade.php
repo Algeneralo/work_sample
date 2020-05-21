@@ -1,4 +1,5 @@
 <div>
+    @include("layouts.partials.status")
     <div class="block">
         <div class="block-header border-b pb-2 pt-2 d-block d-md-flex">
             <div class="block-title d-md-flex" wire:ignore>
@@ -69,16 +70,16 @@
                     @forelse($jobs as $item)
                         <tbody>
                             <tr>
-                                <td class="text-primary">{{$loop->iteration}}</td>
-                                <td>05.04.2020</td>
-                                <td>Deutsche Bahn AG</td>
-                                <td>Vollzeit</td>
+                                <td class="text-primary">{{$item->id}}</td>
+                                <td>{{$item->beginning->format("d.m.Y")}}</td>
+                                <td>{{$item->offer}}</td>
+                                <td>{{$item->working_hours_string}}</td>
                                 <td>
                                     <a href="{{route("admin.bulletin-board.job-market.edit",$item->id)}}">
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
-                                    <a href="#" class="delete-button" data-id="1">
+                                    <a href="#" class="delete-button" data-id="{{$item->id}}">
                                         <i class="fa fa-trash text-primary"></i>
                                         <span class="font-italic">{{trans("general.delete")}}</span>
                                     </a>
