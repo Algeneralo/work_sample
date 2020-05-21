@@ -107,6 +107,3 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
     });
 
 });
-
-
-Route::resource('job-market', 'Admin\JobMarketController');
