@@ -32,6 +32,7 @@ class TeamStoreRequest extends FormRequest
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'email' => 'required|email|unique:alumni',
+            'password' => 'required|min:6',
             'dob' => 'required',
             'telephone' => 'required|max:50',
             'mobile' => 'required|max:50',

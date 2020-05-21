@@ -32,7 +32,7 @@ class AlumnusUpdateRequest extends FormRequest
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'email' => 'required|email|unique:alumni,id,' . $this->alumnus->id,
-            'password' => 'min:6',
+            'password' => 'nullable|min:6',
             'dob' => 'required',
             'university_id' => 'required|exists:universities,id',
             'degree_program_id' => 'required|exists:degree_programs,id',

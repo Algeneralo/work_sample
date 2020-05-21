@@ -60,6 +60,8 @@ class TeamController extends Controller
      */
     public function update(TeamUpdateRequest $request, Team $team)
     {
+        if ($request->has("password") && $request->password == null)
+            unset($request["password"]);
         $team->update($request->only($team->getFillable()));
         if ($request->hasFile("image")) {
             //delete old avatar

@@ -69,6 +69,9 @@ class AlumniController extends Controller
      */
     public function update(AlumnusUpdateRequest $request, Alumnus $alumnus)
     {
+        if ($request->has("password") && $request->password == null)
+            unset($request["password"]);
+
         $alumnus->update($request->only($alumnus->getFillable()));
         if ($request->hasFile("image")) {
             //delete old avatar
