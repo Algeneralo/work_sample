@@ -41,7 +41,7 @@ class Event extends Model implements HasMedia
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
-    protected $appends = ["from_to_time", "cover", "range_time", "color"];
+    protected $appends = ["from_to_time", "cover", "range_time", "color", "rate"];
 
 
     public function category()
@@ -52,6 +52,11 @@ class Event extends Model implements HasMedia
     public function participants()
     {
         return $this->belongsToMany(\App\Models\Alumnus::class, "event_participants");
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(EventReviews::class);
     }
 
     public static function search($string)
@@ -84,5 +89,10 @@ class Event extends Model implements HasMedia
     public function getColorAttribute()
     {
         return string_to_color($this->name . "" . $this->id . $this->date);
+    }
+
+    public function getRateAttribute()
+    {
+        return $this->reviews()->avg("rate") ? round($this->reviews()->avg("rate")) : 0;
     }
 }
