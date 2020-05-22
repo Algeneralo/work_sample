@@ -70,7 +70,7 @@ class Team extends Model implements HasMedia
     }
 
     //Mutators
-    public function storePasswordAttribute($value)
+    public function setPasswordAttribute($value)
     {
         if ($value)
             $this->attributes["password"] = bcrypt($value);

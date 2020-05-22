@@ -15,7 +15,7 @@ $factory->define(Alumnus::class, function (Faker $faker) {
         'postcode' => $faker->postcode,
         'city' => $faker->city,
         'email' => $faker->safeEmail,
-        'password' => bcrypt("password"),
+        'password' =>"password",
         'dob' => $faker->date(),
         'university_id' => factory(\App\Models\University::class),
         'degree_program_id' => factory(\App\Models\DegreeProgram::class),
