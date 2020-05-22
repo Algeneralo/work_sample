@@ -61,6 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="">@lang("genera.category")</label>
                                         <select class="form-control select2" name="category_id">
                                             @foreach($categories as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
@@ -85,6 +86,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
+                                    <label for="">@lang("genera.event-details")</label>
                                     <textarea name="details" class="js-summernote"
                                               required>{!! old("details") !!}</textarea>
                                 </div>
