@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="{{route("admin.my-network.alumni.index")}}">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Alumni</span>
@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="{{route("admin.events.index")}}">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Veranstaltungen</span>
@@ -49,7 +49,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="{{route("admin.messages.index")}}">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Nachrichten</span>
@@ -66,7 +66,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                <a class="block block-link-shadow text-right" href="{{route("admin.media.index")}}">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
                             <span class="text-gray font-size-md">Media</span>
