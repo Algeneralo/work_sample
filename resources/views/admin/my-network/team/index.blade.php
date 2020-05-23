@@ -127,6 +127,6 @@
     <!-- END Page Content -->
 @endsection
 @push("scripts")
-    <script src="{{asset("/js/admin/pages/team.app.js")}}"></script>
+    <script src="{{asset("/js/admin/pages/alumni.app.js")}}"></script>
     @includeIf('layouts.partials.livewireDeleteConfirmation')
 @endpush
