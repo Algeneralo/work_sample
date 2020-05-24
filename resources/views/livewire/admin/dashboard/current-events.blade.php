@@ -18,14 +18,14 @@
                     <tr>
                         <td>
                             <span class="d-block text-primary pb-2">
-                                Lorem ipsum dolor sit amet, consetetur
+                                {{$event->name}}
                             </span>
                             <span>
                                 <i class="fas fa-map-marker-alt text-primary pr-2"></i>
-                                Lorem ipsum dolor sit amet onsetetur
+                                {!! $event->address !!}
                             </span>
                         </td>
-                        <td class="text-gray">10:15 Uhr - 11:15 Uhr</td>
+                        <td class="text-gray">{{$event->from_to_time}}</td>
                     </tr>
                 @empty
                     <tr>
@@ -35,7 +35,7 @@
             </tbody>
         </table>
     </div>
-{{--    <div class="table-pagination">--}}
-{{--        {{$events->links()}}--}}
-{{--    </div>--}}
+    {{--    <div class="table-pagination">--}}
+    {{--        {{$events->links()}}--}}
+    {{--    </div>--}}
 </div>
