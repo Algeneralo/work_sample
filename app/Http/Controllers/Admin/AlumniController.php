@@ -18,6 +18,21 @@ class AlumniController extends Controller
      */
     public function index()
     {
+        //this is using in media pages, gallery and podcast
+        if (\request()->ajax()) {
+            $alumni = Alumnus::search(\request("term"))->select(['id', "first_name", "last_name"])->paginate(20);
+            return response()->json([
+                "results" => collect($alumni->items())->map(function ($item) {
+                    return [
+                        "id" => $item->id,
+                        "text" => $item->name
+                    ];
+                })->toArray(),
+                "pagination" => [
+                    "more" => $alumni->hasMorePages()
+                ]
+            ]);
+        }
         return view('admin.my-network.alumni.index');
     }
 
