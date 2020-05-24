@@ -16,7 +16,7 @@
             <div>{{trans("general.or")}}</div>
             <div class="file-input form-group">
                 <label for="voice">{{trans("general.Select a file")}}</label>
-                <input type="file" id="voice" accept="audio/*" @change="onVoiceInputChange" multiple>
+                <input ref="file" type="file" id="voice" :name="name" accept="audio/*" @change="onVoiceInputChange">
             </div>
         </div>
 
@@ -33,12 +33,25 @@
 
 <script>
     export default {
+        props: {
+            name: {
+                default: 'voice'
+            },
+            required: {
+                default: true
+            },
+        },
         data: () => ({
             isVoiceDragging: false,
             voiceDragCount: 0,
             voiceFiles: [],
             voices: []
         }),
+        mounted() {
+            if (this.required === true) {
+                this.$refs["file"].setAttribute('required', 'required')
+            }
+        },
         methods: {
             OnVoiceDragEnter(e) {
                 e.preventDefault();

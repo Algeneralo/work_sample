@@ -139,6 +139,9 @@ return [
     "media" => "Media",
     "subject" => "Thema",
     "new-media" => "Neue Folge hinzufügen",
+    "gallery" => "Bildergalerie",
+    "podcast" => "Podcast",
+    "linked-friends" => "verlinkte Freunde",
 
     //Nachrichten
     "messages" => "Nachrichten",

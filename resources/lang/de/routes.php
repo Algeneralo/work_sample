@@ -11,6 +11,8 @@ return [
     "general" => "allgemein",
     "job-market" => "jobboerse",
     "offer" => "biete",
+    "gallery" => "bildergalerie",
+    "podcast" => "podcast",
     "media" => "media",
     "subjects" => "themen",
     "calendar" => "kalender",

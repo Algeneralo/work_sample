@@ -169,15 +169,31 @@
                         </li>
                     </ul>
                 </li>
-
-                <li>
-                    <a class="{{ check_if_menu_is_active(trans("routes.media")) }}"
-                       href="{{route("admin.media.index")}}">
+                <li class="{{check_if_menu_is_active(trans("routes.media"),'','open') }}">
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">
                         <span class="sidebar-mini-hide font-size-lg">
                             <img src="{{asset("/media/icons/microphone.svg")}}">
                             {{trans("general.media")}}
                         </span>
                     </a>
+                    <ul>
+                        <li>
+                            <a class="{{ check_if_menu_is_active(trans("routes.gallery"),trans("routes.media"))}}"
+                               href="{{route("admin.media.gallery.index")}}">
+                                <span class="sidebar-mini-hide font-size-md">
+                                    {{trans("general.gallery")}}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{ check_if_menu_is_active(trans("routes.podcast"),trans("routes.media"))}}"
+                               href="{{route("admin.media.podcast.index")}}">
+                                <span class="sidebar-mini-hide font-size-md">
+                                    {{trans("general.podcast")}}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a class="{{ check_if_menu_is_active(trans("routes.messages")) }}"

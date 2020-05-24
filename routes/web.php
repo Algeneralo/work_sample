@@ -89,10 +89,23 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
 
 
     //Media
-    Route::prefix(trans("routes.media"))->group(function () {
-        Route::view("/", "admin.media.index")->name("media.index");
-        Route::view("/create", "admin.media.create")->name("media.create");
-        Route::view("/{media}/edit", "admin.media.edit")->name("media.edit");
+    Route::group(["prefix" => trans("routes.media"), "as" => "media."], function () {
+        Route::prefix(trans("routes.gallery"))->group(function () {
+            Route::get("/", "GalleryController@index")->name("gallery.index");
+            Route::get("/create", "GalleryController@create")->name("gallery.create");
+            Route::post("/", "GalleryController@store")->name("gallery.store");
+            Route::get("/{gallery}/edit", "GalleryController@edit")->name("gallery.edit");
+            Route::put("/{gallery}", "GalleryController@update")->name("gallery.update");
+//            Route::delete("/{gallery}", "GalleryController@destroy")->name("gallery.destroy");
+        });
+        Route::prefix(trans("routes.podcast"))->group(function () {
+            Route::get("/", "PodcastController@index")->name("podcast.index");
+            Route::get("/create", "PodcastController@create")->name("podcast.create");
+            Route::post("/", "PodcastController@store")->name("podcast.store");
+            Route::get("/{podcast}/edit", "PodcastController@edit")->name("podcast.edit");
+            Route::put("/{podcast}", "PodcastController@update")->name("podcast.update");
+            Route::delete("/{podcast}", "PodcastController@destroy")->name("podcast.destroy");
+        });
     });
 
     //Kalender
