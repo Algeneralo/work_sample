@@ -14,7 +14,6 @@
             confirmButtonText: '@lang("messages.delete-confirmation.delete")'
         }).then((result) => {
             if (result.value) {
-                console.log(deleteForm)
                 deleteForm.submit()
             }
         })
