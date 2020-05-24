@@ -23,7 +23,7 @@ class Index extends Component
     public function delete($id)
     {
         $status = General::query()->findOrFail($id)->delete();
-        if($status)
+        if ($status)
             session()->flash("success", trans("messages.success.deleted"));
     }
 
@@ -34,6 +34,7 @@ class Index extends Component
                 "general" => General::search($this->search)
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->select(["id", "title", "date"])
                     ->paginate($this->perPage),
             ]
         );

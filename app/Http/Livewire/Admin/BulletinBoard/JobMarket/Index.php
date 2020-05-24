@@ -33,6 +33,7 @@ class Index extends Component
                 "jobs" => JobMarket::search($this->search)
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->select(["id", "offer", "working_hours", "beginning"])
                     ->paginate($this->perPage),
             ]
         );

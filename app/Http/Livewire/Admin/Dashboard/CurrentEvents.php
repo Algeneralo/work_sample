@@ -15,6 +15,7 @@ class CurrentEvents extends Component
                 ->orderBy("created_at")
                 ->whereDate("date", ">=", Carbon::now())
                 ->take(5)
+                ->select(["id", "name", "start_time", "end_time", "date", "street", "street_number", "city", "postcode"])
                 ->get()]
         );
     }
