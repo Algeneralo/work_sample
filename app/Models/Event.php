@@ -41,7 +41,7 @@ class Event extends Model implements HasMedia
         'start_time' => 'datetime',
         'end_time' => 'datetime',
     ];
-    protected $appends = ["from_to_time", "cover", "range_time", "color", "rate"];
+    protected $appends = ["from_to_time", "cover", "range_time", "color", "rate", "address"];
 
 
     public function category()
@@ -94,5 +94,10 @@ class Event extends Model implements HasMedia
     public function getRateAttribute()
     {
         return $this->reviews()->avg("rate") ? round($this->reviews()->avg("rate")) : 0;
+    }
+
+    public function getAddressAttribute()
+    {
+        return $this->street . " " . $this->stree_number . "<br>" . $this->city . " " . $this->postcode;
     }
 }
