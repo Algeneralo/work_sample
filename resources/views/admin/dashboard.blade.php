@@ -66,7 +66,7 @@
                 </a>
             </div>
             <div class="col-sm-6 col-xl-3">
-                <a class="block block-link-shadow text-right" href="{{route("admin.media.index")}}">
+                <a class="block block-link-shadow text-right" href="{{route("admin.media.gallery.index")}}">
                     <div class="block-content block-content-full  d-flex align-items-center clearfix">
                         <div class="float-left">
                             <span class="text-gray font-size-md">Media</span>
