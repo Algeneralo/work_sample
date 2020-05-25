@@ -32,12 +32,26 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
 
     });
 
-    Route::group(['prefix' => 'user', "middleware" => ['auth:api', "DenyIfBlocked"]], function () {
-        Route::get('register', 'RegisterController@create');
+    Route::middleware(['auth:api', "DenyIfBlocked"])->group(function () {
 
-        Route::get('profile', 'AlumniProfileController@edit');
-        Route::put('profile', 'AlumniProfileController@update');
-        Route::post('profile/image', 'AlumniProfileController@updateImage');
+        Route::prefix("user")->group(function () {
+            Route::get('profile', 'AlumniProfileController@edit');
+            Route::put('profile', 'AlumniProfileController@update');
+            Route::post('profile/image', 'AlumniProfileController@updateImage');
+        });
 
+        Route::group(["prefix" => "my-network", "namespace" => "MyNetwork"], function () {
+            Route::get('alumni', 'AlumniController');
+            Route::get('team', 'TeamController');
+        });
+
+        Route::apiResource("events", "EventController")->except(["update", "destroy"]);
+        Route::post("events/{event}/reviews", "EventReviewController@store");
+
+
+        Route::prefix("bulletin-board")->group(function () {
+            Route::apiResource("general", "GeneralController")->only(["index", "show"]);
+        });
     });
+
 });
