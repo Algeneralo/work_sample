@@ -45,6 +45,11 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
             Route::get('team', 'TeamController');
         });
 
+        Route::prefix("media")->group(function () {
+            Route::apiResource("gallery", "GalleryController")->only(["index", "show"]);
+            Route::apiResource("podcasts", "PodcastController")->only(["index", "show"]);
+        });
+
         Route::apiResource("events", "EventController")->except(["update", "destroy"]);
         Route::post("events/{event}/reviews", "EventReviewController@store");
 
