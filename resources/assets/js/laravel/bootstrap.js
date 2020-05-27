@@ -9,13 +9,13 @@ Window.Vue = require('vue')
  * code may be modified to fit the specific needs of your application.
  */
 
- // Already included in Codebase Core JS
- /*
+// Already included in Codebase Core JS
+/*
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+   window.Popper = require('popper.js').default;
+   window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+   require('bootstrap');
 } catch (e) {}
 */
 
@@ -65,3 +65,11 @@ if (token) {
 Vue.prototype.trans = (key) => {
     return _.get(window.trans, key, key);
 };
+
+window.route = (name) => {
+    if (window.routes[name] === undefined) {
+        console.error('Route not found ', name);
+    } else {
+        return routes[name]
+    }
+}

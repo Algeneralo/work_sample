@@ -1,4 +1,5 @@
 @include('layouts.partials.lang-script')
+@include('layouts.partials.js-route-helper')
 @yield("js_before")
 
 <!-- Laravel Scaffolding JS -->

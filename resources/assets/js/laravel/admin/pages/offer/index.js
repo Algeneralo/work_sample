@@ -16,4 +16,16 @@ new Vue({
             this[Object.keys(field)[0]] = Object.values(field)[0]
         });
     },
+    methods: {
+        deleteImage(id, event) {
+            let parent = event.target.closest('.photo');
+            axios.delete('/admin/bulletin-board/off')
+                .then(function (response) {
+                    // Do something
+                }).catch(function (response) {
+                alr
+            })
+
+        }
+    }
 })
