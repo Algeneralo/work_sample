@@ -11,8 +11,13 @@ class AlumniProfileController extends ApiController
 {
     public function edit()
     {
+        $userData = collect(auth()->user())->except(["is_team_member", "media", "blocked", "activation_code", "created_at", "updated_at", "deleted_at", "university", "degree_program"]);
+        $userData=$userData->merge([
+            "university_name" => auth()->user()->university->name,
+            "degree_program_name" => auth()->user()->degreeProgram->name,
+        ]);
         return $this->successResponse([
-            "user" => collect(auth()->user())->except(["is_team_member", "media", "blocked", "activation_code", "created_at", "updated_at", "deleted_at"]),
+            "user" => $userData,
             "universities" => University::query()->select(["id", "name"])->get(),
             "degree_programs" => DegreeProgram::query()->select(["id", "name"])->get(),
         ]);
