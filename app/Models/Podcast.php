@@ -29,7 +29,7 @@ class Podcast extends Model implements HasMedia
     protected $casts = [
         'id' => 'integer',
     ];
-    protected $appends = ["cover"];
+    protected $appends = ["cover", "podcast"];
 
     public static function search($string)
     {
@@ -46,5 +46,10 @@ class Podcast extends Model implements HasMedia
     public function getCoverAttribute()
     {
         return optional($this->getFirstMedia("cover"))->getFullUrl();
+    }
+
+    public function getVoiceAttribute()
+    {
+        return optional($this->getFirstMedia("podcast"))->getFullUrl();
     }
 }
