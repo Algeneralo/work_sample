@@ -33,6 +33,8 @@ class Offer extends Model implements HasMedia
         'id' => 'integer',
     ];
 
+    protected $appends = ["images"];
+
     public function alumnus()
     {
         return $this->belongsTo(Alumnus::class, "alumni_id");
