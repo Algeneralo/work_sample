@@ -66,10 +66,15 @@ Vue.prototype.trans = (key) => {
     return _.get(window.trans, key, key);
 };
 
-window.route = (name) => {
+window.route = function () {
+    var args = Array.prototype.slice.call(arguments);
+    var name = args.shift();
     if (window.routes[name] === undefined) {
         console.error('Route not found ', name);
     } else {
-        return routes[name]
+        return '/' + routes[name]
+            .split('/')
+            .map(s => s[0] == '{' ? args.shift() : s)
+            .join('/');
     }
 }
