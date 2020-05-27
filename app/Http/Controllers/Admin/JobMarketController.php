@@ -41,6 +41,7 @@ class JobMarketController extends Controller
         DB::transaction(function () use ($request) {
             /** @var JobMarket $jobMarket */
             $jobMarket = JobMarket::create($request->all());
+            $jobMarket->contact()->create($request->merge(["name" => $request->contact_name])->toArray());
             $jobMarket->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->withResponsiveImages()
@@ -58,6 +59,7 @@ class JobMarketController extends Controller
      */
     public function edit(JobMarket $jobMarket)
     {
+        $jobMarket->load("contact");
         return view('admin.bulletin-board.job-market.edit', compact('jobMarket'));
     }
 
@@ -70,6 +72,12 @@ class JobMarketController extends Controller
     {
         DB::transaction(function () use ($request, $jobMarket) {
             $jobMarket->update($request->only($jobMarket->getFillable()));
+
+            $jobMarket->contact()->updateOrCreate(
+                ["job_market_id" => $jobMarket->id],
+                $request->merge(["name" => $request->contact_name])->only(["name", "company_name", "email", "telephone"])
+            );
+
             if ($request->hasFile("image")) {
                 $jobMarket->clearMediaCollection("cover");
                 $jobMarket->addMediaFromRequest("image")

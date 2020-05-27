@@ -33,6 +33,11 @@ class JobMarketUpdateRequest extends FormRequest
             'image' => 'image',
             'duration' => 'required',
             'city' => 'required',
+            "link" => "required|url",
+            "contact_name" => "required",
+            "company_name" => "required",
+            "email" => "required|email",
+            "telephone" => "required",
         ];
     }
 }

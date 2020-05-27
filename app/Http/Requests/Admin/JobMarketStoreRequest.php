@@ -33,6 +33,11 @@ class JobMarketStoreRequest extends FormRequest
             'image' => 'required|image',
             'duration' => 'required',
             'city' => 'required',
+            "link" => "required|url",
+            "contact_name" => "required",
+            "company_name" => "required",
+            "email" => "required|email",
+            "telephone" => "required",
         ];
     }
 }

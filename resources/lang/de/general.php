@@ -133,8 +133,10 @@ return [
     "viewfinder" => "Sucher/Anbieter",
     "tasks" => "Aufgaben",
     "remove-ad" => "Anzeige entfernen",
-
-
+    "contact-info" => "Kontaktinfos",
+    "contact-person" => "Ansprechpartner",
+    "company-name" => "Unternehmensbezeichnung",
+    "job-posting" => "Stellenausschreibung",
     //Media
     "media" => "Media",
     "subject" => "Thema",

@@ -25,6 +25,7 @@ class JobMarket extends Model implements HasMedia
         'beginning',
         'duration',
         'details',
+        "link"
     ];
 
     /**
@@ -37,6 +38,11 @@ class JobMarket extends Model implements HasMedia
         'beginning' => 'date',
     ];
     protected $appends = ["cover", "working_hours_string"];
+
+    public function contact()
+    {
+        return $this->hasOne(JobMarketContact::class);
+    }
 
     public static function search($string)
     {

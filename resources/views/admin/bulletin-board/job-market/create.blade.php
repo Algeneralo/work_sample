@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-xl-8">
                             <div class="row">
-                                <div class="col-xl-4">
+                                <div class="col-xl-5">
                                     <div class="form-group">
                                         <label>{{trans("general.employer")}}</label>
                                         <input class="form-control" type="text" name="employer" value="{{old("employer")}}" required>
@@ -77,6 +77,39 @@
                                                 <input class="form-control" type="text" name="duration" value="{{old("duration")}}" required>
                                             </div>
                                         </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>@lang("general.job-posting")</label>
+                                                <input class="form-control" type="text" name="link" value="{{old("link")}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="" class="col-12 font-weight-bold">@lang("general.contact-info")</label>
+                                <div class="col-xl-5">
+                                    <div class="form-group">
+                                        <label>{{trans("general.contact-person")}}</label>
+                                        <input class="form-control" type="text" name="contact_name" value="{{old("contact_name")}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>{{trans("general.company-name")}}</label>
+                                        <input class="form-control" type="text" name="company_name" value="{{old("company_name")}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5">
+                                    <div class="form-group">
+                                        <label>{{trans("general.email")}}</label>
+                                        <input class="form-control" type="email" name="email" value="{{old("email")}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>{{trans("general.phone")}}</label>
+                                        <input class="form-control" type="text" name="telephone" value="{{old("telephone")}}" required>
                                     </div>
                                 </div>
                             </div>

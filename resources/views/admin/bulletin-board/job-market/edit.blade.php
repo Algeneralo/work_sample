@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-xl-8">
                             <div class="row">
-                                <div class="col-xl-4">
+                                <div class="col-xl-5">
                                     <div class="form-group">
                                         <label>{{trans("general.employer")}}</label>
                                         <input class="form-control" type="text" name="employer"
@@ -92,9 +92,44 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>{{trans("general.duration")}}</label>
-                                                <input class="form-control" type="text" name="duration" value="{{$jobMarket->duration}}" required>
+                                                <input class="form-control" type="text" name="duration"
+                                                       value="{{$jobMarket->duration}}" required>
                                             </div>
                                         </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>@lang("general.job-posting")</label>
+                                                <input class="form-control" type="url" name="link"
+                                                       value="{{$jobMarket->link}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="" class="col-12 font-weight-bold">@lang("general.contact-info")</label>
+                                <div class="col-xl-5">
+                                    <div class="form-group">
+                                        <label>{{trans("general.contact-person")}}</label>
+                                        <input class="form-control" type="text" name="contact_name" value="{{$jobMarket->contact->name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>{{trans("general.company-name")}}</label>
+                                        <input class="form-control" type="text" name="company_name" value="{{$jobMarket->contact->company_name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5">
+                                    <div class="form-group">
+                                        <label>{{trans("general.email")}}</label>
+                                        <input class="form-control" type="email" name="email" value="{{$jobMarket->contact->email}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>{{trans("general.phone")}}</label>
+                                        <input class="form-control" type="text" name="telephone" value="{{$jobMarket->contact->telephone}}" required>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +138,8 @@
                     <div class="row">
                         <div class="col-xl-10 form-group">
                             <label for="">{{trans("general.tasks")}}</label>
-                            <textarea name="details" class="js-summernote" required>{!! $jobMarket->details !!}</textarea>
+                            <textarea name="details" class="js-summernote"
+                                      required>{!! $jobMarket->details !!}</textarea>
                         </div>
                     </div>
                 </div>
