@@ -23,8 +23,8 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         Route::put('activate', 'ActivateController@activate');
         Route::put('activate/send', 'ActivateController@sendAgain');
 
-        Route::post('login', 'LoginController@login');
-        Route::post('refresh-token', 'LoginController@refreshToken');
+        Route::post('login', 'LoginController@login')->name("api.login");
+        Route::post('refresh-token', 'LoginController@refreshToken')->name("api.refresh-token");
 
         Route::post('forgot-password', 'ForgotPasswordController@forgotPassword');
         Route::post('token-verification', 'ForgotPasswordController@tokenVerification');

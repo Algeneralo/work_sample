@@ -32,6 +32,7 @@ class ActivateController extends AuthController
 
         return \DB::transaction(function () use ($request) {
             $user = self::$MODEL::query()
+                ->withoutGlobalScope("is_team_member")
                 ->where("email", $request->email)
                 ->where("activation_code", $request->activation_code)
                 ->firstOrFail();

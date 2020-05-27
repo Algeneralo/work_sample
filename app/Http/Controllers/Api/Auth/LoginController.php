@@ -61,6 +61,7 @@ class LoginController extends AuthController
     private function checkIfBlocked($email): void
     {
         self::$MODEL::query()
+            ->withoutGlobalScope("is_team_member")
             ->where("email", $email)
             ->where("blocked", 0)
             ->firstOr(function () {

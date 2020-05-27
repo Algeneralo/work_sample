@@ -67,8 +67,12 @@ class Alumnus extends Authenticatable implements HasMedia
 
     public static function booted()
     {
+        //this is because of passport dose't support removing scope
+        if ((request()->route()->getName() != 'api.login') && (request()->route()->getName() != 'api.refresh-token'))
+            return;
+        
         static::addGlobalScope('is_team_member', function (Builder $builder) {
-            $builder->where('is_team_member', self::$IS_TEAM_MEMBER);
+                $builder->where('is_team_member', self::$IS_TEAM_MEMBER);
         });
     }
 
