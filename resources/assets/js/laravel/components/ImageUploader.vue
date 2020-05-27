@@ -17,7 +17,8 @@
             <div>{{trans("general.or")}}</div>
             <div class="file-input form-group">
                 <label for="file">{{trans("general.Select a file")}}</label>
-                <input :name="name" type="file" id="file" accept="image/*" @change="onInputChange" required>
+                <input ref="imageInput" :name="name" type="file" id="file" accept="image/*" @change="onInputChange"
+                       required>
             </div>
         </div>
 
@@ -37,6 +38,9 @@
     export default {
         props: {
             name: {},
+            multiple: {
+                default: false
+            }
         },
         data: () => ({
             isDragging: false,
@@ -44,6 +48,10 @@
             files: [],
             images: []
         }),
+        mounted() {
+            if (this.multiple)
+                this.$refs["imageInput"].setAttribute("multiple", "multiple");
+        },
         methods: {
             OnDragEnter(e) {
                 e.preventDefault();
@@ -61,10 +69,9 @@
                     this.isDragging = false;
             },
             onInputChange(e) {
-                if (e.target.files.length === 0) {
-                    this.files = [];
-                    this.images = [];
-                }
+                this.files = [];
+                this.images = [];
+
                 const files = e.target.files;
 
                 Array.from(files).forEach(file => this.addImage(file));
@@ -72,6 +79,8 @@
             onDrop(e) {
                 e.preventDefault();
                 e.stopPropagation();
+                this.files = [];
+                this.images = [];
 
                 this.isDragging = false;
                 const files = e.dataTransfer.files;
@@ -83,9 +92,6 @@
                     this.$toastr.e(`${file.name} muss ein Bild sein.`);
                     return;
                 }
-                //allow only one image
-                this.files = [];
-                this.images = [];
 
                 this.files.push(file);
 
