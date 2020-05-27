@@ -6,7 +6,6 @@ use App\Http\Resources\Api\JobMarket\JobMarketJsonResource;
 use App\Http\Resources\Api\JobMarket\JobMarketResource;
 use App\Models\JobMarket;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class JobMarketController extends ApiController
 {
