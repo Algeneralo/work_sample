@@ -81,9 +81,13 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
 
         //Suche/Biete
         Route::prefix(trans("routes.offer"))->group(function () {
-            Route::view("/", "admin.bulletin-board.offer.index")->name("offers.index");
-            Route::view("/create", "admin.bulletin-board.offer.create")->name("offers.create");
-            Route::view("/{offer}/edit", "admin.bulletin-board.offer.edit")->name("offers.edit");
+            Route::get("/", "OfferController@index")->name("offers.index");
+            Route::get("/create", "OfferController@create")->name("offers.create");
+            Route::post("/", "OfferController@store")->name("offers.store");
+            Route::get("/{offer}/edit", "OfferController@edit")->name("offers.edit");
+            Route::put("/{offer}", "OfferController@update")->name("offers.update");
+            Route::delete("/{offer}", "OfferController@destroy")->name("offers.destroy");
+            Route::delete("/image/{image}", "OfferController@imageDestroy")->name("offers.image.destroy");
         });
     });
 

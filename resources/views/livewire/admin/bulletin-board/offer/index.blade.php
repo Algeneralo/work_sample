@@ -1,4 +1,5 @@
 <div>
+    @include("layouts.partials.status")
     <div class="block">
         <div class="block-header border-b pb-2 pt-2 d-block d-md-flex">
             <div class="block-title d-md-flex" wire:ignore>
@@ -46,19 +47,20 @@
                             <th>
                                 <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
                                     {{trans("general.date")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'date'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'created_at'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                                    {{trans("general.provider")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'designation'])
-                                </a>
+                                {{trans("general.provider")}}
+                                {{--                                <a wire:click.prevent="sortBy('title')" role="button" href="#">--}}
+                                {{--                                    {{trans("general.provider")}}--}}
+                                {{--                                    @include('layouts.partials._sort-icon', ['field' => 'title'])--}}
+                                {{--                                </a>--}}
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('title')" role="button" href="#">
                                     {{trans("general.title")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'designation'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'title'])
                                 </a>
                             </th>
                             <th>
@@ -69,16 +71,16 @@
                     @forelse($offers as $item)
                         <tbody>
                             <tr>
-                                <td class="text-primary">{{$loop->iteration}}</td>
-                                <td>05.04.2020</td>
-                                <td>13.01. bis 14.01.2020: AEPF 2020 PreConference</td>
-                                <td>Ich suche wg zimmer in Essen</td>
+                                <td class="text-primary">{{$item->id}}</td>
+                                <td>{{$item->created_at->format("d.m.Y")}}</td>
+                                <td>{{$item->alumnus->name}}</td>
+                                <td>{{$item->title}}</td>
                                 <td>
-                                    <a href="{{route("admin.bulletin-board.offers.edit",1)}}">
+                                    <a href="{{route("admin.bulletin-board.offers.edit",$item->id)}}">
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
-                                    <a href="#" class="delete-button" data-id="1">
+                                    <a href="#" class="delete-button" data-id="{{$item->id}}">
                                         <i class="fa fa-trash text-primary"></i>
                                         <span class="font-italic">{{trans("general.delete")}}</span>
                                     </a>

@@ -16,7 +16,9 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <form action="{{route("admin.test")}}" class="js-validation-bootstrap" method="POST"
+        @include("layouts.partials.validation-status")
+        @include("layouts.partials.status")
+        <form action="{{route("admin.bulletin-board.offers.store")}}" class="js-validation-bootstrap" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="block">
@@ -30,27 +32,22 @@
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.viewfinder")}}</label>
-                                        <input class="form-control" type="text" name="viewfinder" required>
+                                        <select name="alumni_id" id="provider" class="form-control"></select>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group">
                                         <label>{{trans("general.title")}}</label>
-                                        <input class="form-control" type="text" name="title" required>
+                                        <input class="form-control" type="text" name="title" value="{{old("title")}}"
+                                               required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
                                     <label for="">{{trans("general.description")}}</label>
-                                    <textarea name="details" class="js-summernote" required>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                                               sed diam nonumy eirmod tempor invidunt ut MEHR dolore
-                                                               magna aliquyam erat, sed diam voluptua. At vero eos et
-                                                               accusam et justo duo dolores et ea rebum. Stet clita kasd
-                                                               gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                                               sit amet.
-                                    </textarea>
+                                    <textarea name="details" class="js-summernote"
+                                              required>{!! old("details") !!}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +55,7 @@
                             <div>
                                 <label for="" class="border-b w-100 mb-4"
                                        style="border-bottom-style: dashed !important;">{{trans("general.image-upload")}}</label>
-                                <image-uploader :name="'image'" ></image-uploader>
+                                <image-uploader :name="'image[]'" :multiple="'true'"></image-uploader>
                             </div>
                         </div>
                     </div>
@@ -81,4 +78,22 @@
     <script src="{{asset("/js/admin/pages/offer.app.js")}}"></script>
     @include("plugins.jquery-validate")
     @include("plugins.editor")
+    @include("plugins.select2")
+    <script>
+        $(document).ready(function () {
+            $("#provider").select2({
+                ajax: {
+                    url: '{{route("admin.my-network.alumni.index")}}',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            term: params.term || '',
+                            page: params.page || 1
+                        }
+                    },
+                    cache: true
+                }
+            });
+        });
+    </script>
 @endpush

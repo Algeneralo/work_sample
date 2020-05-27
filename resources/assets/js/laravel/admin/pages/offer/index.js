@@ -19,12 +19,38 @@ new Vue({
     methods: {
         deleteImage(id, event) {
             let parent = event.target.closest('.photo');
-            axios.delete('/admin/bulletin-board/off')
-                .then(function (response) {
-                    // Do something
-                }).catch(function (response) {
-                alr
+            //deny deletion all images
+            if (parent.closest(".photos").querySelectorAll(".photo").length <= 1) {
+                Swal.fire({
+                    title: "you can't delete all items",
+                    text: "",
+                    type: 'warning',
+                })
+                return;
+            }
+
+            Swal.fire({
+                title: this.trans("messages.delete-confirmation.title"),
+                text: this.trans("messages.delete-confirmation.message"),
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#226DAE',
+                cancelButtonColor: '#d33',
+                cancelButtonText: this.trans("messages.delete-confirmation.cancel"),
+                confirmButtonText: this.trans("messages.delete-confirmation.delete")
+            }).then((result) => {
+                if (result.value) {
+                    axios.post(route('admin.bulletin-board.offers.image.destroy',id), {
+                        _method: 'DELETE',
+                    })
+                        .then(function (response) {
+                            parent.remove()
+                        }).catch(function (response) {
+                        console.log(response)
+                    })
+                }
             })
+
 
         }
     }
