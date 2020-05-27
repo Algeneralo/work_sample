@@ -51,6 +51,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
 
         Route::prefix("bulletin-board")->group(function () {
             Route::apiResource("general", "GeneralController")->only(["index", "show"]);
+            Route::apiResource("job-market", "JobMarketController")->only(["index", "show"]);
         });
     });
 
