@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Alumnus;
 use App\Models\Event;
 use App\Models\Gallery;
-use App\Models\Media;
 use App\Models\Podcast;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
