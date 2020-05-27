@@ -120,7 +120,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
 
     //Nachrichten
     Route::prefix(trans("routes.messages"))->group(function () {
-        Route::view("/", "CalendarController@index")->name("messages.index");
+        Route::view("/", "admin.messages.index")->name("messages.index");
     });
 
 });
