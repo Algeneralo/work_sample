@@ -88,13 +88,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <address-component :street="'Wasserstr.'"
-                                               :streetNumber="'12'"
-                                               :postcode="'48581'"
-                                               :city="'Essen'"></address-component>
+                            <address-component :street="'{{$item->street}}'"
+                                               :streetNumber="'{{$item->street_number}}'"
+                                               :postcode="'{{$item->postcode}}'"
+                                               :city="'{{$item->city}}'"></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
-                                <input class="form-control" type="email" value="k.redman@gmxmail.de" name="email"
+                                <input class="form-control" type="email" value="{{$item->email}}" name="email"
                                        required>
                             </div>
                             <div class="form-group">
