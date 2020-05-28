@@ -74,12 +74,13 @@
                                 <td>13.01. bis 14.01.2020: AEPF 2020 PreConference</td>
                                 <td>Ich suche wg zimmer in Essen</td>
                                 <td>
-{{--                                    {{route("admin.bulletin-board.teams.edit",1)}}--}}
+                                    {{--                                    {{route("admin.bulletin-board.teams.edit",1)}}--}}
                                     <a href="#">
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
-                                    <a href="#" class="delete-button" data-id="1">
+                                    <a href="#" class="delete-button" data-id="{{$item->id}}"
+                                       wire:key="{{ $item->id }}">
                                         <i class="fa fa-trash text-primary"></i>
                                         <span class="font-italic">{{trans("general.delete")}}</span>
                                     </a>
