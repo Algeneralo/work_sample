@@ -65,6 +65,18 @@ class Alumnus extends Authenticatable implements HasMedia
     protected $appends = ["name", "avatar"];
     protected $hidden = ["password"];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($alumni) {
+            //remove linked galleries when deleting alumni
+            /** @var self $alumni */
+            $alumni->linkedGalleries()->detach();
+            $alumni->offers()->delete();
+        });
+    }
+
     public static function booted()
     {
         //this is because of passport dose't support removing scope
@@ -95,6 +107,16 @@ class Alumnus extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(Event::class, "event_participants")
             ->where("date", '<=', Carbon::now());
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, "alumni_id");
+    }
+
+    public function linkedGalleries()
+    {
+        return $this->belongsToMany(Gallery::class, "gallery_linked_friends", "alumni_id");
     }
 
     public static function search($string)
