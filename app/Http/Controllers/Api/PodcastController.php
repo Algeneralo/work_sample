@@ -31,16 +31,16 @@ class PodcastController extends ApiController
      */
     public function show(Podcast $podcast)
     {
-        $ffmpeg = FFMpeg::create([
-            'ffmpeg.binaries' => config('medialibrary.ffmpeg_path'),
-            'ffprobe.binaries' => config('medialibrary.ffprobe_path'),
-        ]);
-
-        $video = $ffmpeg->open($file);
-        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration');
-        dd($podcast->getFirstMedia("podcast")->getDuration());
-        request()->merge(["show" => true]);
-        return $this->successResponse(["gallery" => new PodcastJsonResource($podcast)]);
+//        $ffmpeg = FFMpeg::create([
+//            'ffmpeg.binaries' => config('medialibrary.ffmpeg_path'),
+//            'ffprobe.binaries' => config('medialibrary.ffprobe_path'),
+//        ]);
+//
+//        $video = $ffmpeg->open($file);
+//        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration');
+//        dd($podcast->getFirstMedia("podcast")->getDuration());
+//        request()->merge(["show" => true]);
+//        return $this->successResponse(["gallery" => new PodcastJsonResource($podcast)]);
     }
 
 }
