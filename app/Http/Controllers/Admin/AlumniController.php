@@ -8,13 +8,15 @@ use App\Http\Requests\Admin\AlumnusStoreRequest;
 use App\Http\Requests\Admin\AlumnusUpdateRequest;
 use App\Models\DegreeProgram;
 use App\Models\University;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class AlumniController extends Controller
 {
     /**
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -37,8 +39,8 @@ class AlumniController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function create(Request $request)
     {
@@ -48,8 +50,8 @@ class AlumniController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\Admin\AlumnusStoreRequest $request
-     * @return \Illuminate\Http\Response
+     * @param AlumnusStoreRequest $request
+     * @return Response
      */
     public function store(AlumnusStoreRequest $request)
     {
@@ -65,9 +67,9 @@ class AlumniController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Alumnus $alumnus
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Alumnus $alumnus
+     * @return Response
      */
     public function edit(Request $request, Alumnus $alumnus)
     {
@@ -78,9 +80,9 @@ class AlumniController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\Admin\AlumnusUpdateRequest $request
-     * @param \App\Models\Alumnus $alumnus
-     * @return \Illuminate\Http\Response
+     * @param AlumnusUpdateRequest $request
+     * @param Alumnus $alumnus
+     * @return Response
      */
     public function update(AlumnusUpdateRequest $request, Alumnus $alumnus)
     {
@@ -115,7 +117,7 @@ class AlumniController extends Controller
     /**
      * Block/unblock alumnus
      * @param Alumnus $alumnus
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function block(Alumnus $alumnus)
     {
