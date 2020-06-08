@@ -88,7 +88,6 @@ class ForgotPasswordController extends AuthController
 
         return DB::transaction(function () use ($request) {
             $user = self::$MODEL::query()
-                ->withoutGlobalScope("is_team_member")
                 ->where('email', $request->input('email'))
                 ->firstOrFail();
 

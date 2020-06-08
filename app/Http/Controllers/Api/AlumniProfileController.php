@@ -3,24 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Http\Resources\Api\User\UserJsonResource;
 use App\Models\DegreeProgram;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AlumniProfileController extends ApiController
 {
     public function edit()
     {
-        $userData = collect(auth()->user())->except(["is_team_member", "media", "blocked", "activation_code", "created_at", "updated_at", "deleted_at", "university", "degree_program"]);
-        $userData=$userData->merge([
-            "university_name" => auth()->user()->university->name,
-            "degree_program_name" => auth()->user()->degreeProgram->name,
-        ]);
-        return $this->successResponse([
-            "user" => $userData,
-            "universities" => University::query()->select(["id", "name"])->get(),
-            "degree_programs" => DegreeProgram::query()->select(["id", "name"])->get(),
-        ]);
+
+        return $this->successResponse(new UserJsonResource(auth()->user()));
     }
 
     public function update(Request $request)
@@ -28,7 +22,7 @@ class AlumniProfileController extends ApiController
         $validated = $this->validate($request, $this->rules());
         return \DB::transaction(function () use ($validated, $request) {
             auth()->user()->update($validated);
-            return $this->noContentResponse();
+            return $this->successResponse(new UserJsonResource(auth()->user()));
         });
     }
 
@@ -44,9 +38,9 @@ class AlumniProfileController extends ApiController
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'dob' => 'required',
-            'university_id' => 'required|exists:universities,id',
-            'degree_program_id' => 'required|exists:degree_programs,id',
-            'alumni_year' => 'required|max:4',
+            'university_id' => ['exists:universities,id', Rule::requiredIf(!auth()->user()->is_team_member)],
+            'degree_program_id' => ['exists:degree_programs,id', Rule::requiredIf(!auth()->user()->is_team_member)],
+            'alumni_year' => ['max:4', Rule::requiredIf(!auth()->user()->is_team_member)],
             'telephone' => 'required|max:50',
             'mobile' => 'required|max:50',
         ];

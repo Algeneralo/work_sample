@@ -37,7 +37,7 @@ class AuthController extends ApiController
      * Used model for authentication
      * @var Model
      */
-    static $MODEL = "App\Models\Alumnus";
+    static $MODEL = "App\Models\ApiAuth";
     /**
      * Table Name
      * @var string

@@ -2,21 +2,19 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Alumnus extends Authenticatable implements HasMedia
-
+class ApiAuth extends  Authenticatable implements HasMedia
 {
     use SoftDeletes, HasMediaTrait, HasApiTokens;
 
-    static $IS_TEAM_MEMBER = 0;
+    protected $table = "alumni";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -65,30 +63,6 @@ class Alumnus extends Authenticatable implements HasMedia
     protected $appends = ["name", "avatar"];
     protected $hidden = ["password"];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($alumni) {
-            //remove linked galleries when deleting alumni
-            /** @var self $alumni */
-            $alumni->linkedGalleries()->detach();
-            $alumni->offers()->delete();
-        });
-    }
-
-    public static function booted()
-    {
-        static::addGlobalScope('is_team_member', function (Builder $builder) {
-            $builder->where('is_team_member', self::$IS_TEAM_MEMBER);
-        });
-    }
-
-    public function category()
-    {
-        $this->hasOne(Category::class);
-    }
-
     public function university()
     {
         return $this->belongsTo(University::class);
@@ -97,33 +71,6 @@ class Alumnus extends Authenticatable implements HasMedia
     public function degreeProgram()
     {
         return $this->belongsTo(DegreeProgram::class);
-    }
-
-    public function participatedEvents()
-    {
-        return $this->belongsToMany(Event::class, "event_participants")
-            ->where("date", '<=', Carbon::now());
-    }
-
-    public function offers()
-    {
-        return $this->hasMany(Offer::class, "alumni_id");
-    }
-
-    public function linkedGalleries()
-    {
-        return $this->belongsToMany(Gallery::class, "gallery_linked_friends", "alumni_id");
-    }
-
-    public static function search($string)
-    {
-        return empty($string) ? static::query()
-            : static::where(function ($query) use ($string) {
-                $query->where('first_name', 'like', '%' . $string . '%')
-                    ->orWhere('last_name', 'like', '%' . $string . '%')
-                    ->orWhere('email', 'like', '%' . $string . '%');
-            });
-
     }
 
     //Accessors

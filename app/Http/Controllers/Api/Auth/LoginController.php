@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Resources\Api\User\UserJsonResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,7 +33,13 @@ class LoginController extends AuthController
         $this->checkIfBlocked($request->email);
 
         $response = $this->sendPassportRequest("password");
-        return \response()->json($response->json(), $response->status());
+        $responseData = $response->json();
+        if ($response->ok()) {
+            $responseData = array_merge($response->json(), [
+                'user' => new UserJsonResource(self::$MODEL::query()->where("email", $request->email)->firstOrFail())
+            ]);
+        }
+        return \response()->json($responseData, $response->status());
     }
 
 
@@ -61,7 +68,6 @@ class LoginController extends AuthController
     private function checkIfBlocked($email): void
     {
         self::$MODEL::query()
-            ->withoutGlobalScope("is_team_member")
             ->where("email", $email)
             ->where("blocked", 0)
             ->firstOr(function () {
