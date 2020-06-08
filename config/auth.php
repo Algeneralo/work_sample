@@ -72,7 +72,7 @@ return [
         ],
         'alumni' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Alumnus::class,
+            'model' => App\Models\ApiAuth::class,
         ],
 
         // 'users' => [
