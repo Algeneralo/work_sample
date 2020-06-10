@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 window._ = require('lodash');
 Window.Vue = require('vue')
+import 'livewire-vue'
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

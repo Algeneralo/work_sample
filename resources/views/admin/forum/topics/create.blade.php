@@ -14,12 +14,12 @@
         </div>
         @include("layouts.partials.validation-status")
         @include("layouts.partials.status")
-        <form action="{{route("admin.forum.store")}}" class="js-validation-bootstrap" method="POST"
+        <form action="{{route("admin.forum.topics.store",$forum->id)}}" class="js-validation-bootstrap" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="block">
                 <div class="block-header bg-primary rounded-top">
-                    <h3 class="text-white font-weight-light font-size-h3 mb-0">{{trans("general.new-forum")}}</h3>
+                    <h3 class="text-white font-weight-light font-size-h3 mb-0">{{trans("general.new-subject")}}</h3>
                 </div>
                 <div class="block-content">
                     <div class="row">
@@ -27,14 +27,15 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group">
-                                        <label>{{trans("general.designation")}}</label>
-                                        <input class="form-control" type="text" name="designation"
-                                               value="{{old("designation")}}" required>
+                                        <label>{{trans("general.title")}}</label>
+                                        <input class="form-control" type="text" name="title"
+                                               value="{{old("title")}}" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
+                                    <label for="">@lang("general.description")</label>
                                     <textarea name="details" class="js-summernote"
                                               required>{!! old("details") !!}</textarea>
                                 </div>

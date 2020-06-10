@@ -51,10 +51,22 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
 
     //Forum
     Route::prefix(trans("routes.forum"))->group(function () {
-        Route::view("/", "admin.forum.index")->name("forum.index");
-        Route::view("/create", "admin.forum.create")->name("forum.create");
-        Route::view("/{forum}/edit", "admin.forum.edit")->name("forum.edit");
-        Route::view("/{forum}/" . trans('routes.subjects') . "/create", "admin.forum.subjects.create")->name("forum.subject.create");
+        Route::get("/", "ForumController@index")->name("forum.index");
+        Route::get("/create", "ForumController@create")->name("forum.create");
+        Route::post("/", "ForumController@store")->name("forum.store");
+        Route::get("/{forum}", "ForumController@show")->name("forum.show");
+        Route::put("/{forum}", "ForumController@update")->name("forum.update");
+
+        //Themen/Topic
+        Route::group(["prefix" => "/{forum}/" . trans("routes.topics"), "as" => "forum."], function () {
+            Route::get("/", "ForumTopicController@index")->name("topics.index");
+            Route::get("/create", "ForumTopicController@create")->name("topics.create");
+            Route::post("/", "ForumTopicController@store")->name("topics.store");
+            Route::get("/{topic}", "ForumTopicController@show")->name("topics.show");
+            Route::put("/{topic}", "ForumTopicController@update")->name("topics.update");
+
+            Route::get("/{topic}/comments", "TopicCommentController@index")->name("topics.comments.index");
+        });
     });
 
     //Schwarzes Brett

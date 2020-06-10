@@ -69,12 +69,12 @@
                     @forelse($forum as $item)
                         <tbody>
                             <tr>
-                                <td class="text-primary">{{$loop->iteration}}</td>
-                                <td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</td>
-                                <td>11</td>
-                                <td>25</td>
+                                <td class="text-primary">{{$item->id}}</td>
+                                <td>{{$item->designation}}</td>
+                                <td>{{$item->topics_count}}</td>
+                                <td>{{$item->comments_count}}</td>
                                 <td>
-                                    <a href="{{route("admin.forum.edit",1)}}">
+                                    <a href="{{route("admin.forum.show",$item->id)}}">
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
