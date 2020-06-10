@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 class ForgotPasswordController extends AuthController
 {
@@ -21,7 +23,7 @@ class ForgotPasswordController extends AuthController
         parent::__construct();
         if (app()->environment() != "local") {
             //sending activation code only 1 time every 10 minutes
-            $this->middleware('throttle:1,10')->only("forgotPassword");
+            $this->middleware('throttle:3,10')->only("forgotPassword");
         }
     }
 
@@ -29,7 +31,8 @@ class ForgotPasswordController extends AuthController
      * Creates PIN and sends to user email address
      * @param Request $request
      * @return JsonResponse
-     * @throws \Exception
+     * @throws ValidationException
+     * @throws Throwable
      */
     public function forgotPassword(Request $request)
     {
@@ -37,17 +40,17 @@ class ForgotPasswordController extends AuthController
             'email' => 'required|email|exists:' . self::$TABLE
         ]);
 
-       return DB::transaction(function () use ($request) {
-           PasswordReset::query()
-               ->updateOrCreate(
-                   ['email' => $request->input('email')],
-                   ['token' => $token = Str::random(5), 'created_at' => now()]
-               );
+        return DB::transaction(function () use ($request) {
+            PasswordReset::query()
+                ->updateOrCreate(
+                    ['email' => $request->input('email')],
+                    ['token' => $token = Str::random(5), 'created_at' => now()]
+                );
 
-           Notification::route('mail', $request->input('email'))
-               ->notify(new ResetPasswordNotification($token));
+            Notification::route('mail', $request->input('email'))
+                ->notify(new ResetPasswordNotification($token));
 
-           return $this->successResponse([], 'Email Sent successfully');
+            return $this->successResponse([], 'Email Sent successfully');
         });
 
     }
@@ -56,7 +59,7 @@ class ForgotPasswordController extends AuthController
      * Check giving token before move to reset page
      * @param Request $request
      * @return JsonResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function tokenVerification(Request $request)
     {
@@ -87,6 +90,13 @@ class ForgotPasswordController extends AuthController
         ]);
 
         return DB::transaction(function () use ($request) {
+            //delete token from DB
+            PasswordReset::query()
+                ->where('email', $request->input('email'))
+                ->firstOr(function () {
+                    abort(Response::HTTP_UNPROCESSABLE_ENTITY,'no_token');
+                })->delete();
+
             $user = self::$MODEL::query()
                 ->where('email', $request->input('email'))
                 ->firstOrFail();
