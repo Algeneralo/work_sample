@@ -14,15 +14,22 @@ class AlumniProfileController extends ApiController
     public function edit()
     {
 
-        return $this->successResponse(new UserJsonResource(auth()->user()));
-    }
+        return $this->successResponse([
+            "user" => new UserJsonResource(auth()->user()),
+            "universities" => University::query()->select("id", "name")->get(),
+            "degreePrograms" => DegreeProgram::query()->select("id", "name")->get(),
+        ]);    }
 
     public function update(Request $request)
     {
         $validated = $this->validate($request, $this->rules());
         return \DB::transaction(function () use ($validated, $request) {
             auth()->user()->update($validated);
-            return $this->successResponse(new UserJsonResource(auth()->user()));
+            return $this->successResponse([
+                "user" => new UserJsonResource(auth()->user()),
+                "universities" => University::query()->select("id", "name")->get(),
+                "degreePrograms" => DegreeProgram::query()->select("id", "name")->get(),
+            ]);
         });
     }
 
