@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 class Team extends Model implements HasMedia
 {
@@ -66,7 +67,14 @@ class Team extends Model implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return optional($this->getFirstMedia("avatar"))->getFullUrl();
+        return Media::query()
+            ->where(function ($query) {
+                $query->where("model_type", "App\Models\Alumnus")
+                    ->orWhere("model_type", "App\Models\Team")
+                    ->orWhere("model_type", "App\Models\ApiAuth");
+            })->where("model_id", $this->id)
+            ->first()
+            ->getFullUrl();
     }
 
     //Mutators

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 class Alumnus extends Authenticatable implements HasMedia
 
@@ -134,7 +135,14 @@ class Alumnus extends Authenticatable implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return optional($this->getFirstMedia("avatar"))->getFullUrl();
+        return Media::query()
+            ->where(function ($query) {
+                $query->where("model_type", "App\Models\Alumnus")
+                    ->orWhere("model_type", "App\Models\Team")
+                    ->orWhere("model_type", "App\Models\ApiAuth");
+            })->where("model_id", $this->id)
+            ->first()
+            ->getFullUrl();
     }
 
     //Mutators
