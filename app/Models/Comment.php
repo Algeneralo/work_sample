@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Traits\CanBeLiked;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Multicaret\Acquaintances\Traits\CanBeLiked;
 
 class Comment extends Model
 {
