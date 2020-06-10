@@ -23,8 +23,8 @@ class AlumniProfileController extends ApiController
     public function update(Request $request)
     {
         $validated = $this->validate($request, $this->rules());
-        return \DB::transaction(function () use ($validated, $request) {
-            auth()->user()->update($validated);
+        return \DB::transaction(function () use ($request) {
+            auth()->user()->update($request->only(auth()->user()->getFillable()));
             return $this->successResponse([
                 "user" => new UserJsonResource(auth()->user()),
                 "universities" => University::query()->select("id", "name")->get(),
