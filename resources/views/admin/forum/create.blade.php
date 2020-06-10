@@ -35,6 +35,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
+                                    <label for="">@lang("general.description")</label>
                                     <textarea name="details" class="js-summernote"
                                               required>{!! old("details") !!}</textarea>
                                 </div>
