@@ -29,7 +29,7 @@ class Forum extends Model implements HasMedia
     protected $casts = [
         'id' => 'integer',
     ];
-
+    protected $appends = ["cover"];
 
     public function alumnus()
     {
@@ -43,7 +43,7 @@ class Forum extends Model implements HasMedia
 
     public function comments()
     {
-      return  $this->hasManyThrough(Comment::class, Topic::class);
+        return $this->hasManyThrough(Comment::class, Topic::class);
     }
 
     public static function search($string)
@@ -52,6 +52,10 @@ class Forum extends Model implements HasMedia
             : static::where(function ($query) use ($string) {
                 $query->where('designation', 'like', '%' . $string . '%');
             });
+    }
 
+    public function getCoverAttribute()
+    {
+        return optional($this->getFirstMedia("cover"))->getFullUrl();
     }
 }

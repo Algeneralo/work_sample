@@ -59,6 +59,14 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
             Route::apiResource("job-market", "JobMarketController")->only(["index", "show"]);
             Route::apiResource("offers", "OfferController")->only(["index", "show", "store"]);
         });
+
+        Route::apiResource("forum", "ForumController")->only(["index"]);
+
+        Route::put("forum/{forum}/topics/{topic}/like", "ForumTopicController@toggleLike");
+        Route::apiResource("forum.topics", "ForumTopicController")->only(["index","store"]);
+
+        Route::put("forum/{forum}/topics/{topic}/comments/{comment}/like", "TopiCommentController@toggleLike");
+        Route::apiResource("forum.topics.comments", "TopiCommentController")->only(["index","store"]);
     });
 
 });

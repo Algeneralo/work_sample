@@ -13,9 +13,6 @@ class CreateAcquaintancesInteractionsTable extends Migration
     {
         Schema::create(config('acquaintances.tables.interactions', 'interactions'), function (Blueprint $table) {
 
-            $userModel = config('auth.providers.users.model');
-            $userModel = (new $userModel);
-
             $userIdFkType = config('acquaintances.tables.interactions_user_id_fk_column_type');
             $table->{$userIdFkType}('user_id')->index();
             $table->morphs('subject');
@@ -24,12 +21,6 @@ class CreateAcquaintancesInteractionsTable extends Migration
             $table->string('relation_type')->nullable();
             $table->timestamp('created_at');
 
-
-            $table->foreign('user_id')
-                  ->references($userModel->getKeyName())
-                  ->on($userModel->getTable())
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
         });
     }
 

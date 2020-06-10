@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\CanLike;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class ApiAuth extends Authenticatable implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait, HasApiTokens;
+    use SoftDeletes, HasMediaTrait, HasApiTokens, CanLike;
 
     protected $table = "alumni";
 
