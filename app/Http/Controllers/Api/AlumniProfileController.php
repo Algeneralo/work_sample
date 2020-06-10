@@ -13,12 +13,12 @@ class AlumniProfileController extends ApiController
 {
     public function edit()
     {
-
         return $this->successResponse([
             "user" => new UserJsonResource(auth()->user()),
             "universities" => University::query()->select("id", "name")->get(),
             "degreePrograms" => DegreeProgram::query()->select("id", "name")->get(),
-        ]);    }
+        ]);
+    }
 
     public function update(Request $request)
     {
