@@ -42,7 +42,7 @@ class Topic extends Component
         $alumnus = Alumnus::query()
             ->withoutGlobalScopes()
             ->findOrFail($id);
-        debug($alumnus);
+
         $status = $alumnus->update(["blocked" => $alumnus->blocked ^= 1]);
         if ($status)
             session()->flash("success", trans("messages.success.deleted"));
