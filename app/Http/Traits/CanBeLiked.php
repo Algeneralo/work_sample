@@ -19,8 +19,9 @@ trait CanBeLiked
      */
     public function likers()
     {
-        return $this->morphToMany(get_class(auth()->user()), 'subject',
-            config('acquaintances.tables.interactions'),"subject_id","user_id")
+        $class = auth()->user() ? get_class(auth()->user()) : config('auth.providers.users.model');
+        return $this->morphToMany($class , 'subject',
+            config('acquaintances.tables.interactions'), "subject_id", "user_id")
             ->wherePivot('relation', '=', Interaction::RELATION_LIKE)
             ->withPivot(...Interaction::$pivotColumns);
     }
