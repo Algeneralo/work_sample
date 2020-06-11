@@ -22,7 +22,7 @@ class ForgotPasswordController extends AuthController
     {
         parent::__construct();
         if (app()->environment() != "local") {
-            //sending activation code only 1 time every 10 minutes
+            //sending activation code only 3 time every 10 minutes
             $this->middleware('throttle:3,10')->only("forgotPassword");
         }
     }
