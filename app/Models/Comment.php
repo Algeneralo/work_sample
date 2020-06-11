@@ -20,6 +20,11 @@ class Comment extends Model
             ->withTrashed();
     }
 
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
+
     public static function search($string)
     {
         return empty($string) ? static::query()

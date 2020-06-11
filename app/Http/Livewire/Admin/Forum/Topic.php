@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin\Forum;
 use App\Http\Traits\WithPagination;
 use App\Models\Alumnus;
 use App\Models\Comment;
-use App\Models\Comment as CommentModel;
 use App\Models\Forum;
 use App\Models\Topic as TopicModel;
 use Livewire\Component;
@@ -37,8 +36,9 @@ class Topic extends Component
             session()->flash("success", trans("messages.success.deleted"));
     }
 
-    public function blockAlumnus($id)
+    public function blockAlumnus($id, $topicId)
     {
+        session()->put("lastTopic", $topicId);
         $alumnus = Alumnus::query()
             ->withoutGlobalScopes()
             ->findOrFail($id);
@@ -50,7 +50,11 @@ class Topic extends Component
 
     public function deleteComment($id)
     {
-        $status = CommentModel::query()->findOrFail($id)->delete();
+        /** @var Comment $comment */
+        $comment = Comment::query()->findOrFail($id);
+        session()->put("lastTopic", $comment->topic->id);
+
+        $status = $comment->delete();
         if ($status)
             session()->flash("success", trans("messages.success.deleted"));
     }

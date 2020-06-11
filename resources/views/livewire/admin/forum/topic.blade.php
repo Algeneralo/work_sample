@@ -72,7 +72,7 @@
                     <ul role="tablist" class="nav nav-tabs subjects border-0">
                         @forelse($topics as $item)
                             <li class="nav-item">
-                                <a class="nav-link @if($loop->first) active @endif" id="home-tab" data-toggle="tab"
+                                <a class="nav-link @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif" id="home-tab" data-toggle="tab"
                                    href="#topic{{$item->id}}"
                                    role="tab">
                                     <div class="bg-body subject-card mt-15 p-10 mx-20">
@@ -114,7 +114,8 @@
                     <div class="tab-content">
                         {{--out taps(topics) --}}
                         @forelse($topics as $item)
-                            <div class="tab-pane @if($loop->first) active @endif comments" id="topic{{$item->id}}"
+                            <div class="tab-pane @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif comments"
+                                 id="topic{{$item->id}}"
                                  role="tabpanel"
                                  aria-labelledby="home-tab">
                                 @forelse($item->comments as $comment)
@@ -134,7 +135,7 @@
 
                                             <div class="float-sm-right">
                                                 <a href="#"
-                                                   wire:click.prevent="blockAlumnus({{$comment['alumnus']['id']}})"
+                                                   wire:click.prevent="blockAlumnus({{$comment['alumnus']['id']}},{{$item->id}})"
                                                    wire:key="{{$comment->id+rand()}}"
                                                    class="btn btn-noborder btn-outline-dark font-italic text-black">
                                                     {{trans("general.users")}} {{trans_choice("general.deactivate",$comment['alumnus']['blocked'])}}

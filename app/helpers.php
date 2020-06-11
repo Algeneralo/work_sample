@@ -31,3 +31,19 @@ if (!function_exists("string_to_color")) {
         return '#' . $code;
     }
 }
+
+if (!function_exists("check_last_active_topic_tab")) {
+    /**
+     * Generate color from giving string
+     * @param $isFirst
+     * @param $topicID
+     * @return string
+     */
+    function check_last_active_topic_tab($isFirst, $topicID)
+    {
+        if (!session()->has("lastTopic") && $isFirst)
+            return true;
+        else if (session()->has("lastTopic") && $topicID == session('lastTopic'))
+            return true;
+    }
+}
