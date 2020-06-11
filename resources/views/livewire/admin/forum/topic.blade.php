@@ -72,7 +72,8 @@
                     <ul role="tablist" class="nav nav-tabs subjects border-0">
                         @forelse($topics as $item)
                             <li class="nav-item">
-                                <a class="nav-link @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif" id="home-tab" data-toggle="tab"
+                                <a class="nav-link @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif"
+                                   id="home-tab" data-toggle="tab"
                                    href="#topic{{$item->id}}"
                                    role="tab">
                                     <div class="bg-body subject-card mt-15 p-10 mx-20">
@@ -88,7 +89,7 @@
                                                 <span>{{count($item->comments)}} {{trans("general.contributions")}}</span>
                                             </div>
                                             <div class="icon text-primary delete-button" data-id="{{$item->id}}"
-                                                 wire:key="{{ $item->id }}">
+                                                 wire:key="{{rand() * $item->id }}">
                                                 <i class="fa fa-trash-o font-size-xl"></i>
                                             </div>
                                         </div>
@@ -136,12 +137,12 @@
                                             <div class="float-sm-right">
                                                 <a href="#"
                                                    wire:click.prevent="blockAlumnus({{$comment['alumnus']['id']}},{{$item->id}})"
-                                                   wire:key="{{$comment->id+rand()}}"
+                                                   wire:key="{{rand() *( $comment->id+rand())}}"
                                                    class="btn btn-noborder btn-outline-dark font-italic text-black">
                                                     {{trans("general.users")}} {{trans_choice("general.deactivate",$comment['alumnus']['blocked'])}}
                                                 </a>
                                                 <a href="#" data-id="{{$comment->id}}" data-custom-event="deleteComment"
-                                                   wire:key="{{$comment->id}}"
+                                                   wire:key="{{rand() * $comment->id}}"
                                                    class="btn bg-gray text-white delete-button">
                                                     {{trans("general.delete-post")}}
                                                 </a>
