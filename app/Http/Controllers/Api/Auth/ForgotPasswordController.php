@@ -103,7 +103,7 @@ class ForgotPasswordController extends AuthController
 
             $user->update(['password' => $request->input('password')]);
 
-            return $this->noContentResponse();
+            return $this->successResponse();
         });
     }
 
