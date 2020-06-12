@@ -648,6 +648,7 @@ export default class Helpers {
                 height: el.data('height') || '200px',
                 size: el.data('size') || '5px',
                 position: el.data('position') || 'right',
+                start: el.data('start') || 'top',
                 color: el.data('color') || '#000',
                 opacity: el.data('opacity') || '.25',
                 distance: el.data('distance') || '0',
