@@ -67,13 +67,13 @@ class Team extends Model implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return Media::query()
+        return optional(Media::query()
             ->where(function ($query) {
                 $query->where("model_type", "App\Models\Alumnus")
                     ->orWhere("model_type", "App\Models\Team")
                     ->orWhere("model_type", "App\Models\ApiAuth");
             })->where("model_id", $this->id)
-            ->first()
+            ->first())
             ->getFullUrl();
     }
 
