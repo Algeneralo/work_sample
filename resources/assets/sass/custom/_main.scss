@@ -379,6 +379,15 @@ label {
   top: 21px !important;
 }
 
+.content-header {
+  height: 55px;
+  align-items: flex-end;
+}
+
+.content-heading {
+  padding-top: 0;
+}
+
 @import "responsive";
 // import pages styles
 @import "pages/dashboard";
