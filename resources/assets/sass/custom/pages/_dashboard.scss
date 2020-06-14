@@ -38,3 +38,20 @@
     }
   }
 }
+
+@media (min-width: 992px) and (max-width: 1450px) {
+  .dashboard {
+    .block-content {
+      padding: 10px;
+    }
+
+    .block .circle {
+      width: 50px;
+      height: 50px;
+
+      img {
+        width: 50%;
+      }
+    }
+  }
+}
