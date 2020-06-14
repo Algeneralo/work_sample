@@ -1,73 +1,97 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <!-- Main Container -->
+    <main id="main-container" class="d-flex justify-content-center align-items-center">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+        <!-- Page Content -->
+        <div class="bg-gd-dusk"></div>
+        <div class="bg-gd-dusk2">
+            <div class="hero-static content content-full bg-white invisible" data-toggle="appear">
+                <!-- Header -->
+                <div class="py-30 px-5 text-center pb-50">
+                    <a class="font-w700" href="#">
+                        <img src="{{asset("/media/logo.png")}}">
+                    </a>
+                    <h1 class="h2 mt-50 mb-10 font-w300">@lang("auth.login-message")</h1>
+                    <h2 class="h6 font-w400 mb-0">@lang("auth.login-with-email")</h2>
+                </div>
+                <!-- END Header -->
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                <!-- Sign In Form -->
+                <div class="row justify-content-center px-5">
+                    <div class="col-12">
+                        <!-- jQuery Validation functionality is initialized with .js-validation-signin class in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js -->
+                        <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                        <form class="js-validation-signin" method="POST"
+                              action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="form-material floating">
+                                        <input type="text"
+                                               class="form-control  @if($errors->has("email")) is-invalid @endif"
+                                               name="email" required id="login-username" value="{{ old('email') }}">
+                                        <label for="login-username">@lang("auth.your-email")</label>
+                                        @if($errors->has("email"))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first("email")}}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="form-material floating">
+                                        <input type="password" id="login-password"
+                                               class="form-control @if($errors->has("password"))  is-invalid @endif"
+                                               name="password"
+                                               required autocomplete="current-password">
+                                        <label for="login-password">@lang("auth.your-password")</label>
+                                        @if($errors->has("email"))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first("password")}}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row gutters-tiny mt-50">
+                                <div class="col-12 mb-10 mx-auto">
+                                    <button type="submit"
+                                            class="btn btn-primary mx-auto d-block font-size-lg border-transparent">
+                                        @lang("auth.login")
+                                    </button>
+                                </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                            </div>
+                            <div class="form-group row gutters-tiny mt-30">
+{{--                                <div class="col-12 mb-10">--}}
+{{--                                    <a href="#" class="text-center d-block text-black font-size-md">--}}
+{{--                                        Passwort vergessen--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+                            </div>
+                        </form>
+                        <div class="row mt-50">
+                            <div class="col-4">
+{{--                                <a href="#" class="text-muted link-effect">Impressum</a>--}}
+                            </div>
+                            <div class="col-4 text-center">
+                                <span class="text-muted">©{{\Carbon\Carbon::now()->year}} {{ config('app.name', 'Laravel') }}</span>
+                            </div>
+                            <div class="col-4 text-right">
+{{--                                <a href="#" class="text-muted link-effect">Datenschutz</a>--}}
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
+                <!-- END Sign In Form -->
             </div>
         </div>
-    </div>
-</div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
 @endsection

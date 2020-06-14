@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,4 +39,26 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function guard()
+    {
+        return Auth::guard("alumni");
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+        if (Auth::guard('alumni')->attempt($this->credentials($request), true)) {
+            \auth()->login(\auth()->guard("alumni")->user());
+            if (\auth()->guard("alumni")->user()->blocked == "1") {
+                $this->logout($request);
+                return redirect()->back()->withErrors(["email" => trans("auth.account-is-blocked")]);
+            }
+            return redirect("/admin");
+        }
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
 }

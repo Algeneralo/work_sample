@@ -12,8 +12,7 @@
 |
 */
 Route::redirect("/", "/admin");
-
-Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], function () {
+Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "middleware" => ["auth:alumni"]], function () {
 
     Route::get("/", "HomeController")->name("dashboard");
 
@@ -136,3 +135,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin"], fu
     });
 
 });
+Auth::routes();

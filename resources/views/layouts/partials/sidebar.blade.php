@@ -57,18 +57,15 @@
                     </li>
                     <li class="list-inline-item">
                         <a class="link-effect text-dual-primary-dark-blue"
-                           onclick="event.preventDefault();"
-                                {{--                                                     document.getElementById('logout-form').submit();--}}
-                                {{--                           href="{{ route('logout') }}"--}}
-                        >
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                           href="{{ route('logout') }}">
                             <i class="si si-power font-size-xs"></i>
                         </a>
-                        <form id="logout-form"
-                              {{--                              action="{{ route('logout') }}"--}}
-                              method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
                             @csrf
                         </form>
-
                     </li>
                 </ul>
             </div>

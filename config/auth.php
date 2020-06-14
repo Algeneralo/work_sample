@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'alumni' => [
+            'driver' => 'session',
+            'provider' => 'alumni',
+        ],
+
         'api' => [
             'driver' => 'passport',
             'provider' => 'alumni',
