@@ -63,6 +63,7 @@ class Topic extends Component
     {
         return view('livewire.admin.forum.topic', [
             "topics" => TopicModel::search($this->search)
+                ->where("forum_id", $this->forum->id)
                 ->with("comments", "comments.alumnus")
                 ->orderByDesc("created_at")
                 ->paginate(5)
