@@ -75,6 +75,7 @@ return [
     "all" => "Alle",
     "send-message" => "Nachricht senden",
     "year" => "Jahrgang",
+    "today" => "Heute",
 
     //Alumni pages
     "alumni" => "Alumni",

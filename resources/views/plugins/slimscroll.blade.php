@@ -3,6 +3,11 @@
 <!-- Page JS Helpers (SlimScroll plugin) -->
 <script>
     jQuery(function () {
-        Codebase.helpers(['slimscroll']);
+    });
+    //re initialize slimscroll after page livewire request
+    document.addEventListener("livewire:load", function (event) {
+        window.livewire.hook('afterDomUpdate', () => {
+            Codebase.helpers(['slimscroll']);
+        });
     });
 </script>

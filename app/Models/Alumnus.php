@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Cmgmyr\Messenger\Traits\Messagable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Alumnus extends Authenticatable implements HasMedia
 
 {
-    use SoftDeletes, HasMediaTrait, HasApiTokens;
+    use SoftDeletes, HasMediaTrait, HasApiTokens,Messagable;
 
     static $IS_TEAM_MEMBER = 0;
     /**

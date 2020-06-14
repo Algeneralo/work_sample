@@ -63,10 +63,16 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         Route::apiResource("forum", "ForumController")->only(["index"]);
 
         Route::put("forum/{forum}/topics/{topic}/like", "ForumTopicController@toggleLike");
-        Route::apiResource("forum.topics", "ForumTopicController")->only(["index","store"]);
+        Route::apiResource("forum.topics", "ForumTopicController")->only(["index", "store"]);
 
         Route::put("forum/{forum}/topics/{topic}/comments/{comment}/like", "TopiCommentController@toggleLike");
-        Route::apiResource("forum.topics.comments", "TopiCommentController")->only(["index","store"]);
+        Route::apiResource("forum.topics.comments", "TopiCommentController")->only(["index", "store"]);
+
+        Route::prefix("conversations")->group(function () {
+            Route::get("/", "MessageController@index");
+            Route::get("/{thread}", "MessageController@show");
+            Route::post("/", "MessageController@store");
+        });
     });
 
 });
