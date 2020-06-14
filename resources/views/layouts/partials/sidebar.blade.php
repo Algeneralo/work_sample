@@ -2,7 +2,7 @@
     <!-- Sidebar Content -->
     <div class="sidebar-content">
         <!-- Side Header -->
-        <div class="content-header content-header-fullrow px-15 min-height-125 my-30">
+        <div class="content-header content-header-fullrow px-15 min-height-125 mt-30">
             <!-- Mini Mode -->
             <div class="content-header-section sidebar-mini-visible-b">
                 <!-- Logo -->
@@ -74,7 +74,7 @@
         <!-- END Side User -->
 
         <!-- Side Navigation -->
-        <div class="content-side content-side-full">
+        <div class="content-side content-side-full pt-0">
             <ul class="nav-main font-size-md">
                 <li>
                     <a class="{{ request()->is("admin") ? ' active' : '' }}"

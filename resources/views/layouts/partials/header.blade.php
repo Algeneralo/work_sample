@@ -13,8 +13,8 @@
         <!-- Right Section -->
         <div class="content-header-section">
             <!-- User  -->
-            <label class="text-gray">M. Mustermann</label>
-            <img src="{{asset("/media/user.jpg")}}" width="40" height="40"
+            <label class="text-gray">{{auth()->user()->name}}</label>
+            <img src="{{auth()->user()->avatar}}" width="40" height="40"
                  class="rounded-circle border border-2x border-primary mr-10">
             <!-- END User  -->
             <span class="d-inline-block mr-3"
