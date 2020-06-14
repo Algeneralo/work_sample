@@ -135,12 +135,14 @@
                                             </span>
 
                                             <div class="float-sm-right">
-                                                <a href="#"
-                                                   wire:click.prevent="blockAlumnus({{$comment['alumnus']['id']}},{{$item->id}})"
-                                                   wire:key="{{rand() *( $comment->id+rand())}}"
-                                                   class="btn btn-noborder btn-outline-dark font-italic text-black">
-                                                    {{trans("general.users")}} {{trans_choice("general.deactivate",$comment['alumnus']['blocked'])}}
-                                                </a>
+                                                @if(auth()->id()!=$comment['alumnus']['id'])
+                                                    <a href="#"
+                                                       wire:click.prevent="blockAlumnus({{$comment['alumnus']['id']}},{{$item->id}})"
+                                                       wire:key="{{rand() *( $comment->id+rand())}}"
+                                                       class="btn btn-noborder btn-outline-dark font-italic text-black">
+                                                        {{trans("general.users")}} {{trans_choice("general.deactivate",$comment['alumnus']['blocked'])}}
+                                                    </a>
+                                                @endif
                                                 <a href="#" data-id="{{$comment->id}}" data-custom-event="deleteComment"
                                                    wire:key="{{rand() * $comment->id}}"
                                                    class="btn bg-gray text-white delete-button">

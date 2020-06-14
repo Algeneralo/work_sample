@@ -38,11 +38,11 @@
                                          class="rounded-circle border border-4x border-primary mr-10">
                                 </div>
                                 <div class="col-sm-7 px-sm-0 mt-10">
-                                    <a href="tel:{{$item->telephone}}" class="btn bg-gray text-white width-48">
+                                    <a href="tel:{{$item->telephone}}" class="btn bg-gray text-white px-0 width-48">
                                         <img src="{{asset("/media/icons/phone-call.svg")}}" width="14" alt="">
                                         {{trans("general.phone")}}
                                     </a>
-                                    <a href="mailto:{{$item->email}}" class="btn btn-primary width-48">
+                                    <a href="mailto:{{$item->email}}" class="btn btn-primary px-0 width-48">
                                         <i class="far fa-envelope"></i>
                                         {{trans("general.email")}}
                                     </a>
