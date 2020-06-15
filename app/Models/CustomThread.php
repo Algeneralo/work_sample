@@ -14,7 +14,6 @@ class CustomThread extends Thread
      */
     public function receiver()
     {
-
         return $this->participants()->where("user_id", "!=", auth()->id())->first()->user()->withoutGlobalScopes()->first();
     }
 
