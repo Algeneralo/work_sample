@@ -98,7 +98,7 @@
                             </li>
                         @empty
                             <div class="row mx-0 px-20 py-30">
-                                @lang("general.no-data-found")
+                                @lang("general.no-topics")
                             </div>
                         @endforelse
                     </ul>
@@ -153,13 +153,13 @@
                                     </div>
                                 @empty
                                     <div class="row mx-0 px-20 py-30">
-                                        @lang("general.no-data-found")
+                                        @lang("general.no-messages")
                                     </div>
                                 @endforelse
                             </div>
                         @empty
                             <div class="row mx-0 px-20 py-30">
-                                @lang("general.no-data-found")
+                                @lang("general.no-messages")
                             </div>
                         @endforelse
                     </div>

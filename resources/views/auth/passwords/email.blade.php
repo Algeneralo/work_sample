@@ -1,47 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+    <form class="js-validation-reminder" method="POST" action="{{ route('password.email') }}"
+          novalidate="novalidate">
+        @csrf
+        <div class="block block-themed block-rounded block-shadow">
+            <div class="block-header bg-gd-primary">
+                <h3 class="block-title">Password Reminder</h3>
+            </div>
+            <div class="block-content">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label for="reminder-credential">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                               id="reminder-credential"
+                               name="email" required>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-alt-primary">
+                        <i class="fa fa-asterisk mr-10"></i> Password Reminder
+                    </button>
+                </div>
+            </div>
+            <div class="block-content bg-body-light">
+                <div class="form-group text-center">
+                    <a class="link-effect text-muted mr-10 mb-5 d-inline-block"
+                       href="{{route("login")}}">
+                        <i class="fa fa-user text-muted mr-5"></i> Sign In
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </form>
+@endsection
+@section("script")
+    <script src="{{asset("/js/pages/op_auth_reminder.min.js")}}"></script>
 @endsection

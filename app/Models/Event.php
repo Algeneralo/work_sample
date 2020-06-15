@@ -73,7 +73,7 @@ class Event extends Model implements HasMedia
 
     public function getFromToTimeAttribute()
     {
-        return $this->start_time->format("H:i") . " Uhr -" . $this->end_time->format("H:i") . " Uhr";
+        return $this->start_time->format("H:i") . " Uhr - " . $this->end_time->format("H:i") . " Uhr";
     }
 
     public function getRangeTimeAttribute()

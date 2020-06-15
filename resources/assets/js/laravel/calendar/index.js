@@ -5,7 +5,7 @@
  */
 
 require('../bootstrap');
-
+kendo.culture("de-DE");
 $(function () {
 
     //init Scheduler

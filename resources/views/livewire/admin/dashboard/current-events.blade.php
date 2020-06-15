@@ -9,7 +9,7 @@
                     <td class="font-italic border-0">
                         {{trans("general.time")}}
 
-                        {{trans("general.from-to")}}
+                        <span class="text-lowercase"> {{trans("general.from-to")}}</span>
                     </td>
                 </tr>
             </thead>
@@ -17,9 +17,9 @@
                 @forelse($events as $event)
                     <tr>
                         <td>
-                            <span class="d-block text-primary pb-2">
+                            <a class="d-block text-primary pb-2" href="{{route("admin.events.edit",$event->id)}}">
                                 {{$event->name}}
-                            </span>
+                            </a>
                             <span>
                                 <i class="fas fa-map-marker-alt text-primary pr-2"></i>
                                 {!! $event->address !!}

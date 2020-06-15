@@ -113,10 +113,10 @@
                                 {{trans("general.edit")}}
                             </a>
 
-                            <button class="float-right btn btn-primary my-20">
+                            <a href="{{route("admin.messages.index")}}" class="float-right btn btn-primary my-20">
                                 <img src="{{asset("/media/icons/comment.svg")}}" alt="">
                                 {{trans("general.message")}}
-                            </button>
+                            </a>
                             <div class="clearfix"></div>
                         </div>
                     </div>

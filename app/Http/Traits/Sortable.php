@@ -6,8 +6,8 @@ namespace App\Http\Traits;
 
 trait Sortable
 {
-    public $sortField = "id";
-    public $sortAsc = true;
+    public $sortField = "created_at";
+    public $sortAsc = false;
 
     public function sortBy($field)
     {

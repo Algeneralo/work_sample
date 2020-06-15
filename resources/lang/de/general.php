@@ -114,6 +114,10 @@ return [
     "contributions" => "beiträge",
     "add-comment" => "kommentar hinzufügen",
     "new-subject" => "Neues Thema anlegen",
+    "select-alumni" => "Alumni auswählemn",
+    "no-comments" => "Keine Beiträge gefunden",
+    "no-topics" => "Keine Einträge gefunde",
+
     //schwarzes-brett
     "bulletin-board" => "Schwarzes Brett",
     "general" => "Allgemein",
@@ -138,6 +142,7 @@ return [
     "contact-person" => "Ansprechpartner",
     "company-name" => "Unternehmensbezeichnung",
     "job-posting" => "Stellenausschreibung",
+
     //Media
     "media" => "Media",
     "subject" => "Thema",
@@ -149,6 +154,7 @@ return [
     //Nachrichten
     "messages" => "Nachrichten",
     "write-new-message" => "Schreib neue Nachrichten",
+    "no-messages" => "Keine Nachrichten.",
 
     //kalendar
     "all-events" => "Alle Veranstaltungen anzeigen",

@@ -47,7 +47,7 @@
                             @endforeach
                         @empty
                             <div class="d-flex justify-content-center align-items-center h-100">
-                                no messages yet
+                                @lang("general.no-messages")
                             </div>
                         @endforelse
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                 @else
                     <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
-                        you have to choose alumni first
+                        @lang("general.select-alumni")
                     </div>
             @endif
 
@@ -111,7 +111,11 @@
     <script>
         window.addEventListener('livewire:load', () => {
             window.livewire.hook('afterDomUpdate', () => {
-                document.querySelector('[name="message"]').focus()
+                try {
+                    document.querySelector('[name="message"]').focus()
+                } catch (e) {
+
+                }
             });
         })
     </script>

@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        if (Auth::guard('alumni')->attempt($this->credentials($request), true)) {
+        if (Auth::guard('alumni')->attempt($this->credentials($request))) {
             \auth()->login(\auth()->guard("alumni")->user());
             if (\auth()->guard("alumni")->user()->blocked == "1") {
                 $this->logout($request);
