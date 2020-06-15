@@ -22,7 +22,7 @@ class Topic extends Component
     /**
      * @var Forum
      */
-    protected $forum;
+    public $forum;
 
     public function mount(Forum $forum)
     {
@@ -61,6 +61,7 @@ class Topic extends Component
 
     public function render()
     {
+        debug($this->forum['id']);
         return view('livewire.admin.forum.topic', [
             "topics" => TopicModel::search($this->search)
                 ->where("forum_id", $this->forum['id'])
