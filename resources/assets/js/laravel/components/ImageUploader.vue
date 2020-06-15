@@ -16,7 +16,7 @@
             <p>{{trans("general.Drag photo")}}</p>
             <div>{{trans("general.or")}}</div>
             <div class="file-input form-group">
-                <label for="file">{{trans("general.Select a file")}}</label>
+                <label for="file" id="uploadButton">{{trans("general.Select a file")}}</label>
                 <input ref="imageInput" :name="name" type="file" id="file" accept="image/*" @change="onInputChange"
                        required>
             </div>
@@ -131,6 +131,10 @@
         border: 1px dashed #9AA0A8;
         font-size: 20px;
         position: relative;
+
+        #uploadButton {
+            z-index: 99999;
+        }
 
         #file-error {
             padding-top: 29% !important;
