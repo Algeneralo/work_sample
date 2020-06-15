@@ -7,6 +7,7 @@ use App\Models\Alumnus;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\Podcast;
+use Cmgmyr\Messenger\Models\Message;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,7 @@ class HomeController extends Controller
         $alumniCount = Alumnus::query()->count();
         $eventsCount = Event::query()->count();
         $mediaCount = Gallery::query()->count() + Podcast::query()->count();
-        return view("admin.dashboard", compact("alumniCount", "eventsCount", "mediaCount"));
+        $messagesCount = Message::query()->count();
+        return view("admin.dashboard", compact("alumniCount", "eventsCount", "mediaCount", "messagesCount"));
     }
 }

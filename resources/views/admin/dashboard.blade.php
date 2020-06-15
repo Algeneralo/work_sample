@@ -54,7 +54,7 @@
                         <div class="float-left">
                             <span class="text-gray font-size-md">Alle Nachrichten</span>
                             <div class="font-size-h2 font-w600 text-left">
-                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="120">
+                                <span data-toggle="countTo" data-speed="1000" data-from="0" data-to="{{$messagesCount}}">
                                     0
                                 </span>
                             </div>
