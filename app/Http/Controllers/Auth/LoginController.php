@@ -48,12 +48,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        if (Auth::guard('alumni')->attempt($this->credentials($request))) {
-            \auth()->login(\auth()->guard("alumni")->user());
-            if (\auth()->guard("alumni")->user()->blocked == "1") {
-                $this->logout($request);
-                return redirect()->back()->withErrors(["email" => trans("auth.account-is-blocked")]);
-            }
+        $credentials = array_merge($this->credentials($request), ["is_team_member" => "1", "blocked" => "0"]);
+        if (Auth::guard('alumni')->attempt($credentials)) {
+//            \auth()->login(\auth()->guard("alumni")->user());
+//            if (\auth()->guard("alumni")->user()->blocked == "1") {
+//                $this->logout($request);
+//                return redirect()->back()->withErrors(["email" => trans("auth.account-is-blocked")]);
+//            }
             return redirect("/admin");
         }
         $this->incrementLoginAttempts($request);
