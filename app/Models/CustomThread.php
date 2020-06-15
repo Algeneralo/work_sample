@@ -32,7 +32,7 @@ class CustomThread extends Thread
 
         $thread->participants()->create([
             'thread_id' => $thread->id,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->guard("alumni")->id(),
             'last_read' => new Carbon(),
         ]);
         $thread->addParticipant($userID);
