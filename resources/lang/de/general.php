@@ -114,7 +114,7 @@ return [
     "contributions" => "beiträge",
     "add-comment" => "kommentar hinzufügen",
     "new-subject" => "Neues Thema anlegen",
-    "select-alumni" => "Alumni auswählemn",
+    "select-alumni" => "Alumni auswählen",
     "no-comments" => "Keine Beiträge gefunden",
     "no-topics" => "Keine Einträge gefunde",
 
