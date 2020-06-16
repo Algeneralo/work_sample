@@ -27,4 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     $("button[type='reset']").closest('form').on('reset', function (event) {
         $('.js-summernote').summernote('code', '');
     });
+    //stop autocomplete
+    $("input[type='password']").attr("autocomplete", "new-password")
 })
