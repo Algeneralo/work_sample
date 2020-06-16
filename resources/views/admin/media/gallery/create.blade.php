@@ -19,7 +19,7 @@
             @csrf
             <div class="block">
                 <div class="block-header bg-primary rounded-top">
-                    <h3 class="text-white font-weight-light font-size-h3 mb-0">{{trans("general.new-media")}}</h3>
+                    <h3 class="text-white font-weight-light font-size-h3 mb-0">{{trans("general.new-image")}}</h3>
                 </div>
                 <div class="block-content">
                     <div class="row">

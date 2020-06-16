@@ -13,7 +13,7 @@
                     <a href="{{route("admin.media.gallery.create")}}"
                        class="btn btn-primary font-size-md py-md-3 font-weight-normal float-right">
                         <i class="fas fa-plus-circle"></i>
-                        {{trans("general.new-media")}}
+                        {{trans("general.new-image")}}
                     </a>
                 </div>
             </div>
