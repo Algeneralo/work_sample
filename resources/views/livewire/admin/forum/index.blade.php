@@ -1,4 +1,6 @@
 <div>
+    @include("layouts.partials.validation-status")
+    @include("layouts.partials.status")
     <div class="block">
         <div class="block-header border-b pb-2 pt-2 d-block d-md-flex">
             <div class="block-title d-md-flex" wire:ignore>
