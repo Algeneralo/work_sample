@@ -47,7 +47,7 @@ class AlumniProfileController extends ApiController
             'dob' => 'required',
             'university_id' => ['exists:universities,id', Rule::requiredIf(!auth()->user()->is_team_member)],
             'degree_program_id' => ['exists:degree_programs,id', Rule::requiredIf(!auth()->user()->is_team_member)],
-            'alumni_year' => ['max:4', Rule::requiredIf(!auth()->user()->is_team_member)],
+            'alumni_year' => [Rule::requiredIf(!auth()->user()->is_team_member)],
             'telephone' => 'required|max:50',
             'mobile' => 'required|max:50',
         ];
