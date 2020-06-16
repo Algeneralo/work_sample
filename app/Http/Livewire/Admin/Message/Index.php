@@ -65,7 +65,7 @@ class Index extends Component
     private function getThread($userID)
     {
         Models::setUserModel(Alumnus::class);
-        $this->selectedThread = Thread::forUser(auth()->id())
+        $this->selectedThread = Thread::forUser(auth()->guard("alumni")->id())
             ->latest('updated_at')
             ->whereHas("users", function ($query) use ($userID) {
                 $query->where("user_id", $userID);
@@ -116,7 +116,7 @@ class Index extends Component
         ]);
         Message::create([
             'thread_id' => $this->selectedThread->id,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->guard("alumni")->id(),
             'body' => $this->message,
         ]);
         $this->message = "";

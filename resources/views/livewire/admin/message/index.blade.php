@@ -23,8 +23,7 @@
                                 {{$day}}
                             </div>
                             @foreach($groupedMessages as $item)
-                                {{--todo change this to auth->id()--}}
-                                @if($item->user_id!=1)
+                                @if($item->user_id!=auth()->guard("alumni")->id())
                                     <div class="p-10 mb-10 fadeIn message receiver">
                                         <div class="image">
                                             <img src="{{$selectedThread->receiver()->avatar}}" alt=""
