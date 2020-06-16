@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group">
-                                        <label>{{trans("general.designation")}}</label>
+                                        <label>{{trans("general.date")}}</label>
                                         <date-picker v-model="date" value-type="format" input-class="form-control"
                                                      :input-attr='{name:"date",required:"required","data-change-v-model-value":"{\"date\":\"{{$general->date->format("d.m.Y")}}\"}"}'
                                                      format="DD.MM.YYYY"></date-picker>
