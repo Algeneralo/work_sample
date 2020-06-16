@@ -347,10 +347,13 @@ label {
 
 .uploader {
   #file-error {
-    padding-top: 29% !important;
+    padding-top: 14% !important;
   }
 }
-
+//fix drag-drop stuck issue
+.note-dropzone {
+  display: none !important;
+}
 //----------------------------Start custom styles---------------------------//
 
 .optional {

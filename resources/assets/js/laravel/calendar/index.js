@@ -30,10 +30,12 @@ $(function () {
             },
             {
                 'type': "week",
+                dateHeaderTemplate: "<span class='k-link k-nav-day'>#=kendo.toString(date, 'ddd dd/M')#</span>"
             },
             {
                 type: "day",
                 allDaySlot: true,
+                dateHeaderTemplate: "<span class='k-link k-nav-day'>#=kendo.toString(date, 'ddd dd/M')#</span>",
             },
             {
                 type: "agenda",

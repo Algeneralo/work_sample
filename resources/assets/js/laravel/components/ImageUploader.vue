@@ -18,7 +18,7 @@
             <div class="file-input form-group">
                 <label for="file" id="uploadButton">{{trans("general.Select a file")}}</label>
                 <input ref="imageInput" :name="name" type="file" id="file" accept="image/*" @change="onInputChange"
-                       required>
+                       v-bind:required="required ? true : false">>
             </div>
         </div>
 
@@ -40,6 +40,9 @@
             name: {},
             multiple: {
                 default: false
+            },
+            required: {
+                default: true
             }
         },
         data: () => ({
@@ -136,9 +139,6 @@
             z-index: 99999;
         }
 
-        #file-error {
-            padding-top: 29% !important;
-        }
 
         &.dragging {
             background: #fff;
