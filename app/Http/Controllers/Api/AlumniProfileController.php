@@ -63,7 +63,6 @@ class AlumniProfileController extends ApiController
             auth()->user()->clearMediaCollection("avatar");
             auth()->user()->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
             return $this->successResponse([
                 "image" => auth()->user()->avatar

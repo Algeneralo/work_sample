@@ -36,7 +36,6 @@ class EventController extends ApiController
             $event = Event::query()->create($request->all());
             $event->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
             return $this->createResponse($event);
         });

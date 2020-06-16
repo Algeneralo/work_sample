@@ -43,7 +43,6 @@ class GeneralController extends Controller
             $general = General::query()->create($request->all());
             $general->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 
@@ -75,7 +74,6 @@ class GeneralController extends Controller
                 $general->clearMediaCollection("cover");
                 $general->addMediaFromRequest("image")
                     ->preservingOriginal()
-                    ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
 

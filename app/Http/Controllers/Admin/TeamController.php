@@ -37,7 +37,6 @@ class TeamController extends Controller
             $team = Team::create($request->all());
             $team->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
         });
         session()->flash("success", trans("messages.success.created"));
@@ -69,7 +68,6 @@ class TeamController extends Controller
 
             $team->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
         }
         session()->flash("success", trans("messages.success.updated"));

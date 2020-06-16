@@ -42,7 +42,6 @@ class GalleryController extends Controller
                 $gallery->linkedFriends()->sync($request->linkedFriends);
             $gallery->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 
@@ -76,7 +75,6 @@ class GalleryController extends Controller
                 $gallery->clearMediaCollection("cover");
                 $gallery->addMediaFromRequest("image")
                     ->preservingOriginal()
-                    ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
         });

@@ -44,7 +44,6 @@ class JobMarketController extends Controller
             $jobMarket->contact()->create($request->merge(["name" => $request->contact_name])->toArray());
             $jobMarket->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 
@@ -82,7 +81,6 @@ class JobMarketController extends Controller
                 $jobMarket->clearMediaCollection("cover");
                 $jobMarket->addMediaFromRequest("image")
                     ->preservingOriginal()
-                    ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
         });

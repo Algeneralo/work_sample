@@ -43,7 +43,6 @@ class OfferController extends Controller
                 ->each(function ($fileAdder) {
                     $fileAdder
                         ->preservingOriginal()
-                        ->withResponsiveImages()
                         ->toMediaCollection("images");
                 });
         });
@@ -78,7 +77,6 @@ class OfferController extends Controller
                 $offer->addMultipleMediaFromRequest(["image"])
                     ->each(function ($fileAdder) {
                         $fileAdder->preservingOriginal()
-                            ->withResponsiveImages()
                             ->toMediaCollection("images");
                     });
             }

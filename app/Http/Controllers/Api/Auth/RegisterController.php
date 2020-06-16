@@ -58,7 +58,6 @@ class RegisterController extends AuthController
 
             $user->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
             //@todo change email template and pass the token
             Notification::route("mail", $user->email)->notify(new SendEmailVerificationNotification($activationCode));

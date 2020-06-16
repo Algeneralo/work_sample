@@ -37,7 +37,6 @@ class ForumTopicController extends Controller
             $topic = $forum->topics()->create($request->all());
             $topic->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 

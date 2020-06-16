@@ -59,7 +59,6 @@ class AlumniController extends Controller
             $alumnus = Alumnus::create($request->all());
             $alumnus->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
         });
         session()->flash("success", trans("messages.success.created"));
@@ -96,7 +95,6 @@ class AlumniController extends Controller
 
             $alumnus->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("avatar");
         }
         session()->flash("success", trans("messages.success.updated"));

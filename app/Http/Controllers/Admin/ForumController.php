@@ -37,9 +37,9 @@ class ForumController extends Controller
         DB::transaction(function () use ($request) {
             /** @var Forum $forum */
             $forum = Forum::create($request->all());
+
             $forum->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 

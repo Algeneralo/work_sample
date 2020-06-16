@@ -44,7 +44,6 @@ class OfferController extends ApiController
             $offer->addMultipleMediaFromRequest(["image"])
                 ->each(function ($fileAdder) {
                     $fileAdder->preservingOriginal()
-                        ->withResponsiveImages()
                         ->toMediaCollection("images");
                 });
             return $this->createResponse(["offer" => collect($offer)->except("media","updated_at","created_at")]);
@@ -64,26 +63,4 @@ class OfferController extends ApiController
         return $this->successResponse(["offer" => $offer]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Offer $offer
-     * @return Response
-     */
-    public function update(Request $request, Offer $offer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Offer $offer
-     * @return Response
-     */
-    public function destroy(Offer $offer)
-    {
-        //
-    }
 }

@@ -39,7 +39,6 @@ class PodcastController extends Controller
             $podcast = Podcast::query()->create($request->all());
             $podcast->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
 
             $podcast->addMediaFromRequest("voice")
@@ -75,7 +74,6 @@ class PodcastController extends Controller
                 $podcast->clearMediaCollection("cover");
                 $podcast->addMediaFromRequest("image")
                     ->preservingOriginal()
-                    ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
 

@@ -50,7 +50,6 @@ class EventController extends Controller
             $event->participants()->attach($request->participants);
             $event->addMediaFromRequest("image")
                 ->preservingOriginal()
-                ->withResponsiveImages()
                 ->toMediaCollection("cover");
         });
 
@@ -82,7 +81,6 @@ class EventController extends Controller
                 $event->clearMediaCollection("cover");
                 $event->addMediaFromRequest("image")
                     ->preservingOriginal()
-                    ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
             $event->participants()->sync($request->participants);
