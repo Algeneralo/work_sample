@@ -38,10 +38,8 @@ class General extends Model implements HasMedia
     {
         return empty($string) ? static::query()
             : static::where(function ($query) use ($string) {
-                $query->where('name', 'like', '%' . $string . '%')
-                    ->orWhere('date', 'like', '%' . $string . '%')
-                    ->orWhere('start_time', 'like', '%' . $string . '%')
-                    ->orWhere('end_time', 'like', '%' . $string . '%');
+                $query->where('title', 'like', '%' . $string . '%')
+                    ->orWhere('date', 'like', '%' . $string . '%');
             });
 
     }
