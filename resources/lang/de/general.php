@@ -53,7 +53,7 @@ return [
     "date" => "Datum",
     "time" => "Uhrzeit",
     "position" => "Position",
-    "last-months" => "letzten :month Monate",
+    "last-months" => "letzte :month Monate",
     "no-data-found" => "Keine übereinstimmenden Aufzeichnungen gefunden",
     "Drag photo" => "Foto hierher ziehen",
     "drag-voice" => "Audiodatei hierher ziehen",
@@ -105,7 +105,7 @@ return [
     "add-participants" => "Teilnehmer/innen hinzufügen",
     "count-participants" => "Teilnehmer/innen (:count Personen)",
     "no-participant-selected" => "Kein Teilnehmer ausgewählt",
-
+    "all-category" => "Alle Kategorien",
     //Forum
     "forum" => "Forum",
     "section" => "Rubrik",

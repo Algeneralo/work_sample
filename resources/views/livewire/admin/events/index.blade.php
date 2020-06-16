@@ -21,7 +21,7 @@
                 <span class="vertical-separator"></span>
                 <div class="select-wrapper bg-select-white">
                     <select class="select2 category" wire:model="category_id">
-                        <option value="all" selected>{{trans("general.all")}} {{trans("general.category")}}</option>
+                        <option value="all" selected>@lang("general.all-category")</option>
                         @foreach($categories as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach

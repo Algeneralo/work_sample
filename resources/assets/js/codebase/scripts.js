@@ -23,4 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+    //reset js-summernote text area on reset event
+    $("button[type='reset']").closest('form').on('reset', function (event) {
+        $('.js-summernote').summernote('code', '');
+    });
 })

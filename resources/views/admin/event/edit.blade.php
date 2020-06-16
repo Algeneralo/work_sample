@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">@lang("genera.category")</label>
+                                        <label for="">@lang("general.category")</label>
                                         <select class="form-control select2" name="category_id">
                                             @foreach($categories as $item)
                                                 <option @if($event->category_id==$item->id) selected @endif
@@ -101,7 +101,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
-                                    <label for="">@lang("genera.event-details")</label>
+                                    <label for="">@lang("general.event-details")</label>
                                     <textarea name="details" class="js-summernote"
                                               required>{!! $event->details !!}</textarea>
                                 </div>
