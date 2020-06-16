@@ -80,7 +80,7 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label>@lang("general.job-posting")</label>
-                                                <input class="form-control" type="text" name="link" value="{{old("link")}}" required>
+                                                <input class="form-control" type="url" name="link" value="{{old("link")}}" required>
                                             </div>
                                         </div>
                                     </div>
