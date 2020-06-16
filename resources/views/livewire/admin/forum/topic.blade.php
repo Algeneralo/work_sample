@@ -68,8 +68,9 @@
                                placeholder="{{trans("general.search-text")}}"/>
                     </div>
                 </div>
-                <div class="block-content px-0">
+                <div class="block-content px-0 position-relative">
                     <ul role="tablist" class="nav nav-tabs subjects border-0">
+                        <div class="loading" wire:loading wire:target="search"></div>
                         @forelse($topics as $item)
                             <li class="nav-item">
                                 <a class="nav-link @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif"
@@ -111,10 +112,11 @@
         </div>
         <div class="col-xl-8">
             <div class="block">
-                <div class="block-content p-0">
+                <div class="block-content p-0 position-relative">
                     <div class="tab-content">
                         {{--out taps(topics) --}}
-                        @forelse($topics as $item)
+                        <div class="loading" wire:loading wire:target="blockAlumnus,deleteComment"></div>
+                    @forelse($topics as $item)
                             <div class="tab-pane @if(check_last_active_topic_tab($loop->first,$item->id)) active @endif comments"
                                  id="topic{{$item->id}}"
                                  role="tabpanel"

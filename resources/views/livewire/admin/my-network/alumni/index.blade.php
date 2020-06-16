@@ -73,6 +73,7 @@
                             </th>
                         </tr>
                     </thead>
+                    <div class="loading" wire:loading></div>
                     @forelse($alumni as $item)
                         <tbody>
                             <tr>

@@ -61,6 +61,7 @@
                             </th>
                         </tr>
                     </thead>
+                    <div class="loading" wire:loading></div>
                     @forelse($media as $item)
                         <tbody>
                             <tr>

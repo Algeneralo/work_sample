@@ -68,6 +68,7 @@
                             </th>
                         </tr>
                     </thead>
+                    <div class="loading" wire:loading></div>
                     @forelse($forum as $item)
                         <tbody>
                             <tr>

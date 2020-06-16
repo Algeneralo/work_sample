@@ -1,6 +1,7 @@
 <div>
     <div class="block participants">
-        <div class="block-content">
+        <div class="block-content position-relative">
+            <div class="loading" wire:loading></div>
             <label class="border-b border-b-dashed pb-10 w-100 text-black">
                 @if(!$isEdit)
                     {{trans("general.add-participants")}}

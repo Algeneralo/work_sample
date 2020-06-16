@@ -68,6 +68,7 @@
                             </th>
                         </tr>
                     </thead>
+                    <div class="loading" wire:loading></div>
                     @forelse($offers as $item)
                         <tbody>
                             <tr>
@@ -80,7 +81,8 @@
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
-                                    <a href="#" class="delete-button" data-id="{{$item->id}}" wire:key="{{ $item->id }}">
+                                    <a href="#" class="delete-button" data-id="{{$item->id}}"
+                                       wire:key="{{ $item->id }}">
                                         <i class="fa fa-trash text-primary"></i>
                                         <span class="font-italic">{{trans("general.delete")}}</span>
                                     </a>
