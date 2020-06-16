@@ -116,7 +116,7 @@ return [
     "new-subject" => "Neues Thema anlegen",
     "select-alumni" => "Alumni auswählen",
     "no-comments" => "Keine Beiträge gefunden",
-    "no-topics" => "Keine Einträge gefunde",
+    "no-topics" => "Keine Einträge gefunden",
 
     //schwarzes-brett
     "bulletin-board" => "Schwarzes Brett",
