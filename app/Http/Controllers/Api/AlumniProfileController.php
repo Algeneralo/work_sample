@@ -36,7 +36,7 @@ class AlumniProfileController extends ApiController
     private function rules()
     {
         return [
-            "email" => "required|email|unique:alumni,id," . auth()->id(),
+            "email" => "required|email|unique:alumni,email," . auth()->id(),
             'first_name' => 'required|max:40',
             'last_name' => 'required|max:40',
             'gender' => 'required|in:m,f',

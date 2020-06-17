@@ -31,7 +31,7 @@ class TeamUpdateRequest extends FormRequest
             'street_number' => 'required|max:40',
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
-            'email' => 'required|email|unique:alumni,id,' . $this->team->id,
+            'email' => 'required|email|unique:alumni,email,' . $this->team->id,
             'password' => 'nullable|min:6',
             'dob' => 'required',
             'telephone' => 'required|max:50',
