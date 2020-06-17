@@ -14,24 +14,46 @@ class Topic extends Component
     use WithPagination;
 
     public $search = '';
-    protected $listeners = [
-        'deleteItem' => 'delete',
-        'deleteComment' => 'deleteComment',
-    ];
+    public $comment = '';
 
     /**
      * @var Forum
      */
     public $forum;
 
+    protected $listeners = [
+        'deleteItem' => 'delete',
+        'deleteComment' => 'deleteComment',
+    ];
+    /**
+     * @var bool
+     */
+    public $isOpen = false;
+
     public function mount(Forum $forum)
     {
         $this->forum = $forum;
     }
 
+    public function updatedComment()
+    {
+        $this->isOpen = true;
+    }
+
     public function delete($id)
     {
         $status = TopicModel::query()->findOrFail($id)->delete();
+        if ($status)
+            session()->flash("success", trans("messages.success.deleted"));
+    }
+
+    public function deleteComment($id)
+    {
+        /** @var Comment $comment */
+        $comment = Comment::query()->findOrFail($id);
+        session()->put("lastTopic", $comment->topic->id);
+
+        $status = $comment->delete();
         if ($status)
             session()->flash("success", trans("messages.success.deleted"));
     }
@@ -48,20 +70,38 @@ class Topic extends Component
             session()->flash("success", trans("messages.success.deleted"));
     }
 
-    public function deleteComment($id)
+    public function toggleLike($id)
     {
-        /** @var Comment $comment */
-        $comment = Comment::query()->findOrFail($id);
-        session()->put("lastTopic", $comment->topic->id);
+        $topic = TopicModel::query()->findOrFail($id);
+        session()->put("lastTopic", $id);
+        auth()->guard("alumni")->user()->toggleLike($topic);
+    }
 
-        $status = $comment->delete();
-        if ($status)
-            session()->flash("success", trans("messages.success.deleted"));
+    public function toggleCommentLike($id)
+    {
+        $comment = Comment::query()->findOrFail($id);
+        session()->put("lastTopic", $comment->topic_id);
+        auth()->guard("alumni")->user()->toggleLike($comment);
+    }
+
+    public function insertComment($topicId)
+    {
+        $this->validate([
+            "comment" => "required"
+        ]);
+
+        $topic = TopicModel::query()->findOrFail($topicId);
+        Comment::create([
+            "topic_id" => $topic->id,
+            "comment" => $this->comment,
+            "alumnus_id" => auth()->guard("alumni")->id()
+        ]);
+        session()->put("lastTopic", $topicId);
+        $this->comment = "";
     }
 
     public function render()
     {
-        debug($this->forum['id']);
         return view('livewire.admin.forum.topic', [
             "topics" => TopicModel::search($this->search)
                 ->where("forum_id", $this->forum['id'])

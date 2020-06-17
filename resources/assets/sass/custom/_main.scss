@@ -408,6 +408,37 @@ label {
   padding-top: 0;
 }
 
+//heart button css 
+.heart-button {
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+.heart-button.active:before, .heart-button.active:after {
+  color: #DC6E6E !important;
+}
+//
+//.heart-button:before,
+//.heart-button:after {
+//  transition: background 0.5s ease;
+//  position: absolute;
+//  content: "";
+//  left: 50px;
+//  top: 0;
+//  width: 10px;
+//  height: 40px;
+//  background: dimgrey;
+//  border-radius: 50px 50px 0 0;
+//  transform: rotate(-45deg);
+//  transform-origin: 0 100%;
+//}
+//
+//.heart-button:after {
+//  left: 0;
+//  transform: rotate(45deg);
+//  transform-origin: 100% 100%;
+//}
+
 @import "responsive";
 // import pages styles
 @import "pages/dashboard";
