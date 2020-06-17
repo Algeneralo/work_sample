@@ -106,6 +106,7 @@ return [
     "count-participants" => "Teilnehmer/innen (:count Personen)",
     "no-participant-selected" => "Kein Teilnehmer ausgewählt",
     "all-category" => "Alle Kategorien",
+
     //Forum
     "forum" => "Forum",
     "section" => "Rubrik",
@@ -147,7 +148,7 @@ return [
     "media" => "Media",
     "subject" => "Thema",
     "new-media" => "Neue Folge hinzufügen",
-    "new-image" => "Neue Bild",
+    "new-image" => "Neues Bild",
     "gallery" => "Bildergalerie",
     "podcast" => "Podcast",
     "linked-friends" => "verlinkte Freunde",
