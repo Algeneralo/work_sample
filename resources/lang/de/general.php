@@ -74,6 +74,7 @@ return [
     "no-result" => "Keine Ergebnisse",
     "all" => "Alle",
     "send-message" => "Nachricht senden",
+    "send" => "Senden",
     "year" => "Jahrgang",
     "today" => "Heute",
 
@@ -157,6 +158,7 @@ return [
     "messages" => "Nachrichten",
     "write-new-message" => "Schreib neue Nachrichten",
     "no-messages" => "Keine Nachrichten.",
+    "send-message-to-all-alumni" => "Nachricht an alle Alumni senden",
 
     //kalendar
     "all-events" => "Alle Veranstaltungen anzeigen",

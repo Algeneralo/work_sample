@@ -1,7 +1,8 @@
 <div>
+    @include("layouts.partials.status")
     <div class="row">
         <div class="col-xl-8">
-            <div class="block block-rounded">
+            <div class="block block-rounded position-relative">
             @if($selectedThread)
                 <!-- Chat Header -->
                     <div class="block-header bg-primary">
@@ -48,7 +49,9 @@
                             <div class="d-flex justify-content-center align-items-center h-100">
                                 @lang("general.no-messages")
                             </div>
+
                         @endforelse
+
                     </div>
 
                     <!-- Chat Input -->
@@ -57,28 +60,30 @@
                             <img src="{{asset("/media/icons/logo-kopie.png")}}" alt="">
                         </div>
                         <div class="inner-addon right-addon input">
-                            <img src="{{asset("/media/icons/send.svg")}}" alt="">
+                            <a href="#" wire:click.prevent="sendMessage('',true)" class="p-0">
+                                <img src="{{asset("/media/icons/send.svg")}}" alt="">
+                            </a>
                             <input class="form-control @error('message') is-invalid @enderror" type="text"
-                                   name="message" wire:model.debounce.800ms="message"
+                                   name="message" wire:model.lazy="message"
                                    wire:key="{{rand() * $selectedThread->receiver()->id}}"
                                    placeholder="{{trans("general.write-new-message")}}"
-                                   wire:keydown.enter="sendMessage({{$selectedThread->receiver()->id}})">
+                                   wire:keydown.enter="sendMessage($event.target.value)">
                         </div>
                     </div>
                 @else
-                    <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+                    <div class="d-flex justify-content-center align-items-center"
+                         style="height: 50vh;">
                         @lang("general.select-alumni")
                     </div>
             @endif
-
+                <div class="loading" wire:loading wire:target="select"></div>
             <!-- END Chat Input -->
             </div>
         </div>
 
-
         <div class="col-xl-4">
             <div class="block">
-                <div class="block-content">
+                <div class="block-content position-relative">
                     <div class="form-group">
                         <div class="inner-addon right-addon">
                             <i class="fa fa-search text-gray"></i>
@@ -86,6 +91,9 @@
                                    wire:model="search"/>
                         </div>
                     </div>
+                    <a href="#" data-toggle="modal" data-target="#sendMessageToAllAlumniModal" class="d-block">
+                        Alle Alumni auswählen
+                    </a>
                     @forelse($alumni as $item)
                         <div class="bg-participant px-10 py-5 rounded mt-3" wire:click="select({{$item->id}})"
                              wire:key="{{$item->id}}">
@@ -100,22 +108,26 @@
                     @empty
                         @lang("general.no-data-found")
                     @endforelse
+                    <div class="loading" wire:loading wire:target="search"></div>
                 </div>
             </div>
         </div>
+        @include("admin.messages.modals._send-to-all")
     </div>
 </div>
 @push("scripts")
     @include("plugins.slimscroll")
     <script>
         window.addEventListener('livewire:load', () => {
-            window.livewire.hook('afterDomUpdate', () => {
+            window.livewire.on('inputFocus', () => {
                 try {
                     document.querySelector('[name="message"]').focus()
                 } catch (e) {
-
                 }
-            });
+            })
+            window.livewire.on('closeModal', () => {
+                $('#sendMessageToAllAlumniModal').modal('hide')
+            })
         })
     </script>
 @endpush

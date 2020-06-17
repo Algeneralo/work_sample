@@ -3,13 +3,11 @@
 namespace App\Http\Livewire\Admin\Message;
 
 use App\Models\Alumnus;
-use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Models;
 use App\Models\CustomThread as Thread;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class Index extends Component
 {
@@ -19,9 +17,15 @@ class Index extends Component
     public $search = '';
 
     /**
-     * @var string $search
+     * @var string $message
      */
     public $message = '';
+
+    /**
+     * @var string $messageToAll
+     */
+    public $messageToAll = '';
+
 
     /**
      * @var Thread $threads
@@ -37,16 +41,7 @@ class Index extends Component
      * @var Alumnus $alumni
      */
     public $alumni;
-    /**
-     * @var Boolean $isAutofocus
-     */
-    public $isAutofocus;
 
-    protected $listeners = [ 'test' => 'test'];
-    public function updatedMessage()
-    {
-        $this->isAutofocus = true;
-    }
 
     private function getAlumni()
     {
@@ -65,13 +60,7 @@ class Index extends Component
     private function getThread($userID)
     {
         Models::setUserModel(Alumnus::class);
-        $this->selectedThread = Thread::forUser(auth()->guard("alumni")->id())
-            ->latest('updated_at')
-            ->whereHas("users", function ($query) use ($userID) {
-                $query->where("user_id", $userID);
-            })->firstOr(function () use ($userID) {
-                return Thread::createThread($userID);
-            });
+        $this->selectedThread = Thread::getUserFirstThread($userID);
     }
 
     /**
@@ -92,14 +81,6 @@ class Index extends Component
     }
 
     /**
-     * Create Direct conversation for user and authenticated alumnus
-     *
-     * @param $userID
-     * @return Thread
-     */
-
-
-    /**
      * Event that happen when selecting a conversation
      * @param $userID
      */
@@ -109,8 +90,14 @@ class Index extends Component
         $this->message = "";
     }
 
-    public function sendMessage($userID)
+    /**
+     * Send message on selected chat
+     * @param string $text this field will be send if the event triggered from input
+     * @param bool $eventFromButton determine if the event triggered from button or not
+     */
+    public function sendMessage($text = "", $eventFromButton = false)
     {
+        $this->message = $eventFromButton ? $this->message : $text;
         $this->validate([
             "message" => 'required'
         ]);
@@ -120,6 +107,29 @@ class Index extends Component
             'body' => $this->message,
         ]);
         $this->message = "";
+        //this event will focus again to text input
+        $this->emit("inputFocus");
+    }
+
+    /**
+     *  Send message to all alumni
+     */
+    public function sendMessageToAllAlumni()
+    {
+        Models::setUserModel(Alumnus::class);
+
+        Alumnus::query()->get()->each(function ($alumnus) {
+            $thread = Thread::getUserFirstThread($alumnus->id);
+            Message::create([
+                'thread_id' => $thread->id,
+                'user_id' => auth()->guard("alumni")->id(),
+                'body' => $this->messageToAll,
+            ]);
+        });
+
+        $this->messageToAll = "";
+        $this->emit("closeModal");
+
     }
 
     public function render()
