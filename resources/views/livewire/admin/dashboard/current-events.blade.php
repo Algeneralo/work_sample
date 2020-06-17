@@ -7,9 +7,9 @@
                         {{trans("general.current-events")}}
                     </th>
                     <td class="font-italic border-0">
-                        {{trans("general.time")}}
+                        {{--                        {{trans("general.time")}}--}}
 
-                        <span class="text-lowercase"> {{trans("general.from-to")}}</span>
+                        {{--                        <span class="text-lowercase"> {{trans("general.from-to")}}</span>--}}
                     </td>
                 </tr>
             </thead>
@@ -25,7 +25,11 @@
                                 {!! $event->address !!}
                             </span>
                         </td>
-                        <td class="text-gray">{{$event->from_to_time}}</td>
+                        <td class="text-gray">
+                            {{$event->date->format("d.m.Y")}}
+                            <br>
+                            {{$event->from_to_time}}
+                        </td>
                     </tr>
                 @empty
                     <tr>
