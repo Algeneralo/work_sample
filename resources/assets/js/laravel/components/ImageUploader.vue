@@ -18,6 +18,7 @@
             <div class="file-input form-group">
                 <label for="file" id="uploadButton">{{trans("general.Select a file")}}</label>
                 <input ref="imageInput" :name="name" type="file" id="file" accept="image/*" @change="onInputChange"
+                       @reset="test"
                        v-bind:required="required ? true : false">>
             </div>
         </div>
@@ -54,8 +55,16 @@
         mounted() {
             if (this.multiple)
                 this.$refs["imageInput"].setAttribute("multiple", "multiple");
+            let vue = this;
+            this.$refs.imageInput.closest("form").addEventListener("reset", function () {
+                vue.files = [];
+                vue.images = [];
+            })
         },
         methods: {
+            test() {
+                console.log("workd")
+            },
             OnDragEnter(e) {
                 e.preventDefault();
 
@@ -72,6 +81,7 @@
                     this.isDragging = false;
             },
             onInputChange(e) {
+                console.log("work chagned")
                 this.files = [];
                 this.images = [];
 
