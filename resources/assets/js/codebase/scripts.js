@@ -28,5 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         $('.js-summernote').summernote('code', '');
     });
     //stop autocomplete
+    $("input[type='email']").attr("autocomplete", "new-password")
     $("input[type='password']").attr("autocomplete", "new-password")
 })
