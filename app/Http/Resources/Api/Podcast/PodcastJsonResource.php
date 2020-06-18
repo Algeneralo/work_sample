@@ -19,6 +19,7 @@ class PodcastJsonResource extends JsonResource
             "cover" => $this->cover,
             "title" => $this->title,
             "date" => $this->created_at->format("d.m.Y"),
+            "podcast"=>$this->voice,
             $this->mergeWhen($request->show, function () {
                 return [
                     "details" => $this->details,

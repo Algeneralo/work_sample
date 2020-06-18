@@ -22,4 +22,9 @@ class PodcastController extends ApiController
         return $this->successResponse(["podcasts" => $podcasts]);
     }
 
+    public function show(Podcast $podcast)
+    {
+        $podcast = new PodcastJsonResource($podcast);
+        return $this->successResponse(["podcast" => $podcast]);
+    }
 }
