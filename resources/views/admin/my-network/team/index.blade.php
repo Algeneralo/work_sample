@@ -4,11 +4,21 @@
         .width-48 {
             width: 48%;
         }
+
+        .form-control:disabled, .form-control[readonly],
+        .custom-control-input:disabled ~ .custom-control-label::before {
+            background-color: unset ;
+            opacity: 1;
+        }
+
+        .custom-control-input:disabled ~ .custom-control-label {
+            color: unset !important;
+        }
     </style>
 @endsection
 @section('content')
     <!-- Page Content -->
-    <div class="content" id="responsive_headline">
+    <div class="content alumni" id="responsive_headline">
         <div class="content-heading">
             <div class="row">
                 <div class="col-sm-8">
@@ -54,7 +64,7 @@
                                         <label>{{trans("general.first-name")}}</label>
                                         <input type="text" name="first_name" class="form-control"
                                                value="{{$item->first_name}}"
-                                               required>
+                                               readonly required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -62,7 +72,7 @@
                                         <label>{{trans("general.last-name")}}</label>
                                         <input type="text" name="last_name" class="form-control"
                                                value="{{$item->last_name}}"
-                                               required>
+                                               readonly required>
                                     </div>
                                 </div>
                             </div>
@@ -71,14 +81,14 @@
                                 <div class="col-12">
                                     <div class="custom-control custom-radio custom-control-inline mb-5">
                                         <input class="custom-control-input" type="radio"
-                                               id="gender-radio{{$loop->index}}"
+                                               id="gender-radio{{$loop->index}}" disabled
                                                @if($item->gender=='f') checked @endif
                                                value="f" name="gender{{$loop->index}}" required>
                                         <label class="custom-control-label"
                                                for="gender-radio{{$loop->index}}">{{trans("general.women")}}</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline mb-5">
-                                        <input class="custom-control-input" type="radio"
+                                        <input class="custom-control-input" type="radio" disabled
                                                id="gender-radio-radio2-{{$loop->index}}" value="m"
                                                @if($item->gender=='m') checked @endif
                                                name="gender{{$loop->index}}"
@@ -88,24 +98,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <address-component :street="'{{$item->street}}'"
+                            <address-component :read-only="true" :street="'{{$item->street}}'"
                                                :streetNumber="'{{$item->street_number}}'"
                                                :postcode="'{{$item->postcode}}'"
                                                :city="'{{$item->city}}'"></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
                                 <input class="form-control" type="email" value="{{$item->email}}" name="email"
-                                       required>
+                                       readonly required>
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
-                                       name="phone" value="{{$item->telephone}}" required>
+                                       name="phone" value="{{$item->telephone}}" readonly required>
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.mobile")}}</label>
                                 <input type="text" class="form-control"
-                                       name="mobile" value="{{$item->mobile}}" required>
+                                       name="mobile" value="{{$item->mobile}}" readonly required>
                             </div>
                             <a class="float-left btn bg-gray text-white my-20 text-capitalize"
                                href="{{route("admin.my-network.teams.edit",$item->id)}}">
