@@ -126,7 +126,7 @@ class Index extends Component
                 'body' => $this->messageToAll,
             ]);
         });
-
+        session()->put("success", trans("general.message-sent-successfully"));
         $this->messageToAll = "";
         $this->emit("closeModal");
 

@@ -159,6 +159,7 @@ return [
     "write-new-message" => "Schreib neue Nachrichten",
     "no-messages" => "Keine Nachrichten.",
     "send-message-to-all-alumni" => "Nachricht an alle Alumni senden",
+    "message-sent-successfully" => "Ihre Nachricht wurde erfolgreich gesendet.",
 
     //kalendar
     "all-events" => "Alle Veranstaltungen anzeigen",
