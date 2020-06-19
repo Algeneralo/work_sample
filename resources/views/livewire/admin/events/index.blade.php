@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <div class="loading" wire:loading></div>
-                @forelse($events as $item)
+                    @forelse($events as $item)
                         <tbody>
                             <tr>
                                 <td class="text-primary">{{$item->id}}</td>
