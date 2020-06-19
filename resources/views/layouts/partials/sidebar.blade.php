@@ -48,7 +48,7 @@
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
-                <a class="img-link" href="javascript:void(0)">
+                <a>
                     <img class="img-avatar" src="{{Auth::user()->avatar }}" alt="">
                 </a>
                 <ul class="list-inline mt-10">
