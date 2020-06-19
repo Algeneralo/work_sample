@@ -42,6 +42,19 @@ class Index extends Component
      */
     public $alumni;
 
+    /**
+     * @var string
+     */
+    public $userID = "";
+
+    protected $updatesQueryString = [
+        'userID' => ['except' => ''],
+    ];
+
+    public function mount()
+    {
+        $this->fill(request()->only('userID'));
+    }
 
     private function getAlumni()
     {
@@ -72,6 +85,7 @@ class Index extends Component
     {
         return $this->selectedThread->messages()
             ->orderBy("created_at")
+            ->withoutGlobalScopes()
             ->get()
             ->groupBy(function ($message) {
                 return $message->created_at->isToday()
@@ -126,7 +140,7 @@ class Index extends Component
                 'body' => $this->messageToAll,
             ]);
         });
-        session()->put("success", trans("general.message-sent-successfully"));
+        session()->flash("success", trans("general.message-sent-successfully"));
         $this->messageToAll = "";
         $this->emit("closeModal");
 
@@ -136,8 +150,12 @@ class Index extends Component
     {
         Models::setUserModel(Alumnus::class);
         $this->getAlumni();
+        //check if there is a selected team member for sending message
+        if ($this->userID) {
+            $this->select($this->userID);
+            $this->reset("userID");
+        }
         $messages = $this->selectedThread ? $this->getMessages() : [];
-
         return view('livewire.admin.message.index', [
             "grouped" => $messages,
             "threads" => $this->threads,

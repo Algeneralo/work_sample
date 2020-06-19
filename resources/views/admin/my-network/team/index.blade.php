@@ -7,7 +7,7 @@
 
         .form-control:disabled, .form-control[readonly],
         .custom-control-input:disabled ~ .custom-control-label::before {
-            background-color: unset ;
+            background-color: unset;
             opacity: 1;
         }
 
@@ -123,10 +123,13 @@
                                 {{trans("general.edit")}}
                             </a>
 
-                            <a href="{{route("admin.messages.index")}}" class="float-right btn btn-primary my-20">
-                                <img src="{{asset("/media/icons/comment.svg")}}" alt="">
-                                {{trans("general.message")}}
-                            </a>
+                            @if($item->id!=auth()->id())
+                                <a href="{{route("admin.messages.index",["userID"=>$item->id])}}"
+                                   class="float-right btn btn-primary my-20">
+                                    <img src="{{asset("/media/icons/comment.svg")}}" alt="">
+                                    {{trans("general.message")}}
+                                </a>
+                            @endif
                             <div class="clearfix"></div>
                         </div>
                     </div>
