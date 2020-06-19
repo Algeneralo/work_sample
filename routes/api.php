@@ -53,6 +53,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
 
         Route::apiResource("events", "EventController")->except(["update", "destroy"]);
         Route::post("events/{event}/reviews", "EventReviewController@store");
+        Route::put("events/{event}/participate", "EventParticipantController@update");
 
 
         Route::prefix("bulletin-board")->group(function () {

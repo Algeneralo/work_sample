@@ -98,4 +98,9 @@ class ApiAuth extends Authenticatable implements HasMedia
         if ($value)
             $this->attributes["password"] = bcrypt($value);
     }
+
+    public function participatedEvents()
+    {
+        return $this->belongsToMany(Event::class, "event_participants");
+    }
 }
