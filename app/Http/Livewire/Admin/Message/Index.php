@@ -130,8 +130,11 @@ class Index extends Component
      */
     public function sendMessageToAllAlumni()
     {
-        Models::setUserModel(Alumnus::class);
+        $this->validate([
+            "messageToAll" => 'required'
+        ]);
 
+        Models::setUserModel(Alumnus::class);
         Alumnus::query()->get()->each(function ($alumnus) {
             $thread = Thread::getUserFirstThread($alumnus->id);
             Message::create([
