@@ -14,7 +14,7 @@ class CustomThread extends Thread
      */
     public function receiver()
     {
-        return $this->participants()->where("user_id", "!=", auth()->guard("alumni")->id())->first()->user()->withoutGlobalScopes()->first();
+        return $this->participants()->where("user_id", "!=", auth()->id() ?? auth()->guard("alumni")->id())->first()->user()->withoutGlobalScopes()->first();
     }
 
     public function getLastUpdateAttribute()
@@ -31,7 +31,7 @@ class CustomThread extends Thread
 
         $thread->participants()->create([
             'thread_id' => $thread->id,
-            'user_id' => auth()->guard("alumni")->id(),
+            'user_id' => auth()->id() ?? auth()->guard("alumni")->id(),
             'last_read' => new Carbon(),
         ]);
         $thread->addParticipant($userID);
@@ -41,7 +41,7 @@ class CustomThread extends Thread
 
     public static function getUserFirstThread($userID)
     {
-        return \App\Models\CustomThread::forUser(auth()->guard("alumni")->id())
+        return \App\Models\CustomThread::forUser(auth()->id() ?? auth()->guard("alumni")->id())
             ->latest('updated_at')
             ->whereHas("users", function ($query) use ($userID) {
                 $query->where("user_id", $userID);
