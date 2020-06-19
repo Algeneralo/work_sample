@@ -39,6 +39,7 @@
                                                              input-class="form-control"
                                                              :input-attr="{name:'date',required:'required'}"
                                                              placeholder="{{trans("general.date")}}"
+                                                             :disabled-date="disabledDates"
                                                              format="DD.MM.YYYY">
                                                     <i slot="icon-calendar"></i>
                                                 </date-picker>

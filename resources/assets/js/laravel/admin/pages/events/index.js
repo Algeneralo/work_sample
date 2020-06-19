@@ -21,4 +21,9 @@ new Vue({
             this[Object.keys(field)[0]] = Object.values(field)[0]
         });
     },
+    methods: {
+        disabledDates(date) {
+            return date < new Date()
+        }
+    }
 })
