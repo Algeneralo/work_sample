@@ -84,6 +84,7 @@
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" valueType="format" input-class="form-control"
                                              :input-attr="{name:'dob',required:'required'}"
+                                             :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <div class="form-group">

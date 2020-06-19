@@ -100,6 +100,7 @@
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" value-type="format" input-class="form-control"
                                              :input-attr="{name:'dob',required:'required' ,'data-change-v-model-value':'{\'dob\':\'{{$alumnus->dob->format('d.m.Y')}}\'}'}"
+                                             :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <div class="form-group">

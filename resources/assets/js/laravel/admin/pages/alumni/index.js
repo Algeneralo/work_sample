@@ -20,5 +20,9 @@ const ins = new Vue({
             this[Object.keys(field)[0]] = Object.values(field)[0]
         });
     },
-    methods: {}
+    methods: {
+        disabledDobDates(date) {
+            return date > new Date()
+        }
+    }
 })
