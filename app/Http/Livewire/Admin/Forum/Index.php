@@ -32,8 +32,8 @@ class Index extends Component
             [
                 "forum" => Forum::search($this->search)
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->withCount("topics", "comments")
+                    ->sortBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage),
             ]
         );

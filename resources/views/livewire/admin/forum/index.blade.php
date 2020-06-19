@@ -46,21 +46,21 @@
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('designation')" role="button" href="#">
                                     {{trans("general.section")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'section'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'designation'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('topics')" role="button" href="#">
                                     {{trans("general.subjects")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'subjects'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'topics'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('comments')" role="button" href="#">
                                     {{trans("general.contributions")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'contributions'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'comments'])
                                 </a>
                             </th>
                             <th>
