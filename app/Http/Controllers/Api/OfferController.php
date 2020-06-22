@@ -21,6 +21,7 @@ class OfferController extends ApiController
     {
         $offers = new OfferResource(
             Offer::query()
+                ->orderByDesc("created_at")
                 ->when(\request("type"), function ($query) {
                     $query->where("type", \request("type"));
                 })
@@ -46,7 +47,7 @@ class OfferController extends ApiController
                     $fileAdder->preservingOriginal()
                         ->toMediaCollection("images");
                 });
-            return $this->createResponse(["offer" => collect($offer)->except("media","updated_at","created_at")]);
+            return $this->createResponse(["offer" => collect($offer)->except("media", "updated_at", "created_at")]);
         });
     }
 

@@ -16,7 +16,12 @@ class JobMarketController extends ApiController
      */
     public function index()
     {
-        $jobs = new JobMarketResource(JobMarket::query()->with("contact")->paginate(10));
+        $jobs = new JobMarketResource(
+            JobMarket::query()
+                ->orderByDesc("created_at")
+                ->with("contact")
+                ->paginate(10)
+        );
         return $this->successResponse(["jobs" => $jobs]);
     }
 

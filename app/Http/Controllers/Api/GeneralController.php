@@ -17,7 +17,11 @@ class GeneralController extends ApiController
      */
     public function index()
     {
-        $general = new GeneralResource(General::query()->paginate(10));
+        $general = new GeneralResource(
+            General::query()
+                ->orderByDesc("created_at")
+                ->paginate(10)
+        );
         return $this->successResponse(["general" => $general]);
     }
 
