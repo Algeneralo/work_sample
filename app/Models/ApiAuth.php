@@ -4,7 +4,10 @@ namespace App\Models;
 
 use App\Http\Traits\CanLike;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\ResetApiPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -12,7 +15,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class ApiAuth extends Authenticatable implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait, HasApiTokens, CanLike;
+    use SoftDeletes, HasMediaTrait, HasApiTokens, CanLike, Notifiable;
 
     protected $table = "alumni";
 
@@ -53,7 +56,7 @@ class ApiAuth extends Authenticatable implements HasMedia
         'university_id' => 'integer',
         'degree_program_id' => 'integer',
         'is_team_member' => 'boolean',
-        "dob" => "date"
+        "dob" => "date",
     ];
 
     /**
@@ -90,6 +93,11 @@ class ApiAuth extends Authenticatable implements HasMedia
             })->where("model_id", $this->id)
             ->first())
             ->getFullUrl();
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
     //Mutators

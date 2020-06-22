@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 
 use App\Models\PasswordReset;
-use App\Notifications\ResetPasswordNotification;
+use App\Notifications\ResetApiPasswordNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +48,7 @@ class ForgotPasswordController extends AuthController
                 );
 
             Notification::route('mail', $request->input('email'))
-                ->notify(new ResetPasswordNotification($token));
+                ->notify(new ResetApiPasswordNotification($token));
 
             return $this->successResponse([], 'Email Sent successfully');
         });

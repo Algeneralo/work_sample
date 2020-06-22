@@ -18,5 +18,7 @@ return [
     "login-with-email" => "Melden Sie sich hier mit Ihrer E-Mail-Adresse und Ihrem Passwort an",
     "your-email" => "Ihre E-Mail-Adresse",
     "your-password" => "Ihr Passwort",
-    "account-is-blocked" => "Ihr Konto ist gesperrt"
+    "password" => "Passwort",
+    "account-is-blocked" => "Ihr Konto ist gesperrt",
+    "forgot-password" => "Passwort vergessen"
 ];

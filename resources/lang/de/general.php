@@ -1,19 +1,6 @@
 <?php
 
 return [
-    //@todo move this to auth file
-    // auth
-    "auth" => [
-        'email' => 'Ihre E-Mail-Adresse',
-        'password' => 'Ihr Passwort',
-        'remember-me' => 'Angemeldet bleiben',
-        'login' => 'Anmelden',
-        'welcome-to' => 'Willkommen bei',
-        'logout' => 'ausloggen',
-        "welcome" => "Herzlich Willkommen!",
-        "welcome-message" => "Melden Sie sich hier mit Ihrer E-Mail-Adresse und Ihrem Passwort an",
-        "password-forget" => "Passwort vergessen",
-    ],
 
     // actions / buttons
     "action" => "Aktion",

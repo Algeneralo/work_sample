@@ -36,6 +36,11 @@
 
         }
 
+        .bg-gd-dusk2 {
+            min-width: 34%;
+            max-width: 40%;
+        }
+
         .hero-static {
             min-height: 40% !important;;
             max-height: 70%;
@@ -57,13 +62,62 @@
                 max-width: 90% !important;
                 min-height: 90% !important;
             }
+
+            .bg-gd-dusk2 {
+                max-width: unset;
+            }
         }
     </style>
 
 </head>
 <div id="page-container" class="main-content-boxed">
 
-    @yield("content")
+    <main id="main-container" class="d-flex justify-content-center align-items-center">
+
+        <!-- Page Content -->
+        <div class="bg-gd-dusk"></div>
+        <div class="bg-gd-dusk2">
+            <div class="hero-static content content-full bg-white invisible" data-toggle="appear">
+                <!-- Header -->
+                <div class="py-30 px-5 text-center pb-50">
+                    <a class="font-w700" href="#">
+                        <img src="{{asset("/media/logo.png")}}">
+                    </a>
+                    @yield("title")
+                </div>
+
+                @if(session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+            @endif
+
+            @yield('content')
+            <!-- Sign In Form -->
+                <div class="row justify-content-center px-5">
+                    <div class="col-12">
+                        <!-- jQuery Validation functionality is initialized with .js-validation-signin class in js/pages/op_auth_signin.min.js which was auto compiled from _es6/pages/op_auth_signin.js -->
+                        <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                        <div class="row mt-50">
+                            <div class="col-4">
+                                {{--                                <a href="#" class="text-muted link-effect">Impressum</a>--}}
+                            </div>
+                            <div class="col-4 text-center">
+                                <span class="text-muted">
+                                    ©{{\Carbon\Carbon::now()->year}} {{ config('app.name', 'Laravel') }}</span>
+                            </div>
+                            <div class="col-4 text-right">
+                                {{--                                <a href="#" class="text-muted link-effect">Datenschutz</a>--}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Sign In Form -->
+            </div>
+        </div>
+        <!-- END Page Content -->
+
+    </main>
 </div>
 <script src="{{asset("/js/codebase.core.min.js")}}"></script>
 

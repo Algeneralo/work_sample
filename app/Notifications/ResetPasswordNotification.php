@@ -3,14 +3,15 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ResetPasswordNotification extends Notification
 {
     use Queueable;
 
-    public $token;
+    private $token;
 
     /**
      * Create a new notification instance.
@@ -37,14 +38,17 @@ class ResetPasswordNotification extends Notification
      * Get the mail representation of the notification.
      *
      * @param mixed $notifiable
-     * @return MailMessage
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject(trans("messages.emails.password-reset.title") . ' | ' . config('app.name'))
-            ->line(trans("messages.emails.password-reset.message"))
-            ->line("PIN: $this->token");
+            ->subject("Zurücksetzung Ihres Passworts")
+            ->greeting("Guten Tag!")
+            ->line('Sie erhalten diese E-Mail, weil wir von Ihrem Account eine Anfrage zur Zurücksetzung Ihres Passworts erhalten haben.')
+            ->action('Passwort zurücksetzen', route('password.reset', ["token" => $this->token, "email" => $notifiable->email]))
+            ->line('Der Link zur Zurücksetzung Ihres Passworts wird in 60 Minuten ablaufen.')
+            ->line('Falls Sie keine Zurücksetzung Ihres Passworts angefordert haben, sind keine weiteren Schritte notwendig.');
     }
 
     /**

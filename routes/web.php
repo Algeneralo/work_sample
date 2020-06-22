@@ -135,4 +135,4 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "mi
     });
 
 });
-Auth::routes();
+Auth::routes(["register" => false]);

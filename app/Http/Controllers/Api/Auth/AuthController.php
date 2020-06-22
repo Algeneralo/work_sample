@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Models\PasswordReset;
-use App\Notifications\ResetPasswordNotification;
+use App\Notifications\ResetApiPasswordNotification;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;

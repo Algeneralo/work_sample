@@ -1,44 +1,43 @@
 @extends('layouts.app')
 
+@section("title")
+    <h1 class="h2 mt-50 mb-10 font-w300">@lang("passwords.Don’t worry, we’ve got your back")</h1>
+@endsection
 @section('content')
-    <form class="js-validation-reminder" method="POST" action="{{ route('password.email') }}"
-          novalidate="novalidate">
+    <!-- Main Container -->
+    <form class="js-validation-signin" method="POST" action="{{ route('password.email') }}">
         @csrf
-        <div class="block block-themed block-rounded block-shadow">
-            <div class="block-header bg-gd-primary">
-                <h3 class="block-title">Password Reminder</h3>
-            </div>
-            <div class="block-content">
-                <div class="form-group row">
-                    <div class="col-12">
-                        <label for="reminder-credential">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                               id="reminder-credential"
-                               name="email" required>
-                        @error('email')
+        <div class="form-group row">
+            <div class="col-12">
+                <div class="form-material floating">
+                    <input type="email"
+                           class="form-control  @if($errors->has("email")) is-invalid @endif"
+                           name="email" required id="login-username" value="{{ old('email') }}">
+                    <label for="login-username">@lang("auth.your-email")</label>
+                    @if($errors->has("email"))
                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-alt-primary">
-                        <i class="fa fa-asterisk mr-10"></i> Password Reminder
-                    </button>
-                </div>
-            </div>
-            <div class="block-content bg-body-light">
-                <div class="form-group text-center">
-                    <a class="link-effect text-muted mr-10 mb-5 d-inline-block"
-                       href="{{route("login")}}">
-                        <i class="fa fa-user text-muted mr-5"></i> Sign In
-                    </a>
+                            <strong>{{ $errors->first("email")}}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
         </div>
+
+        <div class="form-group row gutters-tiny mt-50">
+            <div class="col-12 mb-10 mx-auto">
+                <button type="submit"
+                        class="btn btn-primary mx-auto d-block font-size-lg border-transparent">
+                    @lang("passwords.reset button")
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group row gutters-tiny mt-30">
+            <div class="col-12 mb-10">
+                <a href="{{ route('login') }}" class="text-center d-block font-size-md">
+                    @lang('passwords.back to login',['url'=>route('login')])
+                </a>
+            </div>
+        </div>
     </form>
-@endsection
-@section("script")
-    <script src="{{asset("/js/pages/op_auth_reminder.min.js")}}"></script>
 @endsection

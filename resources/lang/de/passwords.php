@@ -12,8 +12,16 @@ return [
     |
     */
     'password' => 'Passwörter müssen mindestens 6 Zeichen lang sein und korrekt bestätigt werden.',
-    'reset'    => 'Das Passwort wurde zurückgesetzt!',
-    'sent'     => 'Passworterinnerung wurde gesendet!',
-    'token'    => 'Der Passwort-Wiederherstellungs-Schlüssel ist ungültig oder abgelaufen.',
-    'user'     => 'Es konnte leider kein Nutzer mit dieser E-Mail-Adresse gefunden werden.',
+    'reset' => 'Das Passwort wurde zurückgesetzt!',
+    'reset password' => 'Passwort zurücksetzen',
+    'reset password message' => 'Bitte legen Sie Ihr neues Passwort fest.',
+    'repeat password' => 'Passwort wiederholen',
+    'sent' => 'Passworterinnerung wurde gesendet!',
+    'throttled' => 'Bitte warten Sie, bevor Sie es erneut versuchen.',
+    'token' => 'Der Passwort-Wiederherstellungs-Schlüssel ist ungültig oder abgelaufen.',
+    'user' => 'Es konnte leider kein Nutzer mit dieser E-Mail-Adresse gefunden werden.',
+    "reset button" => "Zurücksetzen",
+    "Don’t worry, we’ve got your back" => "Passwort vergessen? Kein Problem.",
+    "back to login" => "Zurück zum Login",
+
 ];
