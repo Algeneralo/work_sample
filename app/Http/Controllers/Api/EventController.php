@@ -28,6 +28,11 @@ class EventController extends ApiController
                         $query->where("alumnus_id", auth()->id());
                     });
                 })
+                ->when(request()->has("lastChanged"), function (Builder $query) {
+                    $query->orderBy("updated_at", request("direction") ?? "desc");
+                }, function (Builder $query) {
+                    $query->orderBy("date", request("direction") ?? "desc");
+                })
                 ->paginate(10)
         );
         return $this->successResponse(["events" => $events]);
