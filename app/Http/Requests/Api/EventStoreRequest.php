@@ -25,8 +25,10 @@ class EventStoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            "image" => "required|image",
             'date' => 'required',
-            'time' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
             'street' => 'required',
             'street_number' => 'required',
             'postcode' => 'required',
