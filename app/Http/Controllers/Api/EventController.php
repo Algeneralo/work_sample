@@ -53,7 +53,9 @@ class EventController extends ApiController
             $event->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->toMediaCollection("cover");
-            return $this->createResponse($event);
+            return $this->createResponse([
+                "event" => new EventJsonResource($event),
+            ]);
         });
     }
 
