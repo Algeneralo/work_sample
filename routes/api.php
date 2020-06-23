@@ -50,10 +50,10 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
             Route::apiResource("gallery", "GalleryController")->only(["index", "show"]);
             Route::apiResource("podcasts", "PodcastController")->only(["index", "show"]);
         });
-
-        Route::apiResource("events", "EventController")->except(["update", "destroy"]);
+        Route::get("events/create", "EventController@create");
         Route::post("events/{event}/reviews", "EventReviewController@store");
         Route::put("events/{event}/participate", "EventParticipantController@update");
+        Route::apiResource("events", "EventController")->except(["update", "destroy"]);
 
 
         Route::prefix("bulletin-board")->group(function () {

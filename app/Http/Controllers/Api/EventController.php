@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Category;
 use App\Http\Requests\Api\EventStoreRequest;
 use App\Http\Resources\Api\Event\EventJsonResource;
 use App\Http\Resources\Api\Event\EventResource;
@@ -36,6 +37,13 @@ class EventController extends ApiController
                 ->paginate(10)
         );
         return $this->successResponse(["events" => $events]);
+    }
+
+    public function create()
+    {
+        return $this->successResponse([
+            "categories" => Category::query()->select(["id", "name"])->get(),
+        ]);
     }
 
     /**
