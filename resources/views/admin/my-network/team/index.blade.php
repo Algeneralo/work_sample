@@ -14,6 +14,10 @@
         .custom-control-input:disabled ~ .custom-control-label {
             color: unset !important;
         }
+
+        .team-avatar {
+            object-fit: cover;
+        }
     </style>
 @endsection
 @section('content')
@@ -45,7 +49,7 @@
                             <div class="row d-flex align-items-center mb-20">
                                 <div class="col-sm-5 d-flex justify-content-center">
                                     <img src="{{$item->avatar}}" width="80" height="80"
-                                         class="rounded-circle border border-4x border-primary mr-10">
+                                         class="rounded-circle border border-4x border-primary mr-10 team-avatar">
                                 </div>
                                 <div class="col-sm-7 px-sm-0 mt-10">
                                     <a href="tel:{{$item->telephone}}" class="btn bg-gray text-white px-0 width-48">
