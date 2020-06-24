@@ -67,6 +67,10 @@ $font: 'Roboto';
   border-color: white !important;
 }
 
+.img-avatar {
+  object-fit: cover;
+}
+
 //remove max width
 #page-container.main-content-boxed > #page-header .content-header, #page-container.main-content-boxed > #page-header .content, #page-container.main-content-boxed > #main-container .content, #page-container.main-content-boxed > #page-footer .content {
   max-width: unset;
@@ -417,6 +421,7 @@ label {
 .heart-button.active:before, .heart-button.active:after {
   color: #DC6E6E !important;
 }
+
 //
 //.heart-button:before,
 //.heart-button:after {
