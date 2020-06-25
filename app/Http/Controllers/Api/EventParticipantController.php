@@ -23,7 +23,7 @@ class EventParticipantController extends ApiController
             $event->participants()->detach(auth()->id());
         else {
             //abort if there's no places left
-            abort_if($event->max_participants && ($event->max_participants - $event->participants()->count()) == 0, Response::HTTP_FORBIDDEN);
+            abort_if($event->max_participants && ($event->free_places) == 0, Response::HTTP_FORBIDDEN);
             $event->participants()->attach(auth()->id());
         }
         $event->refresh();
