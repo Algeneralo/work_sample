@@ -38,7 +38,7 @@ class ActivateController extends AuthController
             $user->activation_code = null;
             $user->save();
 
-            return $this->noContentResponse();
+            return $this->successResponse();
         });
     }
 
@@ -57,7 +57,7 @@ class ActivateController extends AuthController
             Notification::route("mail", $user->email)->notify(new SendEmailVerificationNotification($user->activation_code));
             $user->save();
 
-            return $this->noContentResponse();
+            return $this->successResponse();
         });
     }
 }
