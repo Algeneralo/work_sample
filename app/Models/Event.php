@@ -100,4 +100,9 @@ class Event extends Model implements HasMedia
     {
         return $this->street . " " . $this->stree_number . "<br>" . $this->city . " " . $this->postcode;
     }
+
+    public function getFreePlacesAttribute()
+    {
+        return $this->max_participants ? $this->max_participants - $this->participants()->count() : -1;
+    }
 }

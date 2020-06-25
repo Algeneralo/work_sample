@@ -13,6 +13,7 @@ class EventParticipantController extends ApiController
 {
     /**
      * toggle event participate
+     *
      * @param Event $event
      * @return JsonResponse
      */
@@ -25,8 +26,11 @@ class EventParticipantController extends ApiController
             abort_if($event->max_participants && ($event->max_participants - $event->participants()->count()) == 0, Response::HTTP_FORBIDDEN);
             $event->participants()->attach(auth()->id());
         }
-
-        return $this->noContentResponse();
+        $event->refresh();
+        return $this->successResponse([
+            "is_participated" => $event->participants->contains(auth()->id()),
+            "free_places" => $event->free_places,
+        ]);
     }
 
 }
