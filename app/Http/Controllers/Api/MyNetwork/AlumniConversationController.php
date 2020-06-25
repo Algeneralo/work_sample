@@ -16,10 +16,10 @@ class AlumniConversationController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param Alumnus $alumnus
+     * @param ApiAuth $alumnus
      * @return JsonResponse
      */
-    public function show(Alumnus $alumnus)
+    public function show(ApiAuth $alumnus)
     {
         Models::setUserModel(ApiAuth::class);
 
