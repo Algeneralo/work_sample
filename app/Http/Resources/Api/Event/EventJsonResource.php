@@ -25,7 +25,7 @@ class EventJsonResource extends JsonResource
                 "rate" => $this->rate,
                 "details" => $this->details,
                 "is_participated" => $this->participants->contains(auth()->id()),
-                "free_places" => $this->max_participants ? $this->max_participants - $this->participants()->count() : null,
+                "free_places" => $this->max_participants ? $this->max_participants - $this->participants()->count() : -1,
                 "reviews_count" => $this->reviews->count(),
                 "reviews" => EventReviewsJsonResources::collection($this->reviews),
                 "participants" => EventParticipantsJsonResources::collection($this->participants),
