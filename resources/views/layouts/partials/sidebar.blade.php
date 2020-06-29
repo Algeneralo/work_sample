@@ -140,14 +140,14 @@
                         </span>
                     </a>
                     <ul>
-                        <li>
-                            <a class="{{ check_if_menu_is_active(trans('routes.general'),trans("routes.bulletin-board"))}}"
-                               href="{{route("admin.bulletin-board.general.index")}}">
-                                <span class="sidebar-mini-hide font-size-md">
-                                    {{trans("general.general")}}
-                                </span>
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a class="{{ check_if_menu_is_active(trans('routes.general'),trans("routes.bulletin-board"))}}"--}}
+{{--                               href="{{route("admin.bulletin-board.general.index")}}">--}}
+{{--                                <span class="sidebar-mini-hide font-size-md">--}}
+{{--                                    {{trans("general.general")}}--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li>
                             <a class="{{ check_if_menu_is_active(trans('routes.job-market'),trans("routes.bulletin-board"))}}"
                                href="{{route("admin.bulletin-board.job-market.index")}}">
