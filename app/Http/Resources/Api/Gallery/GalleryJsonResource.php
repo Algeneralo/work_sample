@@ -17,7 +17,8 @@ class GalleryJsonResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "image" => $this->cover,
+            "file" => $this->cover,
+            "file_type" => $this->cover_type,
             "title" => $this->title,
             $this->mergeWhen($request->show, function () {
                 return [

@@ -50,4 +50,9 @@ class Gallery extends Model implements HasMedia
     {
         return optional($this->getFirstMedia("cover"))->getFullUrl();
     }
+
+    public function getCoverTypeAttribute()
+    {
+        return optional($this->getFirstMedia("cover"))->getTypeAttribute();
+    }
 }

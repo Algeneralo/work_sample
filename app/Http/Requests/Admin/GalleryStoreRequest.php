@@ -26,7 +26,7 @@ class GalleryStoreRequest extends FormRequest
         return [
             'title' => 'required',
             'details' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|mimetypes:video/*,image/*',
         ];
     }
 }

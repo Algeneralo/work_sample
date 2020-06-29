@@ -26,7 +26,7 @@ class GalleryUpdateRequest extends FormRequest
         return [
             'title' => 'required',
             'details' => 'required',
-            'image' => 'image',
+            'image' => 'mimetypes:video/*,image/*',
         ];
     }
 }
