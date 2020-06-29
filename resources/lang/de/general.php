@@ -133,11 +133,11 @@ return [
     "job-posting" => "Stellenausschreibung",
 
     //Media
-    "media" => "Media",
+    "media" => "Media & Storys",
     "subject" => "Thema",
     "new-media" => "Neue Folge hinzufügen",
     "new-image" => "Neues Bild",
-    "gallery" => "Bildergalerie",
+    "gallery" => "Impressionen",
     "podcast" => "Podcast",
     "linked-friends" => "verlinkte Freunde",
 
