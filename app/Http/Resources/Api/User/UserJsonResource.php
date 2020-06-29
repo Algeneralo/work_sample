@@ -30,13 +30,15 @@ class UserJsonResource extends JsonResource
             "telephone" => $this->telephone,
             "mobile" => $this->mobile,
             "is_team_member" => $this->is_team_member,
-            $this->mergeWhen(!$this->is_team_member, [
-                "alumni_year" => $this->alumni_year,
-                "university_id" => $this->university_id,
-                "university_name" => $this->university->name,
-                "degree_program_id" => $this->degree_program_id,
-                "degree_program_name" => $this->degreeProgram->name,
-            ])
+            $this->mergeWhen(!$this->is_team_member, function () {
+                return [
+                    "alumni_year" => $this->alumni_year,
+                    "university_id" => $this->university_id,
+                    "university_name" => $this->university->name,
+                    "degree_program_id" => $this->degree_program_id,
+                    "degree_program_name" => $this->degreeProgram->name,
+                ];
+            }),
         ];
     }
 }
