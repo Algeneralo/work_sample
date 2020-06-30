@@ -190,6 +190,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li>
+                            <a class="{{ check_if_menu_is_active(trans("routes.stories"),trans("routes.media"))}}"
+                               href="{{route("admin.media.stories.index")}}">
+                                <span class="sidebar-mini-hide font-size-md">
+                                    {{trans("general.stories")}}
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>

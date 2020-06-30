@@ -144,6 +144,8 @@ return [
     "gallery" => "Impressionen",
     "podcast" => "Podcast",
     "linked-friends" => "verlinkte Freunde",
+    "stories" => "Storys",
+    "new-story" => "Neue Story",
 
     //Nachrichten
     "messages" => "Nachrichten",

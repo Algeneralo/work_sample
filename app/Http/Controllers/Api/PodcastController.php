@@ -22,6 +22,7 @@ class PodcastController extends ApiController
 
     public function show(Podcast $podcast)
     {
+        request()->merge(["show"=>true]);
         $podcast = new PodcastJsonResource($podcast);
         return $this->successResponse(["podcast" => $podcast]);
     }

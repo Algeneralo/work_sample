@@ -18,4 +18,5 @@ return [
     "calendar" => "kalender",
     "messages" => "nachrichten",
     "topics" => "themen",
+    "stories" => "storys",
 ];

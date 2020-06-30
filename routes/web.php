@@ -121,6 +121,14 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "mi
             Route::put("/{podcast}", "PodcastController@update")->name("podcast.update");
             Route::delete("/{podcast}", "PodcastController@destroy")->name("podcast.destroy");
         });
+
+        Route::prefix(trans("routes.stories"))->group(function () {
+            Route::get("/", "StoryController@index")->name("stories.index");
+            Route::get("/create", "StoryController@create")->name("stories.create");
+            Route::post("/", "StoryController@store")->name("stories.store");
+            Route::get("/{story}/edit", "StoryController@edit")->name("stories.edit");
+            Route::put("/{story}", "StoryController@update")->name("stories.update");
+        });
     });
 
     //Kalender

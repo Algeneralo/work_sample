@@ -49,6 +49,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         Route::prefix("media")->group(function () {
             Route::apiResource("gallery", "GalleryController")->only(["index", "show"]);
             Route::apiResource("podcasts", "PodcastController")->only(["index", "show"]);
+            Route::apiResource("stories", "StoryController")->only(["index", "show"]);
         });
         Route::get("events/create", "EventController@create");
         Route::post("events/{event}/reviews", "EventReviewController@store");
