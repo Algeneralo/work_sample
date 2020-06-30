@@ -19,6 +19,7 @@ class EventParticipantController extends ApiController
      */
     public function update(Event $event)
     {
+        abort_if($event->type == Event::EXTERNAL_EVENTS,Response::HTTP_FORBIDDEN);
         if ($event->participants->contains(auth()->id()))
             $event->participants()->detach(auth()->id());
         else {

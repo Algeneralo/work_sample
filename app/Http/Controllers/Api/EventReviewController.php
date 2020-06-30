@@ -21,7 +21,10 @@ class EventReviewController extends ApiController
      */
     public function store(EventReviewStoreRequest $request, Event $event)
     {
-        abort_if($event->reviews()->where("alumni_id", auth()->id())->exists(), Response::HTTP_FORBIDDEN);
+        abort_if(
+            $event->reviews()->where("alumni_id", auth()->id())->exists() || $event->type == Event::EXTERNAL_EVENTS
+            , Response::HTTP_FORBIDDEN
+        );
         return \DB::transaction(function () use ($request, $event) {
             $request->merge(["alumni_id" => auth()->id()]);
             $review = $event->reviews()->create($request->all());

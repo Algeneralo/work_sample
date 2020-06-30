@@ -73,16 +73,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="">@lang("general.category")</label>
-                                        <select class="form-control select2" name="category_id">
-                                            @foreach($categories as $item)
-                                                <option @if($event->category_id==$item->id) selected @endif
-                                                value="{{$item->id}}
-                                                        ">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
@@ -98,6 +88,36 @@
                                             :postcode="'{{$event->postcode }}'"
                                             :city="'{{$event->city}}'">
                                     </address-component>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="">@lang("general.category")</label>
+                                        <select class="form-control select2" name="category_id">
+                                            @foreach($categories as $item)
+                                                <option @if($event->category_id==$item->id) selected @endif
+                                                value="{{$item->id}}
+                                                        ">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="">@lang("general.organizer")</label>
+                                        <select class="form-control select2" name="type">
+                                            <option value="{{\App\Models\Event::INTERNAL_EVENTS}}"
+                                                    @if($event->type==\App\Models\Event::INTERNAL_EVENTS) selected @endif>
+                                                Ruhrtalente
+                                            </option>
+                                            <option value="{{\App\Models\Event::EXTERNAL_EVENTS}}"
+                                                    @if($event->type==\App\Models\Event::EXTERNAL_EVENTS) selected @endif>
+                                                @lang("general.external")
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

@@ -34,6 +34,7 @@ class EventStoreRequest extends FormRequest
             'details' => 'required',
             'participants' => 'required|array',
             'category_id' => 'required|exists:categories,id',
+            'type' => 'required|in:external,internal',
         ];
     }
 

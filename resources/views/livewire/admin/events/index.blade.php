@@ -27,6 +27,14 @@
                         @endforeach
                     </select>
                 </div>
+                <span class="vertical-separator"></span>
+                <div class="select-wrapper bg-select-white">
+                    <select class="select2 type" wire:model="type">
+                        <option value="all" selected>@lang("general.all") @lang("general.organizer")</option>
+                        <option value="{{\App\Models\Event::INTERNAL_EVENTS}}">Ruhrtalente</option>
+                        <option value="{{\App\Models\Event::EXTERNAL_EVENTS}}">@lang("general.external")</option>
+                    </select>
+                </div>
             </div>
             <div class="block-option">
                 <div class="input-group bg-white rounded text-primary mt-4 mt-md-auto">

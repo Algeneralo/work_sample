@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -10,6 +11,9 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Event extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
+
+    const EXTERNAL_EVENTS = "external";
+    const INTERNAL_EVENTS = "internal";
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +32,7 @@ class Event extends Model implements HasMedia
         'start_time',
         'end_time',
         'category_id',
+        "type",
     ];
 
     /**
@@ -47,6 +52,16 @@ class Event extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeExternal(Builder $query)
+    {
+        return $query->where("type", self::EXTERNAL_EVENTS);
+    }
+
+    public function scopeInternal(Builder $query)
+    {
+        return $query->where("type", self::INTERNAL_EVENTS);
     }
 
     public function participants()

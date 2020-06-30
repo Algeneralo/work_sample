@@ -95,6 +95,8 @@ return [
     "count-participants" => "Teilnehmer/innen (:count Personen)",
     "no-participant-selected" => "Kein Teilnehmer ausgewählt",
     "all-category" => "Alle Kategorien",
+    "organizer" => "Veranstalter",
+    "external" => "Extern",
 
     //Forum
     "forum" => "Forum",

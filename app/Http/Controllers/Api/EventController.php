@@ -24,6 +24,7 @@ class EventController extends ApiController
     {
         $events = new EventResource(
             Event::query()
+                ->internal()
                 ->when(request()->has("userEvents"), function (Builder $query) {
                     $query->whereHas("participants", function (Builder $query) {
                         $query->where("alumnus_id", auth()->id());
@@ -75,6 +76,7 @@ class EventController extends ApiController
      */
     public function show(Event $event)
     {
+        abort_if($event->type == Event::EXTERNAL_EVENTS,Response::HTTP_FORBIDDEN);
         request()->merge(["show" => true]);
         $event = new EventJsonResource($event);
         return $this->successResponse(["event" => $event]);

@@ -11,6 +11,9 @@
             $('.select2.category').on('change', function (e) {
             @this.set('category', e.target.value);
             });
+            $('.select2.type').on('change', function (e) {
+            @this.set('type', e.target.value);
+            });
         } catch (e) {
             @if(app()->environment()=="locale")
                 console.log(e)

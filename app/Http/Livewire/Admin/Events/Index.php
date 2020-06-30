@@ -16,6 +16,7 @@ class Index extends Component
 
     public $lastMonth = 3;
     public $category = "";
+    public $type = "";
     public $search = '';
     public $categories = [];
     protected $filters = ["lastMonth", "category_id"];
@@ -41,6 +42,8 @@ class Index extends Component
                     ->where("created_at", ">=", Carbon::now()->subMonths($this->lastMonth))
                     ->when($this->category != "" && $this->category != "all", function ($query) {
                         $query->where("category_id", $this->category);
+                    })->when($this->type != "" && $this->type != "all", function ($query) {
+                        $query->where("type", $this->type);
                     })
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->select(["id", "name", "date", "start_time", "end_time", "category_id"])

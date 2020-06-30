@@ -61,14 +61,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="">@lang("general.category")</label>
-                                        <select class="form-control select2" name="category_id">
-                                            @foreach($categories as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="col-md-6 col-xl-5">
                                     <div class="form-group">
@@ -83,6 +75,27 @@
                                             :postcode="'{{old("postcode")}}'"
                                             :city="'{{old("city")}}'">
                                     </address-component>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xl-5">
+                                    <div class="form-group">
+                                        <label for="">@lang("general.category")</label>
+                                        <select class="form-control select2" name="category_id" required>
+                                            @foreach($categories as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-5">
+                                    <div class="form-group">
+                                        <label for="">@lang("general.organizer")</label>
+                                        <select class="form-control select2" name="type" required>
+                                            <option value="{{\App\Models\Event::INTERNAL_EVENTS}}">Ruhrtalente</option>
+                                            <option value="{{\App\Models\Event::EXTERNAL_EVENTS}}">@lang("general.external")</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
