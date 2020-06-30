@@ -23,6 +23,13 @@ const ins = new Vue({
     methods: {
         disabledDobDates(date) {
             return date > new Date()
+        },
+        checkYear(date) {
+            let selector = document.querySelector("[name='job_title']").closest(".form-group");
+            if (date <= moment().year())
+                selector.classList.remove("d-none")
+            else
+                selector.classList.add("d-none")
         }
     }
 })

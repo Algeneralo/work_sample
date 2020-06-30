@@ -103,7 +103,10 @@
                                              :input-attr="{name:'dob',required:'required' ,'data-change-v-model-value':'{\'dob\':\'{{$team->dob->format('d.m.Y')}}\'}'}"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
-
+                            <div class="form-group">
+                                <label for="">@lang("general.job-title")</label>
+                                <input type="text" class="form-control" name="job_title" value="{{$team->job_title}}">
+                            </div>
                         </div>
                     </div>
                 </div>

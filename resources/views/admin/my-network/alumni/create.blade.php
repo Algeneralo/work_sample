@@ -82,7 +82,7 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="form-group">
                                 <label>{{trans("general.dob")}}</label>
-                                <date-picker v-model="dob" valueType="format" input-class="form-control"
+                                <date-picker v-model="dob" value-type="format" input-class="form-control"
                                              :input-attr="{name:'dob',required:'required'}"
                                              :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
@@ -105,9 +105,14 @@
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.Select alumni year")}}</label>
-                                <date-picker v-model="alumniYear" valueType="format" input-class="form-control"
+                                <date-picker v-model="alumniYear" value-type="format" input-class="form-control"
+                                             @change="checkYear"
                                              :input-attr="{name:'alumni_year',required:'required'}" format="YYYY"
                                              type="year"></date-picker>
+                            </div>
+                            <div class="form-group d-none">
+                                <label for="">@lang("general.job-title")</label>
+                                <input type="text" class="form-control" name="job_title">
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.description")}}</label>

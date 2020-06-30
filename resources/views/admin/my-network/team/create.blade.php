@@ -86,6 +86,10 @@
                                 <input type="text" class="form-control"
                                        name="mobile" required>
                             </div>
+                            <div class="form-group">
+                                <label for="">@lang("general.job-title")</label>
+                                <input type="text" class="form-control" name="job_title">
+                            </div>
                         </div>
                         <div class="col-xl-4">
                             <div>

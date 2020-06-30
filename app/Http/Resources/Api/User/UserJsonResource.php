@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\User;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -30,8 +31,10 @@ class UserJsonResource extends JsonResource
             "telephone" => $this->telephone,
             "mobile" => $this->mobile,
             "is_team_member" => $this->is_team_member,
+            "job_title" => $this->job_title,
             $this->mergeWhen(!$this->is_team_member, function () {
                 return [
+                    "show_job_title_field" => $this->alumni_year <= Carbon::now()->year,
                     "alumni_year" => $this->alumni_year,
                     "university_id" => $this->university_id,
                     "university_name" => $this->university->name,

@@ -38,6 +38,7 @@ class Team extends Model implements HasMedia
         'dob',
         'telephone',
         'mobile',
+        'job_title',
     ];
 
     /**

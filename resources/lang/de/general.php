@@ -81,6 +81,7 @@ return [
     "team" => "Team",
     "new-team" => "Neues Teammitglied anlegen",
     "message" => "Nachricht",
+    "job-title" => "Job nach dem Studium/nach der Berufsausbildung",
 
     //Event pages (Veranstaltung)
     "event" => "Veranstaltungen",

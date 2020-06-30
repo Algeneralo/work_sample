@@ -125,9 +125,14 @@
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"
                                              :input-attr="{name:'alumni_year',required:'required','data-change-v-model-value':'{\'alumniYear\':\'{{$alumnus->alumni_year}}\'}'}"
-                                             format="YYYY"
+                                             format="YYYY" @change="checkYear"
                                              :default-value="'1990'"
                                              type="year"></date-picker>
+                            </div>
+                            <div class="form-group @if($alumnus->alumni_year>\Carbon\Carbon::now()->year) d-none @endif">
+                                <label for="">@lang("general.job-title")</label>
+                                <input type="text" class="form-control" name="job_title"
+                                       value="{{$alumnus->job_title}}">
                             </div>
                         </div>
                         <div class="col-xl-4">

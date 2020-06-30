@@ -44,6 +44,7 @@ class ApiAuth extends Authenticatable implements HasMedia
         "activation_code",
         'is_team_member',
         'blocked',
+        'job_title',
     ];
 
     /**
