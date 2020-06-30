@@ -6,8 +6,6 @@ use App\Http\Resources\Api\Podcast\PodcastJsonResource;
 use App\Http\Resources\Api\Podcast\PodcastResource;
 use App\Models\Podcast;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use FFMpeg\FFMpeg;
 
 class PodcastController extends ApiController
 {
