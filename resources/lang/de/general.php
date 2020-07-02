@@ -137,14 +137,14 @@ return [
     "job-posting" => "Stellenausschreibung",
 
     //Media
-    "media" => "Media & Storys",
+    "media" => "Media & Stories",
     "subject" => "Thema",
     "new-media" => "Neue Folge hinzufügen",
     "new-image" => "Neues Bild oder Video",
     "gallery" => "Impressionen",
     "podcast" => "Podcast",
     "linked-friends" => "verlinkte Freunde",
-    "stories" => "Storys",
+    "stories" => "Stories",
     "new-story" => "Neue Story",
 
     //Nachrichten
