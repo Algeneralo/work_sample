@@ -92,7 +92,7 @@
                                     <div class="form-group">
                                         <label for="">@lang("general.organizer")</label>
                                         <select class="form-control select2" name="type" required>
-                                            <option value="{{\App\Models\Event::INTERNAL_EVENTS}}">Ruhrtalente</option>
+                                            <option value="{{\App\Models\Event::INTERNAL_EVENTS}}" selected>Ruhrtalente</option>
                                             <option value="{{\App\Models\Event::EXTERNAL_EVENTS}}">@lang("general.external")</option>
                                         </select>
                                     </div>

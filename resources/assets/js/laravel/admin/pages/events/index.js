@@ -27,3 +27,18 @@ new Vue({
         }
     }
 })
+
+function hideShowDivs(val) {
+    if (val === "external") {
+        $("[name='max_participants']").closest(".form-group").hide()
+        $("[name='participants']").closest(".participants").hide()
+    } else {
+        $("[name='max_participants']").closest(".form-group").show()
+        $("[name='participants']").closest(".participants").show()
+    }
+}
+
+$("[name='type']").on("change", function () {
+    hideShowDivs($(this).val())
+});
+hideShowDivs($("[name='type']").val());

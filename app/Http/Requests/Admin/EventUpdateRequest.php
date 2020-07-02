@@ -32,7 +32,6 @@ class EventUpdateRequest extends FormRequest
             'postcode' => 'required',
             'city' => 'required',
             'details' => 'required',
-            'participants' => 'required|array',
             'category_id' => 'required|exists:categories,id',
             'type' => 'required|in:external,internal',
         ];
@@ -41,9 +40,11 @@ class EventUpdateRequest extends FormRequest
     protected function prepareForValidation()
     {
         try {
-            $this->merge([
-                "participants" => json_decode($this->participants)
-            ]);
+            if ($this->participants)
+                $this->merge([
+                    "participants" => json_decode($this->participants),
+                ]);
+
         } catch (\Exception $exception) {
             \Log::error("Invalid participants array");
         }

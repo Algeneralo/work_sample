@@ -56,7 +56,7 @@
                 @endforelse
                 <input type="hidden" name="participants"
                        value="{{count($selectedParticipants)>0?json_encode(array_keys($selectedParticipants)):''}}"
-                       required>
+                       >
             </div>
         </div>
     </div>
