@@ -17,13 +17,13 @@ class StoryController extends ApiController
     public function index()
     {
         $podcasts = new StoryResource(Story::query()->paginate(20));
-        return $this->successResponse(["podcasts" => $podcasts]);
+        return $this->successResponse(["stories" => $podcasts]);
     }
 
     public function show(Story $story)
     {
         request()->merge(["show"=>true]);
         $story = new StoryJsonResource($story);
-        return $this->successResponse(["podcast" => $story]);
+        return $this->successResponse(["story" => $story]);
     }
 }
