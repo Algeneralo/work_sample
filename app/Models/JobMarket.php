@@ -48,9 +48,9 @@ class JobMarket extends Model implements HasMedia
     {
         return empty($string) ? static::query()
             : static::where(function ($query) use ($string) {
-                $query->where('title', 'like', '%' . $string . '%');
+                $query->where('created_at', 'like', '%' . $string . '%')
+                ->orWhere("offer", 'like', '%' . $string . '%');
             });
-
     }
 
     public function getCoverAttribute()

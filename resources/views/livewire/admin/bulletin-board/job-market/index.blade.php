@@ -45,21 +45,21 @@
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('beginning')" role="button" href="#">
                                     {{trans("general.date")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'date'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'beginning'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('offer')" role="button" href="#">
                                     {{trans("general.employer")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'designation'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'offer'])
                                 </a>
                             </th>
                             <th>
-                                <a wire:click.prevent="sortBy('created_at')" role="button" href="#">
+                                <a wire:click.prevent="sortBy('working_hours')" role="button" href="#">
                                     {{trans("general.working-hours")}}
-                                    @include('layouts.partials._sort-icon', ['field' => 'designation'])
+                                    @include('layouts.partials._sort-icon', ['field' => 'working_hours'])
                                 </a>
                             </th>
                             <th>
