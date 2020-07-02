@@ -56,7 +56,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         Route::put("events/{event}/participate", "EventParticipantController@update");
         Route::apiResource("events", "EventController")->except(["update", "destroy"]);
 
-        Route::get("external-events", "ExternalEventController");
+        Route::apiResource("external-events", "ExternalEventController")->only(["index", "show"]);
 
 
         Route::prefix("bulletin-board")->group(function () {
