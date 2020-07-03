@@ -13,6 +13,9 @@ class Forum extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
+    const POST_TYPES_ADMINS = "admins";
+    const POST_TYPES_ALL_USERS = "all_users";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +24,7 @@ class Forum extends Model implements HasMedia
     protected $fillable = [
         'designation',
         'details',
+        'posts_type',
     ];
 
     /**
@@ -58,6 +62,7 @@ class Forum extends Model implements HasMedia
 
     /**
      *  Sort query depend on giving data
+     *
      * @param Builder $query
      * @param $field
      * @param $dir

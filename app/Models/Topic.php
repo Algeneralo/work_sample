@@ -37,6 +37,11 @@ class Topic extends Model implements HasMedia
             });
     }
 
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class);
+}
+
     public function getCoverAttribute()
     {
         return optional($this->getFirstMedia("cover"))->getFullUrl();

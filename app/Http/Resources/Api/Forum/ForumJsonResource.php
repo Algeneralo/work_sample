@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\Forum;
 
+use App\Models\Forum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class ForumJsonResource extends JsonResource
             "topics_count" => $this->topics()->count(),
             "comments_count" => $this->comments()->count(),
             "details" => $this->details,
+            "ability_to_create_topics"=>$this->posts_type==Forum::POST_TYPES_ALL_USERS
         ];
     }
 }

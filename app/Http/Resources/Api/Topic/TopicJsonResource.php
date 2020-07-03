@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\Topic;
 
+use App\Models\Forum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +24,8 @@ class TopicJsonResource extends JsonResource
             "comments_count" => $this->comments()->count(),
             "likes_count" => $this->likersCount(),
             "details" => $this->details,
-            "is_liked" => $this->isLikedBy(auth()->user())
+            "is_liked" => $this->isLikedBy(auth()->user()),
+            "ability_to_add_comments"=>$this->forum->posts_type==Forum::POST_TYPES_ALL_USERS
         ];
     }
 }

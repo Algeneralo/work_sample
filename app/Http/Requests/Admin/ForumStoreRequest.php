@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Forum;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ForumStoreRequest extends FormRequest
@@ -27,6 +29,7 @@ class ForumStoreRequest extends FormRequest
             'designation' => 'required',
             'details' => 'required',
             'image' => 'required|image',
+            'posts_type' => ["required", Rule::in(Forum::POST_TYPES_ALL_USERS, Forum::POST_TYPES_ADMINS)],
         ];
     }
 }

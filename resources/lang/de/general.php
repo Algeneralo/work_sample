@@ -110,6 +110,9 @@ return [
     "select-alumni" => "Alumni auswählen",
     "no-comments" => "Keine Beiträge gefunden",
     "no-topics" => "Keine Einträge gefunden",
+    "eligibility-for-new-posts" => "Berechtigung für neue Beiträge",
+    "for-admins" => "Nur für Admins",
+    "for-all-users" => "Für alle Nutzer",
 
     //schwarzes-brett
     "bulletin-board" => "Schwarzes Brett",

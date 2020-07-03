@@ -32,6 +32,16 @@
                                                value="{{old("designation")}}" required>
                                     </div>
                                 </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>@lang("general.eligibility-for-new-posts")</label>
+                                        <select name="posts_type" class="form-control select2">
+                                            <option value="{{\App\Models\Forum::POST_TYPES_ADMINS}}"
+                                                    selected>@lang("general.for-admins")</option>
+                                            <option value="{{\App\Models\Forum::POST_TYPES_ALL_USERS}}">@lang("general.for-all-users")</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
@@ -68,4 +78,5 @@
     <script src="{{asset("/js/admin/pages/forum.app.js")}}"></script>
     @include("plugins.jquery-validate")
     @include("plugins.editor")
+    @include("plugins.select2")
 @endpush

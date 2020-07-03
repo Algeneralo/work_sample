@@ -26,6 +26,7 @@ class ForumTopicController extends ApiController
     {
         $topics = new TopicResource(
             Topic::search(request("search"))
+                ->with("forum:id,posts_type")
                 ->where("forum_id", $forum->id)
                 ->orderByDesc("created_at")
                 ->paginate(10)
@@ -43,14 +44,18 @@ class ForumTopicController extends ApiController
      */
     public function store(TopicStoreRequest $request, Forum $forum)
     {
+        abort_if($forum->posts_type == Forum::POST_TYPES_ADMINS, Response::HTTP_FORBIDDEN);
+
         return DB::transaction(function () use ($request, $forum) {
             $request->merge(["forum_id" => $forum->id]);
             /** @var Topic $topic */
             $topic = Topic::query()->create($request->all());
             $topic->addMediaFromRequest("image")
                 ->toMediaCollection("cover");
-            if ($topic)
+            if ($topic) {
+                $topic->load("forum:id,posts_type");
                 return $this->createResponse(["topic" => new TopicJsonResource($topic)]);
+            }
             return $this->failResponse();
         });
     }
@@ -60,7 +65,7 @@ class ForumTopicController extends ApiController
         auth()->user()->toggleLike($topic);
         return $this->successResponse([
             "topic_id" => $topic->id,
-            "is_liked" => auth()->user()->hasLiked($topic)
+            "is_liked" => auth()->user()->hasLiked($topic),
         ]);
     }
 }
