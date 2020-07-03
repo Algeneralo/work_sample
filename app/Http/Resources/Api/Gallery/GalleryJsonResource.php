@@ -20,12 +20,13 @@ class GalleryJsonResource extends JsonResource
             "file" => $this->cover,
             "file_type" => $this->cover_type,
             "title" => $this->title,
+            "date" => $this->created_at->format("d.m.Y"),
             $this->mergeWhen($request->show, function () {
                 return [
                     "details" => $this->details,
-                    "linked_friends"=>AlumniJsonResource::collection($this->linkedFriends)
+                    "linked_friends" => AlumniJsonResource::collection($this->linkedFriends),
                 ];
-            })
+            }),
         ];
     }
 }
