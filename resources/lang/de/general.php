@@ -43,6 +43,7 @@ return [
     "last-months" => "letzte :month Monate",
     "no-data-found" => "Keine übereinstimmenden Aufzeichnungen gefunden",
     "Drag photo" => "Foto hierher ziehen",
+    "Drag photo or video" => "Foto oder Video hierher ziehen",
     "drag-voice" => "Audiodatei hierher ziehen",
     "or" => "oder",
     "Select a file" => "Datei auswählen",

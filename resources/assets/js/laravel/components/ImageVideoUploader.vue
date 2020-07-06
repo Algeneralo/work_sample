@@ -13,7 +13,7 @@
 
         <div v-show="!uploadedFile.length">
             <img src="/media/icons/file-upload.svg" alt="">
-            <p>{{trans("general.Drag photo")}}</p>
+            <p>{{trans("general.Drag photo or video")}}</p>
             <div>{{trans("general.or")}}</div>
             <div class="file-input form-group">
                 <label for="file" id="uploadButton">{{trans("general.Select a file")}}</label>
