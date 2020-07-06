@@ -18,8 +18,11 @@ class EventJsonResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->name,
-            "date" => $this->date->format("d.m.Y"),
-            "time" => $this->from_to_time,
+            "formatted_date" => $this->date->format("d.m.Y"),
+            "formatted_time" => $this->from_to_time,
+            "date" => $this->date->format("Y-m-d"),
+            "start_time" => $this->start_time->format("H:i:s"),
+            "end_time" => $this->start_time->format("H:i:s"),
             "cover" => $this->cover,
             //get only those values if it's a show method
             $this->mergeWhen($request->has("show"), function () {
