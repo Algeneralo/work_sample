@@ -15,8 +15,6 @@ class AlumniProfileController extends ApiController
     {
         return $this->successResponse([
             "user" => new UserJsonResource(auth()->user()),
-            "universities" => University::query()->select("id", "name")->get(),
-            "degreePrograms" => DegreeProgram::query()->select("id", "name")->get(),
         ]);
     }
 
@@ -27,8 +25,6 @@ class AlumniProfileController extends ApiController
             auth()->user()->update($request->only(auth()->user()->getFillable()));
             return $this->successResponse([
                 "user" => new UserJsonResource(auth()->user()),
-                "universities" => University::query()->select("id", "name")->get(),
-                "degreePrograms" => DegreeProgram::query()->select("id", "name")->get(),
             ]);
         });
     }
@@ -45,8 +41,8 @@ class AlumniProfileController extends ApiController
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'dob' => 'required',
-            'university_id' => ['exists:universities,id', Rule::requiredIf(!auth()->user()->is_team_member)],
-            'degree_program_id' => ['exists:degree_programs,id', Rule::requiredIf(!auth()->user()->is_team_member)],
+            'education_experiences' => 'array|sometimes',
+            'work_experiences' => 'array|sometimes',
             'alumni_year' => [Rule::requiredIf(!auth()->user()->is_team_member)],
             'telephone' => 'required|max:50',
             'mobile' => 'required|max:50',
@@ -65,7 +61,7 @@ class AlumniProfileController extends ApiController
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
             return $this->successResponse([
-                "image" => auth()->user()->avatar
+                "image" => auth()->user()->avatar,
             ]);
         });
     }

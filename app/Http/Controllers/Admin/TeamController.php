@@ -49,7 +49,9 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        return view('admin.my-network.team.edit', compact("team"));
+        $educationExperiences = $team->educationExperiences();
+        $workExperiences = $team->workExperiences();
+        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences"));
     }
 
     /**

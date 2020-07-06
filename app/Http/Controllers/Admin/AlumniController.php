@@ -27,12 +27,12 @@ class AlumniController extends Controller
                 "results" => collect($alumni->items())->map(function ($item) {
                     return [
                         "id" => $item->id,
-                        "text" => $item->name
+                        "text" => $item->name,
                     ];
                 })->toArray(),
                 "pagination" => [
-                    "more" => $alumni->hasMorePages()
-                ]
+                    "more" => $alumni->hasMorePages(),
+                ],
             ]);
         }
         return view('admin.my-network.alumni.index');
@@ -44,9 +44,7 @@ class AlumniController extends Controller
      */
     public function create(Request $request)
     {
-        $universities = University::all();
-        $degreePrograms = DegreeProgram::all();
-        return view('admin.my-network.alumni.create', compact("degreePrograms", "universities"));
+        return view('admin.my-network.alumni.create');
     }
 
     /**
@@ -60,6 +58,13 @@ class AlumniController extends Controller
             $alumnus->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
+            if ($request->has("experiences.education")) {
+                $alumnus->experiences()->createMany($request->input("experiences.education"));
+            }
+            if ($request->has("experiences.work")) {
+                $alumnus->experiences()->createMany($request->input("experiences.work"));
+            }
+
         });
         session()->flash("success", trans("messages.success.created"));
         return redirect()->route('admin.my-network.alumni.index');
@@ -72,10 +77,10 @@ class AlumniController extends Controller
      */
     public function edit(Request $request, Alumnus $alumnus)
     {
-        $universities = University::all();
-        $degreePrograms = DegreeProgram::all();
-        $alumnus->load("participatedEvents");
-        return view('admin.my-network.alumni.edit', compact("alumnus", "degreePrograms", "universities"));
+        $alumnus->load("participatedEvents", "experiences");
+        $educationExperiences = $alumnus->educationExperiences();
+        $workExperiences = $alumnus->workExperiences();
+        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences"));
     }
 
     /**
@@ -97,6 +102,14 @@ class AlumniController extends Controller
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
         }
+        $alumnus->experiences()->delete();
+
+        if ($request->has("experiences.education")) {
+            $alumnus->experiences()->createMany($request->input("experiences.education"));
+        }
+        if ($request->has("experiences.work")) {
+            $alumnus->experiences()->createMany($request->input("experiences.work"));
+        }
         session()->flash("success", trans("messages.success.updated"));
 
         return redirect()->back();
@@ -114,6 +127,7 @@ class AlumniController extends Controller
 
     /**
      * Block/unblock alumnus
+     *
      * @param Alumnus $alumnus
      * @return RedirectResponse
      */

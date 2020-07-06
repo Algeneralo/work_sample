@@ -48,7 +48,7 @@ class Team extends Model implements HasMedia
      */
     protected $casts = [
         'id' => 'integer',
-        "dob" => "date"
+        "dob" => "date",
     ];
     protected $hidden = ["password"];
 
@@ -59,6 +59,20 @@ class Team extends Model implements HasMedia
         });
     }
 
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class, "alumnus_id");
+    }
+
+    public function educationExperiences()
+    {
+        return $this->experiences->where("type", Experience::EDUCATION_EXPERIENCE);
+    }
+
+    public function workExperiences()
+    {
+        return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
+    }
 
     //Accessors
     public function getNameAttribute()

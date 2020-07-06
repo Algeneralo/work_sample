@@ -104,24 +104,6 @@
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <div class="form-group">
-                                <label>{{trans("general.university")}}</label>
-                                <select class="select2 w-100" name="university_id">
-                                    @foreach($universities as $item)
-                                        <option @if($alumnus->university_id==$item->id) selected
-                                                @endif  value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans("general.degree-program")}}</label>
-                                <select class="select2 w-100" name="degree_program_id">
-                                    @foreach($degreePrograms as $item)
-                                        <option @if($alumnus->degree_program_id==$item->id) selected
-                                                @endif value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"
                                              :input-attr="{name:'alumni_year',required:'required','data-change-v-model-value':'{\'alumniYear\':\'{{$alumnus->alumni_year}}\'}'}"
@@ -141,6 +123,8 @@
                                 <textarea name="description" cols="30" rows="4"
                                           class="form-control">{{$alumnus->description}}</textarea>
                             </div>
+                            @livewire("admin.experience.index",["type" => "education","experiences" => $educationExperiences])
+                            @livewire("admin.experience.index",["type" => "work","experiences" => $workExperiences])
                         </div>
                     </div>
                 </div>

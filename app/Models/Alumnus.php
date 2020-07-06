@@ -15,7 +15,7 @@ use Spatie\MediaLibrary\Models\Media;
 class Alumnus extends Authenticatable implements HasMedia
 
 {
-    use SoftDeletes, HasMediaTrait, HasApiTokens,Messagable;
+    use SoftDeletes, HasMediaTrait, HasApiTokens, Messagable;
 
     static $IS_TEAM_MEMBER = 0;
     /**
@@ -56,7 +56,7 @@ class Alumnus extends Authenticatable implements HasMedia
         'university_id' => 'integer',
         'degree_program_id' => 'integer',
         'is_team_member' => 'boolean',
-        "dob" => "date"
+        "dob" => "date",
     ];
 
     /**
@@ -115,6 +115,21 @@ class Alumnus extends Authenticatable implements HasMedia
     public function linkedGalleries()
     {
         return $this->belongsToMany(Gallery::class, "gallery_linked_friends", "alumni_id");
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function educationExperiences()
+    {
+        return $this->experiences->where("type", Experience::EDUCATION_EXPERIENCE);
+    }
+
+    public function workExperiences()
+    {
+        return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
     }
 
     public static function search($string)

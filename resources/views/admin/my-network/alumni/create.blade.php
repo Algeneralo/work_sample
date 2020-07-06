@@ -87,22 +87,8 @@
                                              :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
-                            <div class="form-group">
-                                <label>{{trans("general.university")}}</label>
-                                <select class="select2 w-100" name="university_id">
-                                    @foreach($universities as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>{{trans("general.degree-program")}}</label>
-                                <select class="select2 w-100" name="degree_program_id">
-                                    @foreach($degreePrograms as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            @livewire("admin.experience.index",["type" => "education"])
+                            @livewire("admin.experience.index",["type" => "work"])
                             <div class="form-group">
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"

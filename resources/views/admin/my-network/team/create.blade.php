@@ -64,6 +64,8 @@
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <address-component></address-component>
+                            @livewire("admin.experience.index",["type" => "education"])
+                            @livewire("admin.experience.index",["type" => "work"])
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="form-group">

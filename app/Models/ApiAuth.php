@@ -68,14 +68,19 @@ class ApiAuth extends Authenticatable implements HasMedia
     protected $appends = ["name", "avatar"];
     protected $hidden = ["password"];
 
-    public function university()
+    public function experiences()
     {
-        return $this->belongsTo(University::class);
+        return $this->hasMany(Experience::class, "alumnus_id");
     }
 
-    public function degreeProgram()
+    public function educationExperiences()
     {
-        return $this->belongsTo(DegreeProgram::class);
+        return $this->experiences->where("type", Experience::EDUCATION_EXPERIENCE);
+    }
+
+    public function workExperiences()
+    {
+        return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
     }
 
     //Accessors

@@ -107,6 +107,8 @@
                                 <label for="">@lang("general.job-title")</label>
                                 <input type="text" class="form-control" name="job_title" value="{{$team->job_title}}">
                             </div>
+                            @livewire("admin.experience.index",["type" => "education","experiences" => $educationExperiences])
+                            @livewire("admin.experience.index",["type" => "work","experiences" => $workExperiences])
                         </div>
                     </div>
                 </div>

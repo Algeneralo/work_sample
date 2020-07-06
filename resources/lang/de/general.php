@@ -83,6 +83,20 @@ return [
     "new-team" => "Neues Teammitglied anlegen",
     "message" => "Nachricht",
     "job-title" => "Job nach dem Studium/nach der Berufsausbildung",
+    "experience" => [
+        "education" => [
+            "label" => "Ausbildung",
+            "place" => "Hochschule oder Ausbildungsstätte",
+            "title" => "(Angestrebter) Abschluss",
+        ],
+        "work" => [
+            "label" => "Berufserfahrung",
+            "place" => "Arbeitgeber",
+            "title" => "Berufsbezeichnung",
+        ],
+        "period" => "Zeitraum",
+    ],
+
 
     //Event pages (Veranstaltung)
     "event" => "Veranstaltungen",
