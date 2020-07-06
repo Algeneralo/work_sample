@@ -23,6 +23,13 @@ class AlumniProfileController extends ApiController
         $validated = $this->validate($request, $this->rules());
         return \DB::transaction(function () use ($request) {
             auth()->user()->update($request->only(auth()->user()->getFillable()));
+            if ($request->has("work_experiences") || $request->has("education_experiences"))
+                auth()->user()->experiences()->delete();
+            
+            if ($request->has("work_experiences"))
+                auth()->user()->experiences()->createMany(json_decode($request->input("work_experiences"), true));
+            if ($request->has("education_experiences"))
+                auth()->user()->experiences()->createMany(json_decode($request->input("education_experiences"), true));
             return $this->successResponse([
                 "user" => new UserJsonResource(auth()->user()),
             ]);
@@ -41,8 +48,8 @@ class AlumniProfileController extends ApiController
             'postcode' => 'required|max:40',
             'city' => 'required|max:40',
             'dob' => 'required',
-            'education_experiences' => 'array|sometimes',
-            'work_experiences' => 'array|sometimes',
+            'education_experiences' => 'json|sometimes',
+            'work_experiences' => 'json|sometimes',
             'alumni_year' => [Rule::requiredIf(!auth()->user()->is_team_member)],
             'telephone' => 'required|max:50',
             'mobile' => 'required|max:50',
