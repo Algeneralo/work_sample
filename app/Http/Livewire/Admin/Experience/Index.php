@@ -24,20 +24,12 @@ class Index extends Component
 
     public function updated($field)
     {
-        $this->validateOnly($field, [
-            "place" => "required",
-            "title" => "required",
-            "period" => "required",
-        ]);
+        $this->validateOnly($field, $this->rules(), [], $this->attributes());
     }
 
     public function add()
     {
-        $this->validate([
-            "place" => "required",
-            "title" => "required",
-            "period" => "required",
-        ]);
+        $this->validate($this->rules(), [], $this->attributes());
         $this->experiences[] = [
             "place" => $this->place,
             "title" => $this->title,
@@ -49,6 +41,24 @@ class Index extends Component
     public function remove($id)
     {
         unset($this->experiences[$id]);
+    }
+
+    private function rules()
+    {
+        return [
+            "place" => "required",
+            "title" => "required",
+            "period" => "required",
+        ];
+    }
+
+    private function attributes()
+    {
+        return [
+            "place" => trans("general.experience." . $this->type . ".place"),
+            "title" => trans("general.experience." . $this->type . ".title"),
+            "period" => trans("general.experience.period"),
+        ];
     }
 
     /**

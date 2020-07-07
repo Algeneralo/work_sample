@@ -1,3 +1,11 @@
+@section("css_after")
+    @parent
+    <style>
+        .invalid-feedback {
+            word-break: break-all !important;
+        }
+    </style>
+@endsection
 <div>
     <div class="from-group">
         <label for="">@lang("general.experience.${type}.label")</label>
