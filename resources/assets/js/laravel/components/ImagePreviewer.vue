@@ -1,8 +1,8 @@
 <template>
     <div class="avatar-upload">
         <div class="avatar-edit">
-            <input type='file' :name="name" id="imageUpload" accept="image/*" @change="readURL"/>
-            <label for="imageUpload" class="d-flex justify-content-center align-items-center"><i
+            <input type='file' :name="name" :id="name" accept="image/*" @change="readURL"/>
+            <label :for="name" class="d-flex justify-content-center align-items-center"><i
                     class="fas fa-pencil-alt"></i>
             </label>
         </div>
