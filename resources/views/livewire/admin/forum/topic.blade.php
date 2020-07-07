@@ -90,9 +90,8 @@
                                                 <span class="text-gray">{{$item->created_at->format("d.m.Y")}}</span>
                                                 <span>{{count($item->comments)}} {{trans("general.contributions")}}</span>
                                             </div>
-                                            <div class="icon" wire:ignore>
-                                                <div class="text-primary delete-button" data-id="{{$item->id}}"
-                                                     wire:key="{{rand() * $item->id }}">
+                                            <div class="icon" wire:ignore  wire:key="heart{{rand() * $item->id }}">
+                                                <div class="text-primary delete-button" data-id="{{$item->id}}">
                                                     <i class="fa fa-trash-o font-size-xl"></i>
                                                 </div>
                                                 <div>
@@ -106,8 +105,7 @@
                                                 </div>
                                                 <div class="text-primary mr-100 py-5">
                                                     <div>
-                                                        <i wire:key="heart{{rand() * $item->id }}"
-                                                           wire:click="toggleLike({{$item->id}})"
+                                                        <i wire:click="toggleLike({{$item->id}})"
                                                            class="fa @if($item->isLikedBy(auth()->guard("alumni")->id())) fa-heart active @else fa-heart-o @endif  heart-button"
                                                            aria-hidden="true"></i>
                                                     </div>
