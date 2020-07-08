@@ -76,6 +76,13 @@ class EventController extends Controller
     public function update(EventUpdateRequest $request, Event $event)
     {
         \DB::transaction(function () use ($request, $event) {
+            [$startTime, $endTime] = explode("~", $request->time);
+
+            $request->merge([
+                "start_time" => trim($startTime),
+                "end_time" => trim($endTime),
+            ]);
+
             $event->update($request->only($event->getFillable()));
             if ($request->hasFile("image")) {
                 $event->clearMediaCollection("cover");
