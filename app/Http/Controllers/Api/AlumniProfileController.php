@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Models\Experience;
 use App\Http\Resources\Api\User\UserJsonResource;
 use App\Models\DegreeProgram;
 use App\Models\University;
@@ -25,15 +26,15 @@ class AlumniProfileController extends ApiController
             auth()->user()->update($request->only(auth()->user()->getFillable()));
 
             if ($request->has("work_experiences")) {
-                auth()->user()->workExperiences()->delete();
+                auth()->user()->experiences()->where("type", Experience::WORK_EXPERIENCE)->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("work_experiences"), true));
             }
             if ($request->has("education_experiences")) {
-                auth()->user()->educationExperiences()->delete();
+                auth()->user()->experiences()->where("type", Experience::EDUCATION_EXPERIENCE)->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("education_experiences"), true));
             }
             if ($request->has("voluntary_experiences")) {
-                auth()->user()->voluntaryExperiences()->delete();
+                auth()->user()->experiences()->where("type", Experience::VOLUNTARY_EXPERIENCE)->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("voluntary_experiences"), true));
             }
 
