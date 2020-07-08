@@ -58,11 +58,10 @@ class AlumniController extends Controller
             $alumnus->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
-            if ($request->has("experiences.education")) {
-                $alumnus->experiences()->createMany($request->input("experiences.education"));
-            }
-            if ($request->has("experiences.work")) {
-                $alumnus->experiences()->createMany($request->input("experiences.work"));
+            if ($request->has("experiences")) {
+                foreach ($request->input("experiences") as $experience) {
+                    $alumnus->experiences()->createMany($experience);
+                }
             }
 
         });
@@ -80,7 +79,8 @@ class AlumniController extends Controller
         $alumnus->load("participatedEvents", "experiences");
         $educationExperiences = $alumnus->educationExperiences();
         $workExperiences = $alumnus->workExperiences();
-        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences"));
+        $voluntaryExperiences = $alumnus->voluntaryExperiences();
+        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences","voluntaryExperiences"));
     }
 
     /**
@@ -104,12 +104,12 @@ class AlumniController extends Controller
         }
         $alumnus->experiences()->delete();
 
-        if ($request->has("experiences.education")) {
-            $alumnus->experiences()->createMany($request->input("experiences.education"));
+        if ($request->has("experiences")) {
+            foreach ($request->input("experiences") as $experience) {
+                $alumnus->experiences()->createMany($experience);
+            }
         }
-        if ($request->has("experiences.work")) {
-            $alumnus->experiences()->createMany($request->input("experiences.work"));
-        }
+
         session()->flash("success", trans("messages.success.updated"));
 
         return redirect()->back();

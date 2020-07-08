@@ -51,10 +51,18 @@ class RegisterController extends AuthController
         $this->validate($request, $this->rules());
         return \DB::transaction(function () use ($request) {
             $request->merge([
-                "activation_code" => $activationCode = Str::random(self::$ACTIVATION_CODE_LENGTH)
+                "activation_code" => $activationCode = Str::random(self::$ACTIVATION_CODE_LENGTH),
             ]);
 
             $user = self::$MODEL::query()->create($request->all());
+            if ($request->has("work_experiences"))
+                $user->experiences()->createMany(json_decode($request->input("work_experiences"), true));
+
+            if ($request->has("education_experiences"))
+                $user->experiences()->createMany(json_decode($request->input("education_experiences"), true));
+
+            if ($request->has("education_experiences"))
+                $user->experiences()->createMany(json_decode($request->input("education_experiences"), true));
 
             $user->addMediaFromRequest("image")
                 ->preservingOriginal()

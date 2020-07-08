@@ -23,13 +23,20 @@ class AlumniProfileController extends ApiController
         $validated = $this->validate($request, $this->rules());
         return \DB::transaction(function () use ($request) {
             auth()->user()->update($request->only(auth()->user()->getFillable()));
-            if ($request->has("work_experiences") || $request->has("education_experiences"))
-                auth()->user()->experiences()->delete();
-            
-            if ($request->has("work_experiences"))
+
+            if ($request->has("work_experiences")) {
+                auth()->user()->workExperiences()->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("work_experiences"), true));
-            if ($request->has("education_experiences"))
+            }
+            if ($request->has("education_experiences")) {
+                auth()->user()->educationExperiences()->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("education_experiences"), true));
+            }
+            if ($request->has("voluntary_experiences")) {
+                auth()->user()->voluntaryExperiences()->delete();
+                auth()->user()->experiences()->createMany(json_decode($request->input("voluntary_experiences"), true));
+            }
+
             return $this->successResponse([
                 "user" => new UserJsonResource(auth()->user()),
             ]);

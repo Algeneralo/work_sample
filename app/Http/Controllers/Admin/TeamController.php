@@ -51,7 +51,8 @@ class TeamController extends Controller
     {
         $educationExperiences = $team->educationExperiences();
         $workExperiences = $team->workExperiences();
-        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences"));
+        $voluntaryExperiences = $team->voluntaryExperiences();
+        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences","voluntaryExperiences"));
     }
 
     /**

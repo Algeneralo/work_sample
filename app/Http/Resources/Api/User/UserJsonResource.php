@@ -34,6 +34,7 @@ class UserJsonResource extends JsonResource
             "job_title" => $this->job_title,
             "work_experiences" =>  ExperiencesJsonResource::collection($this->workExperiences()),
             "education_experiences" =>ExperiencesJsonResource::collection($this->educationExperiences()),
+            "voluntary_experiences" =>ExperiencesJsonResource::collection($this->voluntaryExperiences()),
             $this->mergeWhen(!$this->is_team_member, function () {
                 return [
                     "show_job_title_field" => $this->alumni_year <= Carbon::now()->year,

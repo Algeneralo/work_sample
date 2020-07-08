@@ -94,6 +94,11 @@ return [
             "place" => "Arbeitgeber",
             "title" => "Berufsbezeichnung",
         ],
+        "voluntary" => [
+            "label" => "Freiwilligendienst",
+            "place" => "Organisation",
+            "title" => "Tätigkeit",
+        ],
         "period" => "Zeitraum",
     ],
 

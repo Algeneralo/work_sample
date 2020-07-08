@@ -132,6 +132,11 @@ class Alumnus extends Authenticatable implements HasMedia
         return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
     }
 
+    public function voluntaryExperiences()
+    {
+        return $this->experiences->where("type", Experience::VOLUNTARY_EXPERIENCE);
+    }
+
     public static function search($string)
     {
         return empty($string) ? static::query()
