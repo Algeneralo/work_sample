@@ -22,6 +22,9 @@ class StoryJsonResource extends JsonResource
                 $this->alumnus->name,
                 $this->alumnus->avatar,
             ],
+            $this->mergeWhen(!$request->has("show"), [
+                "short_details" => mb_strimwidth(strip_tags($this->details), 0, 300, '....'),
+            ]),
             $this->mergeWhen($request->show, function () {
                 return [
                     "details" => $this->details,
