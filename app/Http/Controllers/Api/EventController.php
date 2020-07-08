@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Http\Requests\Api\EventStoreRequest;
 use App\Http\Resources\Api\Event\EventJsonResource;
@@ -28,6 +29,14 @@ class EventController extends ApiController
                 ->when(request()->has("userEvents"), function (Builder $query) {
                     $query->whereHas("participants", function (Builder $query) {
                         $query->where("alumnus_id", auth()->id());
+                        //if request has period parameter, get the event depend on it
+                    })->when(request()->has("period"), function (Builder $query) {
+
+                        $query->when(request("period") == "past", function (Builder $query) {
+                            $query->whereDate("date", "<", Carbon::now()->toDateString());
+                        })->when(request("period") == "future", function (Builder $query) {
+                            $query->whereDate("date", ">=", Carbon::now()->toDateString());
+                        });
                     });
                 })
                 ->when(request()->has("lastChanged"), function (Builder $query) {
@@ -76,7 +85,7 @@ class EventController extends ApiController
      */
     public function show(Event $event)
     {
-        abort_if($event->type == Event::EXTERNAL_EVENTS,Response::HTTP_FORBIDDEN);
+        abort_if($event->type == Event::EXTERNAL_EVENTS, Response::HTTP_FORBIDDEN);
         request()->merge(["show" => true]);
         $event = new EventJsonResource($event);
         return $this->successResponse(["event" => $event]);
