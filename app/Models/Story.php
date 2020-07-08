@@ -42,7 +42,7 @@ class Story extends Model implements HasMedia
 
     public function alumnus()
     {
-        return $this->belongsTo(Alumnus::class, "alumnus_id");
+        return $this->belongsTo(Alumnus::class, "alumnus_id")->withTrashed();
     }
 
     public function getCoverAttribute()
