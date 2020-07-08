@@ -16,3 +16,4 @@ _ide_helper*
 draft.yaml
 *.zip
 *.rar
+/storage/medialibrary/temp/
