@@ -62,6 +62,12 @@
                                 </a>
                             </th>
                             <th>
+                                <a wire:click.prevent="sortBy('name')" role="button" href="#">
+                                    Name
+                                    @include('layouts.partials._sort-icon', ['field' => 'name'])
+                                </a>
+                            </th>
+                            <th>
                                 <a wire:click.prevent="sortBy('date')" role="button" href="#">
                                     {{trans("general.date")}}
                                     @include('layouts.partials._sort-icon', ['field' => 'date'])
@@ -89,6 +95,7 @@
                         <tbody>
                             <tr>
                                 <td class="text-primary">{{$item->id}}</td>
+                                <td>{{$item->name}}</td>
                                 <td>{{$item->date->format("d.m.Y")}}</td>
                                 <td>{{$item->from_to_time}}</td>
                                 <td>{{$item->category->name}}</td>
