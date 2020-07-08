@@ -18,6 +18,7 @@ class StoryJsonResource extends JsonResource
             "id" => $this->id,
             "cover" => $this->cover,
             "title" => $this->title,
+            "date" => $this->created_at->diffForHumans(),
             "alumnus" => [
                 $this->alumnus->name,
                 $this->alumnus->avatar,
