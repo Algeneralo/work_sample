@@ -35,8 +35,6 @@ class ApiAuth extends Authenticatable implements HasMedia
         'email',
         'password',
         'dob',
-        'university_id',
-        'degree_program_id',
         'alumni_year',
         'description',
         'telephone',
