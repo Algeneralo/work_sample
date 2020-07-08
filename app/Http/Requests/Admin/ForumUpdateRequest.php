@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Forum;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ForumUpdateRequest extends FormRequest
@@ -24,7 +26,10 @@ class ForumUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'forum' => 'required',
-        ];
+            'designation' => 'required',
+            'details' => 'required',
+            'image' => 'image',
+            'posts_type' => ["required", Rule::in(Forum::POST_TYPES_ALL_USERS, Forum::POST_TYPES_ADMINS)],
+            ];
     }
 }

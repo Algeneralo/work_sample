@@ -4,7 +4,8 @@ return [
 
     // actions / buttons
     "action" => "Aktion",
-    "show" => "Aufrufen",
+    "show"=>"Anzeigen",
+    "call" => "Aufrufen",
     "view" => "Ansehen",
     'update' => 'aktualisieren',
     'submit' => 'einreichen',
@@ -126,6 +127,7 @@ return [
     "subjects" => "Themen",
     "contributions" => "beiträge",
     "add-comment" => "kommentar hinzufügen",
+    "subject" => "Thema",
     "new-subject" => "Neues Thema anlegen",
     "select-alumni" => "Alumni auswählen",
     "no-comments" => "Keine Beiträge gefunden",

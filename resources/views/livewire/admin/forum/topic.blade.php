@@ -19,11 +19,11 @@
         }
 
         .subjects .nav-link .subject-card .text {
-            width: 75%;
+            width: 65%;
         }
 
         .subjects .nav-link .subject-card .icon {
-            width: 25%;
+            width: 35%;
         }
 
         .subjects .nav-link .subject-card .icon i {
@@ -90,9 +90,20 @@
                                                 <span class="text-gray">{{$item->created_at->format("d.m.Y")}}</span>
                                                 <span>{{count($item->comments)}} {{trans("general.contributions")}}</span>
                                             </div>
-                                            <div class="icon" wire:ignore  wire:key="heart{{rand() * $item->id }}">
-                                                <div class="text-primary delete-button" data-id="{{$item->id}}">
-                                                    <i class="fa fa-trash-o font-size-xl"></i>
+                                            <div class="icon d-flex justify-content-center" wire:ignore
+                                                 wire:key="icons{{rand() * $item->id }}">
+                                                <div class="text-primary mr-20 py-5">
+                                                    <div>
+                                                        <i wire:click="toggleLike({{$item->id}})"
+                                                           class="fa @if($item->isLikedBy(auth()->guard("alumni")->id())) fa-heart active @else fa-heart-o @endif  heart-button"
+                                                           aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center mr-1">
+                                                    <span href="{{route("admin.forum.topics.edit",[$item->forum_id,$item->id])}}"
+                                                          class="link">
+                                                        <i class="fa fa-cog text-primary"></i>
+                                                    </span>
                                                 </div>
                                                 <div>
                                                     <span data-toggle="collapse" href="#insertCommentCollapse"
@@ -100,15 +111,12 @@
                                                           aria-controls="insertCommentCollapse">
                                                         <img src="{{asset("/media/icons/insert-comment.png")}}"
                                                              class="d-inline-block float-right mr-20 pr-1"
-                                                             style="width: 34%;padding-right: 3px;">
+                                                             style="width: 54%;padding-right: 3px;">
                                                     </span>
                                                 </div>
-                                                <div class="text-primary mr-100 py-5">
-                                                    <div>
-                                                        <i wire:click="toggleLike({{$item->id}})"
-                                                           class="fa @if($item->isLikedBy(auth()->guard("alumni")->id())) fa-heart active @else fa-heart-o @endif  heart-button"
-                                                           aria-hidden="true"></i>
-                                                    </div>
+
+                                                <div class="text-primary delete-button" data-id="{{$item->id}}">
+                                                    <i class="fa fa-trash-o font-size-xl"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,21 +147,21 @@
                                  id="topic{{$item->id}}"
                                  role="tabpanel"
                                  aria-labelledby="home-tab">
-                               <div wire:key="comments{{rand() * $item->id}}">
-                                   <div class="collapse  p-20" id="insertCommentCollapse">
-                                       <div class="border border-primary rounded px-20 pt-30 pb-10">
-                                           <span class="text-primary font-w500 font-size-h5 w-100">
-                                               {{$item->title}}
-                                           </span>
-                                           <span class="w-100 d-block text-gray-light border-b-dashed my-10"></span>
-                                           <textarea class="form-control" wire:model.lazy="comment"
-                                                    ></textarea>
-                                           <button class="btn btn-primary float-right mt-10"
-                                                   wire:click="insertComment({{$item->id}})">@lang("general.send")</button>
-                                           <div class="clearfix"></div>
-                                       </div>
-                                   </div>
-                               </div>
+                                <div wire:key="comments{{rand() * $item->id}}">
+                                    <div class="collapse  p-20" id="insertCommentCollapse">
+                                        <div class="border border-primary rounded px-20 pt-30 pb-10">
+                                            <span class="text-primary font-w500 font-size-h5 w-100">
+                                                {{$item->title}}
+                                            </span>
+                                            <span class="w-100 d-block text-gray-light border-b-dashed my-10"></span>
+                                            <textarea class="form-control" wire:model.lazy="comment"
+                                            ></textarea>
+                                            <button class="btn btn-primary float-right mt-10"
+                                                    wire:click="insertComment({{$item->id}})">@lang("general.send")</button>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 @forelse($item->comments as $comment)
                                     <div class="row mx-0 px-20 py-30 @if($loop->index%2) bg-body @endif">
@@ -289,5 +297,8 @@
                 return timeline;
             }
         });
+        $(document).on("click", ".link", function () {
+            window.location.href = $(this).attr("href")
+        })
     </script>
 @endpush

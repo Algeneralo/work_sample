@@ -53,7 +53,8 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "mi
         Route::get("/", "ForumController@index")->name("forum.index");
         Route::get("/create", "ForumController@create")->name("forum.create");
         Route::post("/", "ForumController@store")->name("forum.store");
-        Route::get("/{forum}", "ForumController@show")->name("forum.show");
+        Route::get("/{forum}/show", "ForumController@show")->name("forum.show");
+        Route::get("/{forum}", "ForumController@edit")->name("forum.edit");
         Route::put("/{forum}", "ForumController@update")->name("forum.update");
 
         //Themen/Topic
@@ -61,7 +62,7 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "mi
             Route::get("/", "ForumTopicController@index")->name("topics.index");
             Route::get("/create", "ForumTopicController@create")->name("topics.create");
             Route::post("/", "ForumTopicController@store")->name("topics.store");
-            Route::get("/{topic}", "ForumTopicController@show")->name("topics.show");
+            Route::get("/{topic}", "ForumTopicController@edit")->name("topics.edit");
             Route::put("/{topic}", "ForumTopicController@update")->name("topics.update");
 
             Route::get("/{topic}/comments", "TopicCommentController@index")->name("topics.comments.index");

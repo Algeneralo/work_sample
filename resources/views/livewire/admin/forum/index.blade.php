@@ -78,6 +78,10 @@
                                 <td>{{$item->comments_count}}</td>
                                 <td>
                                     <a href="{{route("admin.forum.show",$item->id)}}">
+                                        <i class="fas fa-eye text-primary"></i>
+                                        <span class="font-italic">{{trans("general.show")}}</span>
+                                    </a>
+                                    <a href="{{route("admin.forum.edit",$item->id)}}">
                                         <i class="fas fa-cog text-primary"></i>
                                         <span class="font-italic">{{trans("general.edit")}}</span>
                                     </a>
