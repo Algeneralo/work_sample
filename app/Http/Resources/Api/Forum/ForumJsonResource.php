@@ -23,7 +23,7 @@ class ForumJsonResource extends JsonResource
             "topics_count" => $this->topics()->count(),
             "comments_count" => $this->comments()->count(),
             "details" => $this->details,
-            "ability_to_create_topics"=>$this->posts_type==Forum::POST_TYPES_ALL_USERS
+            "ability_to_create_topics" => (auth()->user()->is_team_member || $this->posts_type == Forum::POST_TYPES_ALL_USERS),
         ];
     }
 }

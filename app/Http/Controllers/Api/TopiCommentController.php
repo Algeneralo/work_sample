@@ -42,7 +42,7 @@ class TopiCommentController extends ApiController
      */
     public function store(CommentStoreRequest $request, Forum $forum, Topic $topic)
     {
-        abort_if($forum->posts_type==Forum::POST_TYPES_ADMINS,Response::HTTP_FORBIDDEN);
+        abort_if((!auth()->user()->is_team_member && $forum->posts_type == Forum::POST_TYPES_ADMINS), Response::HTTP_FORBIDDEN);
         return \DB::transaction(function () use ($request, $topic) {
             $comment = Comment::query()->create([
                 "comment" => $request->comment,
@@ -55,12 +55,12 @@ class TopiCommentController extends ApiController
         });
     }
 
-    public function toggleLike(Forum $forum, Topic $topic,Comment $comment)
+    public function toggleLike(Forum $forum, Topic $topic, Comment $comment)
     {
         auth()->user()->toggleLike($comment);
         return $this->successResponse([
             "comment_id" => $comment->id,
-            "is_liked" => auth()->user()->hasLiked($comment)
+            "is_liked" => auth()->user()->hasLiked($comment),
         ]);
     }
 }

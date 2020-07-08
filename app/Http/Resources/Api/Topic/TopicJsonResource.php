@@ -25,7 +25,7 @@ class TopicJsonResource extends JsonResource
             "likes_count" => $this->likersCount(),
             "details" => $this->details,
             "is_liked" => $this->isLikedBy(auth()->user()),
-            "ability_to_add_comments"=>$this->forum->posts_type==Forum::POST_TYPES_ALL_USERS
+            "ability_to_add_comments" => (auth()->user()->is_team_member || $this->posts_type == Forum::POST_TYPES_ALL_USERS),
         ];
     }
 }

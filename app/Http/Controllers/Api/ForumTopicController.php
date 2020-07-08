@@ -44,7 +44,7 @@ class ForumTopicController extends ApiController
      */
     public function store(TopicStoreRequest $request, Forum $forum)
     {
-        abort_if($forum->posts_type == Forum::POST_TYPES_ADMINS, Response::HTTP_FORBIDDEN);
+        abort_if((!auth()->user()->is_team_member && $forum->posts_type == Forum::POST_TYPES_ADMINS), Response::HTTP_FORBIDDEN);
 
         return DB::transaction(function () use ($request, $forum) {
             $request->merge(["forum_id" => $forum->id]);
