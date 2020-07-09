@@ -26,7 +26,7 @@ class StoryUpdateRequest extends FormRequest
         return [
             'title' => 'required',
             'details' => 'required',
-            'image' => 'image',
+            'image' => 'mimetypes:video/*,image/*',
             'alumnus_id' => 'required|exists:alumni,id',
         ];
     }

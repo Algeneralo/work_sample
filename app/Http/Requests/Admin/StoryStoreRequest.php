@@ -26,7 +26,7 @@ class StoryStoreRequest extends FormRequest
         return [
             'title' => 'required',
             'details' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|mimetypes:video/*,image/*',
             'alumnus_id' => 'required|exists:alumni,id',
         ];
     }

@@ -16,7 +16,8 @@ class StoryJsonResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "cover" => $this->cover,
+            "file" => $this->cover,
+            "file_type" => $this->cover_type,
             "title" => $this->title,
             "date" => $this->created_at->diffForHumans(),
             "alumnus" => [

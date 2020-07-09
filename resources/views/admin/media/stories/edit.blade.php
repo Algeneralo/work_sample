@@ -23,13 +23,6 @@
                     <div class="row">
                         <div class="col-xl-9">
                             <div class="row">
-                                <div class="col-md-3 col-xl-3">
-                                    <image-previewer :image-class="'rounded'"
-                                                     :src="'{{$story->cover}}'"
-                                                     :width="'160'"
-                                                     :height="'160'"
-                                    ></image-previewer>
-                                </div>
                                 <div class="col-md-6 col-xl-4">
                                     <div class="form-group">
                                         <label>{{trans("general.subject")}}</label>
@@ -52,6 +45,18 @@
                                     <textarea name="details" class="js-summernote"
                                               required>{!! $story->details !!}</textarea>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            @if($story->cover_type=="video")
+                                <video src="{{$story->cover}}" class="w-100" controls></video>
+                            @else
+                                <img src="{{$story->cover}}" alt="" class="img-fluid">
+                            @endif
+                            <div>
+                                <label for="" class="border-b w-100 mb-4"
+                                       style="border-bottom-style: dashed !important;">{{trans("general.image-upload")}}</label>
+                                <image-video-uploader :name="'image'"></image-video-uploader>
                             </div>
                         </div>
                     </div>
