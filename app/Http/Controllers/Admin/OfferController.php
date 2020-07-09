@@ -39,6 +39,7 @@ class OfferController extends Controller
         \DB::transaction(function () use ($request) {
             /** @var Offer $offer */
             $offer = Offer::create($request->all());
+            if ($request->has("image"))
             $offer->addMultipleMediaFromRequest(["image"])
                 ->each(function ($fileAdder) {
                     $fileAdder

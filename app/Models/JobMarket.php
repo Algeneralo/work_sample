@@ -25,7 +25,7 @@ class JobMarket extends Model implements HasMedia
         'beginning',
         'duration',
         'details',
-        "link"
+        "link",
     ];
 
     /**
@@ -49,13 +49,13 @@ class JobMarket extends Model implements HasMedia
         return empty($string) ? static::query()
             : static::where(function ($query) use ($string) {
                 $query->where('created_at', 'like', '%' . $string . '%')
-                ->orWhere("offer", 'like', '%' . $string . '%');
+                    ->orWhere("offer", 'like', '%' . $string . '%');
             });
     }
 
     public function getCoverAttribute()
     {
-        return optional($this->getFirstMedia("cover"))->getFullUrl();
+        return optional($this->getFirstMedia("cover"))->getFullUrl() ?? placeholder_image();
     }
 
     public function getWorkingHoursStringAttribute()

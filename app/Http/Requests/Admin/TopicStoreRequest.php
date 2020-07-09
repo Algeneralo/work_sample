@@ -26,7 +26,7 @@ class TopicStoreRequest extends FormRequest
         return [
             'title' => 'required',
             'details' => 'required',
-            'image' => 'required|image',
+            'image' => 'image',
         ];
     }
 }

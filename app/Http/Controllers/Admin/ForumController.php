@@ -41,9 +41,10 @@ class ForumController extends Controller
             /** @var Forum $forum */
             $forum = Forum::create($request->all());
 
-            $forum->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("cover");
+            if ($request->hasFile("image"))
+                $forum->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("cover");
         });
 
         session()->flash("success", trans("messages.success.created"));

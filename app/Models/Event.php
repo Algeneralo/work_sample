@@ -98,7 +98,7 @@ class Event extends Model implements HasMedia
 
     public function getCoverAttribute()
     {
-        return optional($this->getFirstMedia("cover"))->getFullUrl();
+        return optional($this->getFirstMedia("cover"))->getFullUrl() ?? placeholder_image();
     }
 
     public function getColorAttribute()

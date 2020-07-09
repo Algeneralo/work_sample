@@ -42,9 +42,10 @@ class JobMarketController extends Controller
             /** @var JobMarket $jobMarket */
             $jobMarket = JobMarket::create($request->all());
             $jobMarket->contact()->create($request->merge(["name" => $request->contact_name])->toArray());
-            $jobMarket->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("cover");
+            if ($request->hasFile("image"))
+                $jobMarket->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("cover");
         });
 
         session()->flash("success", trans("messages.success.created"));

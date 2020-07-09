@@ -30,7 +30,7 @@ class JobMarketStoreRequest extends FormRequest
             'working_hours' => 'required|in:full_time,part_time',
             'beginning' => 'required',
             'details' => 'required',
-            'image' => 'required|image',
+            'image' => 'image',
             'duration' => 'required',
             'city' => 'required',
             "link" => "required|url",

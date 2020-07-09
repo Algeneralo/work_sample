@@ -48,9 +48,12 @@ class EventController extends Controller
             /** @var Event $event */
             $event = Event::create($request->all());
             $event->participants()->attach($request->participants);
-            $event->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("cover");
+
+            if ($request->hasFile("image")) {
+                $event->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("cover");
+            }
         });
 
         session()->flash("success", trans("messages.success.created"));

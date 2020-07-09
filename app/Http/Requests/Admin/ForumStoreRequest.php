@@ -28,7 +28,7 @@ class ForumStoreRequest extends FormRequest
         return [
             'designation' => 'required',
             'details' => 'required',
-            'image' => 'required|image',
+            'image' => 'image',
             'posts_type' => ["required", Rule::in(Forum::POST_TYPES_ALL_USERS, Forum::POST_TYPES_ADMINS)],
         ];
     }

@@ -4,6 +4,7 @@
 if (!function_exists("check_if_menu_is_active")) {
     /**
      * Check if current url equal to this menu item
+
      * @param string $url
      * @param string $prefix
      * @param string $class css class
@@ -21,6 +22,7 @@ if (!function_exists("check_if_menu_is_active")) {
 if (!function_exists("string_to_color")) {
     /**
      * Generate color from giving string
+     *
      * @param $string
      * @return string
      */
@@ -35,6 +37,7 @@ if (!function_exists("string_to_color")) {
 if (!function_exists("check_last_active_topic_tab")) {
     /**
      * Generate color from giving string
+     *
      * @param $isFirst
      * @param $topicID
      * @return string
@@ -45,5 +48,16 @@ if (!function_exists("check_last_active_topic_tab")) {
             return true;
         else if (session()->has("lastTopic") && $topicID == session('lastTopic'))
             return true;
+    }
+}
+if (!function_exists("placeholder_image")) {
+    /**
+     * Return placeholder image path
+     *
+     * @return string
+     */
+    function placeholder_image()
+    {
+        return asset("/media/placeholder.svg");
     }
 }

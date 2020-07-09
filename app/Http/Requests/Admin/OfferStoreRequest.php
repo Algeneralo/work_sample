@@ -27,7 +27,7 @@ class OfferStoreRequest extends FormRequest
             'title' => 'required',
             'alumni_id' => 'required|exists:alumni,id',
             'details' => 'required',
-            'image' => 'required|array',
+            'image' => 'sometimes|array',
         ];
     }
 }

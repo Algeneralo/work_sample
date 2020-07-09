@@ -40,9 +40,10 @@ class ForumTopicController extends Controller
         DB::transaction(function () use ($request, $forum) {
             /** @var Topic $topic */
             $topic = $forum->topics()->create($request->all());
-            $topic->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("cover");
+            if ($request->hasFile("image"))
+                $topic->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("cover");
         });
 
         session()->flash("success", trans("messages.success.created"));
