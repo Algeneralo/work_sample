@@ -29,6 +29,7 @@ class EventUpdateRequest extends FormRequest
             'time' => 'required',
             'street' => 'required',
             'street_number' => 'required',
+            'image' => 'image',
             'postcode' => 'required',
             'city' => 'required',
             'details' => 'required',

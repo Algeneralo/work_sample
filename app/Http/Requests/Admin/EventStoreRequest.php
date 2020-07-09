@@ -28,6 +28,7 @@ class EventStoreRequest extends FormRequest
             'date' => 'required',
             'time' => 'required',
             'street' => 'required',
+            'image' => 'image',
             'street_number' => 'required',
             'postcode' => 'required',
             'city' => 'required',
