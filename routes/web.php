@@ -145,3 +145,6 @@ Route::group(["as" => "admin.", "prefix" => "admin", "namespace" => "Admin", "mi
 
 });
 Auth::routes(["register" => false]);
+Route::get("/test",function (){
+    dd(\App\Models\Podcast::first()->duration);
+});

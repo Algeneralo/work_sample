@@ -21,6 +21,7 @@
         "laravel/ui": "^2.0",
         "livewire/livewire": "^1.0",
         "multicaret/laravel-acquaintances": "^3.3",
+        "pbmedia/laravel-ffmpeg": "^7.0",
         "spatie/laravel-medialibrary": "^7.19"
     },
     "require-dev": {

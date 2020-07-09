@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Duration;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Podcast extends Model implements HasMedia
@@ -48,5 +51,13 @@ class Podcast extends Model implements HasMedia
     public function getVoiceAttribute()
     {
         return optional($this->getFirstMedia("podcast"))->getFullUrl();
+    }
+
+
+    public function getDurationAttribute()
+    {
+        $media = $this->getFirstMedia("podcast");
+        $duration = FFMpeg::fromDisk("public")->open(str_replace("/storage/", "", $media->getUrl()))->getDurationInSeconds();
+        return (new Duration($duration))->humanize();
     }
 }

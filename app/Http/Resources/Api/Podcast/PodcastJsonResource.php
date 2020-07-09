@@ -20,6 +20,7 @@ class PodcastJsonResource extends JsonResource
             "title" => $this->title,
             "date" => $this->created_at->format("d.m.Y"),
             "podcast"=>$this->voice,
+            "duration"=>$this->duration,
             "details" => $this->details,
         ];
     }
