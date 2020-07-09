@@ -25,7 +25,7 @@ class OfferController extends ApiController
                 ->when(\request("type"), function ($query) {
                     $query->where("type", \request("type"));
                 })
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["offers" => $offers]);
     }

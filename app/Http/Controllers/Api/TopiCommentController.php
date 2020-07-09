@@ -27,7 +27,7 @@ class TopiCommentController extends ApiController
                 ->where("topic_id", $topic->id)
                 ->orderByDesc("created_at")
                 ->with("alumnus")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["comments" => $comments]);
     }

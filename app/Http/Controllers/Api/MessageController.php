@@ -32,7 +32,7 @@ class MessageController extends ApiController
             Thread::getAllLatest()
                 ->forUSer(auth()->id())
                 ->has("messages")
-                ->paginate(10)
+                ->paginate(100)
         );
 
         return $this->successResponse(["conversations" => $conversations]);

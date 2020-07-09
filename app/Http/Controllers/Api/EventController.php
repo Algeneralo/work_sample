@@ -44,7 +44,7 @@ class EventController extends ApiController
                 }, function (Builder $query) {
                     $query->orderBy("date", request("direction") ?? "desc");
                 })
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["events" => $events]);
     }

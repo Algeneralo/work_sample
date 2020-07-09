@@ -29,7 +29,7 @@ class ForumTopicController extends ApiController
                 ->with("forum:id,posts_type")
                 ->where("forum_id", $forum->id)
                 ->orderByDesc("created_at")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["topics" => $topics]);
     }

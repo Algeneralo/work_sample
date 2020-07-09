@@ -16,7 +16,7 @@ class PodcastController extends ApiController
      */
     public function index()
     {
-        $podcasts = new PodcastResource(Podcast::query()->paginate(20));
+        $podcasts = new PodcastResource(Podcast::query()->paginate(100));
         return $this->successResponse(["podcasts" => $podcasts]);
     }
 

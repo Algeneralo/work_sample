@@ -20,7 +20,7 @@ class GeneralController extends ApiController
         $general = new GeneralResource(
             General::query()
                 ->orderByDesc("created_at")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["general" => $general]);
     }

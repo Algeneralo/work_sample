@@ -20,7 +20,7 @@ class JobMarketController extends ApiController
             JobMarket::query()
                 ->orderByDesc("created_at")
                 ->with("contact")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["jobs" => $jobs]);
     }

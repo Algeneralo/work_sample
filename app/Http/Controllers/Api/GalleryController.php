@@ -17,7 +17,7 @@ class GalleryController extends ApiController
      */
     public function index()
     {
-        $galleries = new GalleryResource(Gallery::query()->latest()->paginate(20));
+        $galleries = new GalleryResource(Gallery::query()->latest()->paginate(100));
         return $this->successResponse(["galleries" => $galleries]);
     }
 

@@ -21,7 +21,7 @@ class ExternalEventController extends ApiController
             Event::query()
                 ->external()
                 ->orderBy("date", request("direction") ?? "desc")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["events" => $events]);
     }

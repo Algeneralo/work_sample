@@ -18,7 +18,7 @@ class ForumController extends ApiController
         $forums = new ForumResource(
             Forum::search(request("search"))
                 ->orderByDesc("created_at")
-                ->paginate(10)
+                ->paginate(100)
         );
         return $this->successResponse(["forums" => $forums]);
     }
