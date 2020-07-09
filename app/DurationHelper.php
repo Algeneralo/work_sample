@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-class Duration
+class DurationHelper
 {
     public $days;
     public $hours;
@@ -243,19 +243,19 @@ class Duration
         }
 
         if ($this->seconds > 0 || ($this->seconds === 0.0 && $this->minutes === 0 && $this->hours === 0 && $this->days === 0)) {
-            $this->output .= $this->seconds . 'Sek. ';
+            $this->output .= $this->seconds . ' Sek. ';
         }
 
         if ($this->minutes > 0) {
-            $this->output = $this->minutes . 'Min. ' . $this->output;
+            $this->output = $this->minutes . ' Min. ' . $this->output;
         }
 
         if ($this->hours > 0) {
-            $this->output = $this->hours . 'Std. ' . $this->output;
+            $this->output = $this->hours . ' Std. ' . $this->output;
         }
 
         if ($this->days > 0) {
-            $this->output = $this->days . 'Tag ' . $this->output;
+            $this->output = $this->days . ' Tag ' . $this->output;
         }
 
         return trim($this->output());

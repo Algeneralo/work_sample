@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Duration;
+use App\DurationHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,6 +58,6 @@ class Podcast extends Model implements HasMedia
     {
         $media = $this->getFirstMedia("podcast");
         $duration = FFMpeg::fromDisk("public")->open(str_replace("/storage/", "", $media->getUrl()))->getDurationInSeconds();
-        return (new Duration($duration))->humanize();
+        return (new DurationHelper($duration))->humanize();
     }
 }
