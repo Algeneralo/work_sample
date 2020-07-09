@@ -16,7 +16,7 @@ class StoryController extends ApiController
      */
     public function index()
     {
-        $podcasts = new StoryResource(Story::query()->paginate(20));
+        $podcasts = new StoryResource(Story::query()->latest()->paginate(20));
         return $this->successResponse(["stories" => $podcasts]);
     }
 
