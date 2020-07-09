@@ -68,6 +68,8 @@ class EventController extends ApiController
         return DB::transaction(function () use ($request) {
             /** @var Event $event */
             $event = Event::query()->create($request->all());
+            if (!auth()->user()->is_team_member)
+                $event->participants()->sync([auth()->id()]);
             $event->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->toMediaCollection("cover");
