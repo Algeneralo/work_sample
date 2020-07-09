@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <address-component></address-component>
+                            <address-component :required="false"></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
                                 <input class="form-control js-maxlength" maxlength="100" type="email" name="email"
@@ -71,19 +71,19 @@
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
-                                       name="telephone" required>
+                                       name="telephone">
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.mobile")}}</label>
                                 <input type="text" class="form-control"
-                                       name="mobile" required>
+                                       name="mobile">
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="form-group">
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" value-type="format" input-class="form-control"
-                                             :input-attr="{name:'dob',required:'required'}"
+                                             :input-attr="{name:'dob'}"
                                              :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
@@ -94,7 +94,7 @@
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"
                                              @change="checkYear"
-                                             :input-attr="{name:'alumni_year',required:'required'}" format="YYYY"
+                                             :input-attr="{name:'alumni_year'}" format="YYYY"
                                              type="year"></date-picker>
                             </div>
                             <div class="form-group d-none">
@@ -110,7 +110,7 @@
                             <div>
                                 <label for=""
                                        class="border-b border-b-dashed w-100 mb-4">{{trans("general.image-upload")}}</label>
-                                <image-uploader :name="'image'"></image-uploader>
+                                <image-uploader :required="false" :name="'image'"></image-uploader>
                             </div>
                         </div>
                     </div>

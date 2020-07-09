@@ -72,7 +72,8 @@
                             <address-component :street="'{{$alumnus->street}}'"
                                                :streetNumber="'{{$alumnus->street_number}}'"
                                                :postcode="'{{$alumnus->postcode }}'"
-                                               :city="'{{$alumnus->city}}'"></address-component>
+                                               :city="'{{$alumnus->city}}'"
+                                               :required="false"></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
                                 <input class="form-control" value="{{$alumnus->email}}" type="email" name="email"
@@ -86,7 +87,7 @@
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
-                                       name="telephone" value="{{$alumnus->telephone}}" required>
+                                       name="telephone" value="{{$alumnus->telephone}}">
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -94,19 +95,19 @@
                             <div class="form-group">
                                 <label>{{trans("general.mobile")}}</label>
                                 <input type="text" class="form-control"
-                                       name="mobile" value="{{$alumnus->mobile}}" required>
+                                       name="mobile" value="{{$alumnus->mobile}}">
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" value-type="format" input-class="form-control"
-                                             :input-attr="{name:'dob',required:'required' ,'data-change-v-model-value':'{\'dob\':\'{{$alumnus->dob->format('d.m.Y')}}\'}'}"
+                                             :input-attr="{name:'dob','data-change-v-model-value':'{\'dob\':\'{{optional($alumnus->dob)->format('d.m.Y')}}\'}'}"
                                              :disabled-date="disabledDobDates"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"
-                                             :input-attr="{name:'alumni_year',required:'required','data-change-v-model-value':'{\'alumniYear\':\'{{$alumnus->alumni_year}}\'}'}"
+                                             :input-attr="{name:'alumni_year','data-change-v-model-value':'{\'alumniYear\':\'{{$alumnus->alumni_year}}\'}'}"
                                              format="YYYY" @change="checkYear"
                                              :default-value="'1990'"
                                              type="year"></date-picker>

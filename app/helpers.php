@@ -61,3 +61,15 @@ if (!function_exists("placeholder_image")) {
         return asset("/media/placeholder.svg");
     }
 }
+
+if (!function_exists("avatar_placeholder_image")) {
+    /**
+     * Return avatar placeholder image path
+     *
+     * @return string
+     */
+    function avatar_placeholder_image()
+    {
+        return asset("/media/avatar_placeholder.png");
+    }
+}

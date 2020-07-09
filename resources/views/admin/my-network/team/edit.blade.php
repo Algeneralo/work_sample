@@ -72,7 +72,8 @@
                             <address-component :street="'{{$team->street}}'"
                                                :streetNumber="'{{$team->street_number}}'"
                                                :postcode="'{{$team->postcode }}'"
-                                               :city="'{{$team->city}}'"></address-component>
+                                               :city="'{{$team->city}}'"
+                                               :required="false"></address-component>
                             <div class="form-group">
                                 <label>{{trans("general.email")}}</label>
                                 <input class="form-control" value="{{$team->email}}" type="email" name="email"
@@ -87,7 +88,7 @@
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
-                                       name="telephone" value="{{$team->telephone}}" required>
+                                       name="telephone" value="{{$team->telephone}}">
                             </div>
                         </div>
                         <div class="col-xl-5">
@@ -95,12 +96,12 @@
                             <div class="form-group">
                                 <label>{{trans("general.mobile")}}</label>
                                 <input type="text" class="form-control"
-                                       name="mobile" value="{{$team->mobile}}" required>
+                                       name="mobile" value="{{$team->mobile}}">
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" value-type="format" input-class="form-control"
-                                             :input-attr="{name:'dob',required:'required' ,'data-change-v-model-value':'{\'dob\':\'{{$team->dob->format('d.m.Y')}}\'}'}"
+                                             :input-attr="{name:'dob','data-change-v-model-value':'{\'dob\':\'{{optional($team->dob)->format('d.m.Y')}}\'}'}"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
                             <div class="form-group">

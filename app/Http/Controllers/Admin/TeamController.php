@@ -35,9 +35,10 @@ class TeamController extends Controller
     {
         DB::transaction(function () use ($request) {
             $team = Team::create($request->all());
-            $team->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("avatar");
+            if ($request->hasFile("image"))
+                $team->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("avatar");
         });
         session()->flash("success", trans("messages.success.created"));
         return redirect()->route('admin.my-network.teams.index');
@@ -52,7 +53,7 @@ class TeamController extends Controller
         $educationExperiences = $team->educationExperiences();
         $workExperiences = $team->workExperiences();
         $voluntaryExperiences = $team->voluntaryExperiences();
-        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences","voluntaryExperiences"));
+        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences", "voluntaryExperiences"));
     }
 
     /**

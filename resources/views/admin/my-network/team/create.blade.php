@@ -60,10 +60,10 @@
                             <div class="form-group">
                                 <label>{{trans("general.dob")}}</label>
                                 <date-picker v-model="dob" valueType="format" input-class="form-control"
-                                             :input-attr="{name:'dob',required:'required'}"
+                                             :input-attr="{name:'dob'}"
                                              format="DD.MM.YYYY"></date-picker>
                             </div>
-                            <address-component></address-component>
+                            <address-component :required="false"></address-component>
                             @livewire("admin.experience.index",["type" => "education"])
                             @livewire("admin.experience.index",["type" => "work"])
                             @livewire("admin.experience.index",["type" => "voluntary"])
@@ -82,12 +82,12 @@
                             <div class="form-group">
                                 <label>{{trans("general.phone")}}</label>
                                 <input type="text" class="form-control"
-                                       name="telephone" required>
+                                       name="telephone">
                             </div>
                             <div class="form-group">
                                 <label>{{trans("general.mobile")}}</label>
                                 <input type="text" class="form-control"
-                                       name="mobile" required>
+                                       name="mobile">
                             </div>
                             <div class="form-group">
                                 <label for="">@lang("general.job-title")</label>
@@ -98,7 +98,7 @@
                             <div>
                                 <label for=""
                                        class="border-b border-b-dashed w-100 mb-4">{{trans("general.image-upload")}}</label>
-                                <image-uploader :name="'image'"></image-uploader>
+                                <image-uploader :required="false" :name="'image'"></image-uploader>
                             </div>
                         </div>
                     </div>

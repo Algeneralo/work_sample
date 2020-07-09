@@ -55,9 +55,10 @@ class AlumniController extends Controller
     {
         DB::transaction(function () use ($request) {
             $alumnus = Alumnus::create($request->all());
-            $alumnus->addMediaFromRequest("image")
-                ->preservingOriginal()
-                ->toMediaCollection("avatar");
+            if ($request->hasFile("image"))
+                $alumnus->addMediaFromRequest("image")
+                    ->preservingOriginal()
+                    ->toMediaCollection("avatar");
             if ($request->has("experiences")) {
                 foreach ($request->input("experiences") as $experience) {
                     $alumnus->experiences()->createMany($experience);
@@ -80,7 +81,7 @@ class AlumniController extends Controller
         $educationExperiences = $alumnus->educationExperiences();
         $workExperiences = $alumnus->workExperiences();
         $voluntaryExperiences = $alumnus->voluntaryExperiences();
-        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences","voluntaryExperiences"));
+        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences", "voluntaryExperiences"));
     }
 
     /**

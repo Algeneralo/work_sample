@@ -27,20 +27,19 @@ class AlumnusStoreRequest extends FormRequest
             'first_name' => 'required|max:40',
             'last_name' => 'required|max:40',
             'gender' => 'required|in:m,f',
-            'street' => 'required|max:80',
-            'street_number' => 'required|max:40',
-            'postcode' => 'required|max:40',
-            'city' => 'required|max:40',
+            'street' => 'max:80',
+            'street_number' => 'max:40',
+            'postcode' => 'max:40',
+            'city' => 'max:40',
             'email' => 'required|email|unique:alumni',
             'password' => 'required|min:6',
-            'dob' => 'required',
             'experiences' => 'array|sometimes',
             'experiences.education' => 'array|sometimes',
             'experiences.work' => 'array|sometimes',
-            'alumni_year' => 'required|max:4',
-            'telephone' => 'required|max:50',
-            'mobile' => 'required|max:50',
-            "image" => "required|image"
+            'alumni_year' => 'max:4',
+            'telephone' => 'max:50',
+            'mobile' => 'max:50',
+            "image" => "image"
         ];
     }
 }
