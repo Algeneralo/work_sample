@@ -51,7 +51,7 @@
                                                     @if($forum->posts_type==\App\Models\Forum::POST_TYPES_ADMINS) selected @endif
                                                     >@lang("general.for-admins")</option>
                                             <option value="{{\App\Models\Forum::POST_TYPES_ALL_USERS}}"
-                                                    @if($forum->posts_type==\App\Models\Forum::POST_TYPES_ADMINS) selected @endif
+                                                    @if($forum->posts_type==\App\Models\Forum::POST_TYPES_ALL_USERS) selected @endif
                                             >@lang("general.for-all-users")</option>
                                         </select>
                                     </div>
