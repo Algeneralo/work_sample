@@ -59,7 +59,7 @@
                             <div>
                                 <label for="" class="border-b w-100 mb-4"
                                        style="border-bottom-style: dashed !important;">{{trans("general.image-upload")}}</label>
-                                <image-video-uploader :name="'image'"></image-video-uploader>
+                                <image-video-uploader :required="false" :name="'image'"></image-video-uploader>
                             </div>
                         </div>
                     </div>
