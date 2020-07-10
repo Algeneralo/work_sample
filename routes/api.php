@@ -41,8 +41,8 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         });
 
         Route::group(["prefix" => "my-network", "namespace" => "MyNetwork"], function () {
-            Route::get('alumni', 'AlumniController');
             Route::get('alumni/{alumnus}/conversation', 'AlumniConversationController@show');
+            Route::apiResource('alumni', 'AlumniController')->only(["index", "show"]);
             Route::get('team', 'TeamController');
         });
 

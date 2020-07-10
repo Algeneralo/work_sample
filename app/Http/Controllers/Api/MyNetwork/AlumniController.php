@@ -7,8 +7,7 @@ use App\Http\Resources\Api\Alumni\AlumniResource;
 use App\Models\Alumnus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Resources\Api\User\UserJsonResource;
 
 class AlumniController extends ApiController
 {
@@ -17,7 +16,7 @@ class AlumniController extends ApiController
      *
      * @return JsonResponse
      */
-    public function __invoke()
+    public function index()
     {
         $alumni = new AlumniResource(Alumnus::search(\request("search"))
             ->where("id", "!=", auth()->id())
@@ -37,4 +36,8 @@ class AlumniController extends ApiController
         return $this->successResponse(["alumni" => $alumni]);
     }
 
+    public function show(Alumnus $alumnus)
+    {
+        return $this->successResponse(["alumnus" => new UserJsonResource($alumnus)]);
+    }
 }
