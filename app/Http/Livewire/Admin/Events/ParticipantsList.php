@@ -43,7 +43,6 @@ class ParticipantsList extends Component
 
     public function render()
     {
-        debug($this->selectedParticipants);
         return view('livewire.admin.events.participants-list',
             ["participants" => Alumnus::search($this->search)
                 ->whereNotIn("id", array_keys($this->selectedParticipants))
