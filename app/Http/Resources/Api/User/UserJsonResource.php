@@ -32,12 +32,13 @@ class UserJsonResource extends JsonResource
             "mobile" => $this->mobile,
             "is_team_member" => $this->is_team_member,
             "job_title" => $this->job_title,
-            "work_experiences" =>  ExperiencesJsonResource::collection($this->workExperiences()),
-            "education_experiences" =>ExperiencesJsonResource::collection($this->educationExperiences()),
-            "voluntary_experiences" =>ExperiencesJsonResource::collection($this->voluntaryExperiences()),
+            "work_experiences" => ExperiencesJsonResource::collection($this->workExperiences()),
+            "education_experiences" => ExperiencesJsonResource::collection($this->educationExperiences()),
+            "voluntary_experiences" => ExperiencesJsonResource::collection($this->voluntaryExperiences()),
             $this->mergeWhen(!$this->is_team_member, function () {
                 return [
-                    "show_job_title_field" => $this->alumni_year <= Carbon::now()->year,
+                    "alumni_year" => $this->alumni_year,
+                    "show_job_title_field" => !is_null($this->alumni_year) && ($this->alumni_year <= Carbon::now()->year),
                 ];
             }),
         ];
