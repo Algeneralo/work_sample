@@ -32,7 +32,7 @@ class AlumniController extends ApiController
                     $query->where("name", "like", "%" . "" . "%");
                 });
             })
-            ->paginate(10));
+            ->paginate(100));
 
         return $this->successResponse(["alumni" => $alumni]);
     }

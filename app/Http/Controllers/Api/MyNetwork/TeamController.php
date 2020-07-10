@@ -21,7 +21,7 @@ class TeamController extends ApiController
      */
     public function __invoke()
     {
-        $team = new TeamResource(Team::query()->paginate(10));
+        $team = new TeamResource(Team::query()->paginate(100));
 
         return $this->successResponse(["team" => $team]);
     }
