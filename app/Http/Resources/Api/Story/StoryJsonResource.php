@@ -21,8 +21,9 @@ class StoryJsonResource extends JsonResource
             "title" => $this->title,
             "date" => $this->created_at->diffForHumans(),
             "alumnus" => [
-                $this->alumnus->name,
-                $this->alumnus->avatar,
+                "id" => $this->alumnus->id,
+                "name" => $this->alumnus->name,
+                "avatar" => $this->alumnus->avatar,
             ],
             $this->mergeWhen(!$request->has("show"), [
                 "short_details" => mb_strimwidth(strip_tags($this->details), 0, 300, '....'),
