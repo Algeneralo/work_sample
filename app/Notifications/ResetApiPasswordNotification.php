@@ -45,7 +45,7 @@ class ResetApiPasswordNotification extends Notification
             ->greeting("Guten Tag!")
             ->subject(trans("messages.emails.password-reset.title") . ' | ' . config('app.name'))
             ->line(trans("messages.emails.password-reset.message"))
-            ->line("PIN: $this->token");
+            ->line("PIN: <b>$this->token</b>");
     }
 
     /**

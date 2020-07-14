@@ -37,6 +37,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
         Route::prefix("user")->group(function () {
             Route::get('profile', 'AlumniProfileController@edit');
             Route::put('profile', 'AlumniProfileController@update');
+            Route::put('profile/password', 'AlumniPasswordController@update');
             Route::post('profile/image', 'AlumniProfileController@updateImage');
         });
 
