@@ -66,7 +66,7 @@ Route::group(['prefix' => 'v1', "namespace" => "Api"], function () {
             Route::apiResource("offers", "OfferController")->only(["index", "show", "store"]);
         });
 
-        Route::apiResource("forum", "ForumController")->only(["index"]);
+        Route::apiResource("forum", "ForumController")->only(["index", "store"]);
 
         Route::put("forum/{forum}/topics/{topic}/like", "ForumTopicController@toggleLike");
         Route::apiResource("forum.topics", "ForumTopicController")->only(["index", "store"]);
