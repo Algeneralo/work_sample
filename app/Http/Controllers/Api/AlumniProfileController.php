@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Experience;
+use Spatie\MediaLibrary\Models\Media;
 use App\Http\Resources\Api\User\UserJsonResource;
-use App\Models\DegreeProgram;
-use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -71,7 +70,7 @@ class AlumniProfileController extends ApiController
         ]);
 
         return \DB::transaction(function () {
-            auth()->user()->clearMediaCollection("avatar");
+            Media::query()->where("model_id", auth()->id())->delete();
             auth()->user()->addMediaFromRequest("image")
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
