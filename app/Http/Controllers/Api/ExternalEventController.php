@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Models\Event;
@@ -20,6 +21,7 @@ class ExternalEventController extends ApiController
         $events = new EventResource(
             Event::query()
                 ->external()
+                ->whereDate("date", ">=", Carbon::now()->toDateString())
                 ->orderBy("date", request("direction") ?? "desc")
                 ->paginate(100)
         );
@@ -28,7 +30,7 @@ class ExternalEventController extends ApiController
 
     public function show(Event $externalEvent)
     {
-        abort_if($externalEvent->type == Event::INTERNAL_EVENTS,Response::HTTP_FORBIDDEN);
+        abort_if($externalEvent->type == Event::INTERNAL_EVENTS, Response::HTTP_FORBIDDEN);
         request()->merge(["show" => true]);
         $event = new EventJsonResource($externalEvent);
         return $this->successResponse(["event" => $event]);

@@ -38,6 +38,8 @@ class EventController extends ApiController
                             $query->whereDate("date", ">=", Carbon::now()->toDateString());
                         });
                     });
+                }, function (Builder $query) {
+                    $query->whereDate("date", ">=", Carbon::now()->toDateString());
                 })
                 ->when(request()->has("lastChanged"), function (Builder $query) {
                     $query->orderBy("updated_at", request("direction") ?? "desc");
