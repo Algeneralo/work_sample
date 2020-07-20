@@ -16,6 +16,9 @@ class JobMarketJsonResource extends JsonResource
     {
         return [
             "id" => $this->id,
+            "title" => $this->offer,
+            "employer" => $this->employer,
+            "category" => $this->category,
             "from" => $this->created_at->diffForHumans(),
             "working_type" => $this->working_hours_string,
             "city" => $this->city,
@@ -29,11 +32,11 @@ class JobMarketJsonResource extends JsonResource
                 "link" => $this->link,
                 "details" => $this->details,
                 "contact" => [
-                    "name" =>$this->contact->name,
-                    "company_name" =>$this->contact->company_name,
-                    "email" =>$this->contact->email,
-                    "telephone" =>$this->contact->telephone,
-                ]
+                    "name" => $this->contact->name,
+                    "company_name" => $this->contact->company_name,
+                    "email" => $this->contact->email,
+                    "telephone" => $this->contact->telephone,
+                ],
             ]),
         ];
     }
