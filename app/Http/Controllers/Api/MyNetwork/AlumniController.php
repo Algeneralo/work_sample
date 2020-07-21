@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\MyNetwork;
 
+use App\Models\Experience;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\Api\Alumni\AlumniResource;
 use App\Models\Alumnus;
@@ -26,9 +27,16 @@ class AlumniController extends ApiController
             ->when(\request("alumni_year"), function (Builder $query) {
                 $query->where("alumni_year", \request("alumni_year"));
             })
-            ->when(\request("degree_program"), function (Builder $query) {
-                $query->whereHas("degreeProgram", function (Builder $query) {
-                    $query->where("name", "like", "%" . "" . "%");
+            ->when(\request("education_type") && in_array(\request("education_type"), ["education", "voluntary", "apprenticeship"]), function (Builder $query) {
+                $query->whereHas("experiences", function (Builder $query) {
+                    $query->where("type", request("education_type"));
+                });
+            })
+            //search by university name
+            ->when(request("university"), function (Builder $query) {
+                $query->whereHas("experiences", function (Builder $query) {
+                    $query->where("type", Experience::EDUCATION_EXPERIENCE)
+                        ->where("place", "like", "%" . request("university") . "%");
                 });
             })
             ->paginate(100));
