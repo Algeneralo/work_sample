@@ -67,6 +67,7 @@
                             @livewire("admin.experience.index",["type" => "education"])
                             @livewire("admin.experience.index",["type" => "work"])
                             @livewire("admin.experience.index",["type" => "voluntary"])
+                            @livewire("admin.experience.index",["type" => "apprenticeship"])
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="form-group">

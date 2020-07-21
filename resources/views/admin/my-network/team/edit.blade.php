@@ -111,6 +111,7 @@
                             @livewire("admin.experience.index",["type" => "education","experiences" => $educationExperiences])
                             @livewire("admin.experience.index",["type" => "work","experiences" => $workExperiences])
                             @livewire("admin.experience.index",["type" => "voluntary","experiences" => $voluntaryExperiences])
+                            @livewire("admin.experience.index",["type" => "apprenticeship","experiences"=>$apprenticeshipExperiences])
                         </div>
                     </div>
                 </div>

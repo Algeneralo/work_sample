@@ -59,11 +59,8 @@ class AlumniController extends Controller
                 $alumnus->addMediaFromRequest("image")
                     ->preservingOriginal()
                     ->toMediaCollection("avatar");
-            if ($request->has("experiences")) {
-                foreach ($request->input("experiences") as $experience) {
-                    $alumnus->experiences()->createMany($experience);
-                }
-            }
+
+            $this->addExperiences($alumnus, $request);
 
         });
         session()->flash("success", trans("messages.success.created"));
@@ -81,7 +78,8 @@ class AlumniController extends Controller
         $educationExperiences = $alumnus->educationExperiences();
         $workExperiences = $alumnus->workExperiences();
         $voluntaryExperiences = $alumnus->voluntaryExperiences();
-        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences", "voluntaryExperiences"));
+        $apprenticeshipExperiences = $alumnus->apprenticeshipExperiences();
+        return view('admin.my-network.alumni.edit', compact("alumnus", "educationExperiences", "workExperiences", "voluntaryExperiences","apprenticeshipExperiences"));
     }
 
     /**
@@ -103,13 +101,7 @@ class AlumniController extends Controller
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
         }
-        $alumnus->experiences()->delete();
-
-        if ($request->has("experiences")) {
-            foreach ($request->input("experiences") as $experience) {
-                $alumnus->experiences()->createMany($experience);
-            }
-        }
+        $this->addExperiences($alumnus, $request);
 
         session()->flash("success", trans("messages.success.updated"));
 
@@ -146,5 +138,20 @@ class AlumniController extends Controller
 
         session()->flash("error", trans(trans("messages.error.title")));
         return redirect()->route('admin.my-network.alumni.index');
+    }
+
+    /**
+     * @param Alumnus $alumnus
+     * @param Request $request
+     */
+    private function addExperiences(Alumnus $alumnus, Request $request): void
+    {
+        $alumnus->experiences()->delete();
+
+        if ($request->has("experiences")) {
+            foreach ($request->input("experiences") as $experience) {
+                $alumnus->experiences()->createMany($experience);
+            }
+        }
     }
 }

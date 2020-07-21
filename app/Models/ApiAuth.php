@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Traits\CanLike;
+use App\Traits\HasExperiencesTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\ResetPasswordNotification;
 use App\Notifications\ResetApiPasswordNotification;
@@ -15,7 +16,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class ApiAuth extends Authenticatable implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait, HasApiTokens, CanLike, Notifiable;
+    use SoftDeletes, HasMediaTrait, HasApiTokens, CanLike, Notifiable, HasExperiencesTrait;
 
     protected $table = "alumni";
 
@@ -66,25 +67,6 @@ class ApiAuth extends Authenticatable implements HasMedia
     protected $appends = ["name", "avatar"];
     protected $hidden = ["password"];
 
-    public function experiences()
-    {
-        return $this->hasMany(Experience::class, "alumnus_id");
-    }
-
-    public function educationExperiences()
-    {
-        return $this->experiences->where("type", Experience::EDUCATION_EXPERIENCE);
-    }
-
-    public function workExperiences()
-    {
-        return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
-    }
-
-    public function voluntaryExperiences()
-    {
-        return $this->experiences->where("type", Experience::VOLUNTARY_EXPERIENCE);
-    }
 
     //Accessors
     public function getNameAttribute()

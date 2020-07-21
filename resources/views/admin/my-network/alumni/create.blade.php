@@ -90,6 +90,7 @@
                             @livewire("admin.experience.index",["type" => "education"])
                             @livewire("admin.experience.index",["type" => "work"])
                             @livewire("admin.experience.index",["type" => "voluntary"])
+                            @livewire("admin.experience.index",["type" => "apprenticeship"])
                             <div class="form-group">
                                 <label>{{trans("general.Select alumni year")}}</label>
                                 <date-picker v-model="alumniYear" value-type="format" input-class="form-control"

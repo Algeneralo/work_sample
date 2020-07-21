@@ -24,6 +24,7 @@ class AlumniProfileController extends ApiController
         return \DB::transaction(function () use ($request) {
             auth()->user()->update($request->only(auth()->user()->getFillable()));
 
+            //Todo this should be refactor
             if ($request->has("work_experiences")) {
                 auth()->user()->experiences()->where("type", Experience::WORK_EXPERIENCE)->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("work_experiences"), true));
@@ -36,7 +37,10 @@ class AlumniProfileController extends ApiController
                 auth()->user()->experiences()->where("type", Experience::VOLUNTARY_EXPERIENCE)->delete();
                 auth()->user()->experiences()->createMany(json_decode($request->input("voluntary_experiences"), true));
             }
-
+            if ($request->has("apprenticeship_experiences")) {
+                auth()->user()->experiences()->where("type", Experience::APPRENTICESHIP_EXPERIENCE)->delete();
+                auth()->user()->experiences()->createMany(json_decode($request->input("apprenticeship_experiences"), true));
+            }
             return $this->successResponse([
                 "user" => new UserJsonResource(auth()->user()),
             ]);

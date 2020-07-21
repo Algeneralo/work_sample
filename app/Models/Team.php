@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasExperiencesTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Team extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, HasExperiencesTrait;
 
     protected $table = "alumni";
     static $IS_TEAM_MEMBER = 1;
@@ -57,26 +58,6 @@ class Team extends Model implements HasMedia
         static::addGlobalScope('team_member', function (Builder $builder) {
             $builder->where('is_team_member', self::$IS_TEAM_MEMBER);
         });
-    }
-
-    public function experiences()
-    {
-        return $this->hasMany(Experience::class, "alumnus_id");
-    }
-
-    public function educationExperiences()
-    {
-        return $this->experiences->where("type", Experience::EDUCATION_EXPERIENCE);
-    }
-
-    public function workExperiences()
-    {
-        return $this->experiences->where("type", Experience::WORK_EXPERIENCE);
-    }
-
-    public function voluntaryExperiences()
-    {
-        return $this->experiences->where("type", Experience::VOLUNTARY_EXPERIENCE);
     }
 
     //Accessors

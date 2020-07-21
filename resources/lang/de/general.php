@@ -86,9 +86,14 @@ return [
     "job-title" => "Job nach dem Studium/nach der Berufsausbildung",
     "experience" => [
         "education" => [
-            "label" => "Ausbildung/Studium",
-            "place" => "Hochschule oder Ausbildungsstätte",
+            "label" => "Studium",
+            "place" => "Hochschule",
             "title" => "(Angestrebter) Abschluss",
+        ],
+        "apprenticeship" => [
+            "label" => "Berufsausbildung",
+            "place" => "Betrieb",
+            "title" => "Ausbildungsberuf",
         ],
         "work" => [
             "label" => "Berufserfahrung",
