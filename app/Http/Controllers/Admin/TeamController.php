@@ -39,6 +39,8 @@ class TeamController extends Controller
                 $team->addMediaFromRequest("image")
                     ->preservingOriginal()
                     ->toMediaCollection("avatar");
+            $this->addExperiences($team, $request);
+
         });
         session()->flash("success", trans("messages.success.created"));
         return redirect()->route('admin.my-network.teams.index');
@@ -53,7 +55,8 @@ class TeamController extends Controller
         $educationExperiences = $team->educationExperiences();
         $workExperiences = $team->workExperiences();
         $voluntaryExperiences = $team->voluntaryExperiences();
-        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences", "voluntaryExperiences"));
+        $apprenticeshipExperiences = $team->apprenticeshipExperiences();
+        return view('admin.my-network.team.edit', compact("team", "educationExperiences", "workExperiences", "voluntaryExperiences", "apprenticeshipExperiences"));
     }
 
     /**
@@ -74,6 +77,8 @@ class TeamController extends Controller
                 ->preservingOriginal()
                 ->toMediaCollection("avatar");
         }
+        $this->addExperiences($team, $request);
+
         session()->flash("success", trans("messages.success.updated"));
 
         return redirect()->back();
@@ -103,5 +108,20 @@ class TeamController extends Controller
 
         session()->flash("error", trans(trans("messages.error.title")));
         return redirect()->route('admin.my-network.teams.index');
+    }
+
+    /**
+     * @param Team $team
+     * @param Request $request
+     */
+    private function addExperiences(Team $team, Request $request): void
+    {
+        $team->experiences()->delete();
+
+        if ($request->has("experiences")) {
+            foreach ($request->input("experiences") as $experience) {
+                $team->experiences()->createMany($experience);
+            }
+        }
     }
 }
