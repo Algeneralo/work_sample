@@ -35,6 +35,7 @@ class UserJsonResource extends JsonResource
             "work_experiences" => ExperiencesJsonResource::collection($this->workExperiences()),
             "education_experiences" => ExperiencesJsonResource::collection($this->educationExperiences()),
             "voluntary_experiences" => ExperiencesJsonResource::collection($this->voluntaryExperiences()),
+            "apprenticeship_experiences" => ExperiencesJsonResource::collection($this->apprenticeshipExperiences()),
             $this->mergeWhen(!$this->is_team_member, function () {
                 return [
                     "alumni_year" => $this->alumni_year,
